@@ -15,16 +15,16 @@ DamnCute::Core* DamnCute::Core::getInstance() {
 }
 
 void DamnCute::Core::freeAll() {
-    if (!__coreInstance) {
-	delete __coreInstance;
+    for (std::vector<IRenderable*>::iterator it = objects.begin() ; it != objects.end(); ++it) {
+	delete (*it);
     }
+    objects.clear();
 }
 
 void DamnCute::Core::reset () {
     delete __coreInstance;
     __coreInstance = NULL;
 }
-
 
 void DamnCute::Core::refresh() {
     for (unsigned int i = 0; i < objects.size(); ++i) {
@@ -65,7 +65,7 @@ void DamnCute::Core::delObject(IRenderable* a) {
     }
 }
 
-DamnCute::Core::Core() {
+DamnCute::Core::Core() : _gameStatus(false) {
 }
 
 DamnCute::Core::Core(const DamnCute::Core&) {
@@ -75,6 +75,7 @@ DamnCute::Core::Core(const DamnCute::Core&&) {
 }
 
 DamnCute::Core::~Core() {
+    freeAll();
 }
 
 DamnCute::Core& DamnCute::Core::operator=(const DamnCute::Core&) {

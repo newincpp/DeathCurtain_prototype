@@ -8,14 +8,18 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <Core/Core.hh>
 
 class DisplayManager {
     public:
 	DisplayManager(int width = __DWIDTH, int height = __DHEIGHT, bool type = false);
 	~DisplayManager();
 	void run();
+	void gameMode();
+	void menuMode();
     private:
 	void update();
+	DamnCute::Core* _engine;
 	sf::RenderWindow _win;
 	bool _alive;
 };

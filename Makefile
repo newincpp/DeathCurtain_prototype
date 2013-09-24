@@ -3,6 +3,7 @@ SRC		= damncute/Bullet.cpp \
 		  damncute/Input.cpp \
 		  damncute/Environment.cpp \
 		  damncute/Core/Core.cpp \
+		  damncute/Menu.cpp \
 		  src/DisplayManager.cpp \
 		  src/main.cpp \
 		  src/TestPattern.cpp

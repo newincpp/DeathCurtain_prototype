@@ -24,6 +24,12 @@ namespace DamnCute {
 	    inline int  getWindowSizeY() const {
 		return _win->getSize().y;
 	    }
+	    inline bool getGameStatus() const {
+		return _gameStatus;
+	    }
+	    inline void switchGameStatus() {
+		_gameStatus = !_gameStatus;
+	    }
 	    void flushEvent();
 	private:
 	    Core();
@@ -37,6 +43,7 @@ namespace DamnCute {
 	    static Core* __coreInstance;
 	    sf::RenderWindow* _win;
 	    std::vector<IRenderable*> objects;
+	    bool _gameStatus;
 
 	    sf::Event event;
     };
