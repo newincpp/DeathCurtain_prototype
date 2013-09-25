@@ -1,7 +1,7 @@
 SRC		= damncute/Bullet.cpp \
 		  damncute/Path.cpp \
 		  damncute/Input.cpp \
-		  damncute/Environment.cpp \
+		  damncute/Background.cpp \
 		  damncute/Core/Core.cpp \
 		  damncute/Menu.cpp \
 		  src/DisplayManager.cpp \

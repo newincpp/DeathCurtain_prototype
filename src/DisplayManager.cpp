@@ -1,4 +1,4 @@
-#include <Environment.hh>
+#include <Background.hh>
 //#include "example/Player.hh"
 #include <Menu.hh>
 #include <Core/Core.hh>
@@ -21,10 +21,10 @@ void DisplayManager::gameMode() {
 	_engine = DamnCute::Core::getInstance();
 	std::cerr << "game is starting without menu =S" << std::endl;
     }
-    DamnCute::Environment* bg = new DamnCute::Environment("ressources/mushihimesama.tga");
+    DamnCute::Background* bg = new DamnCute::Background("ressources/mushihimesama.tga");
     TestPattern* test = new TestPattern();
     //DamnCute::Player p;
-    bg->setSpeed(0,-0.1f);
+    bg->setScrollSpeed(0,-0.1f);
 
     _engine->addObject(bg);
     _engine->addObject(test);
