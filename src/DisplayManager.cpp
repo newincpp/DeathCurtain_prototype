@@ -1,5 +1,5 @@
 #include <Background.hh>
-//#include "example/Player.hh"
+//#include "Player.hh"
 #include <Menu.hh>
 #include <Core/Core.hh>
 #include "TestPattern.hh"
@@ -34,7 +34,10 @@ void DisplayManager::gameMode() {
 }
 
 void DisplayManager::menuMode() {
-    _engine->addObject(new DamnCute::Menu("ressources/title.png"));
+    DamnCute::Menu* m = new DamnCute::Menu("ressources/title.png");
+    _engine->addObject(m);
+    m->setTextureButton("ressources/button1.png");
+    m->addButton(50, 100, "start");
 }
 
 void DisplayManager::run() {

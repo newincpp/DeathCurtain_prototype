@@ -61,6 +61,8 @@ void DamnCute::Core::delObject(IRenderable* a) {
     for (std::vector<IRenderable*>::iterator it = objects.begin() ; it != objects.end(); ++it) {
 	if ((*it) == a) {
 	    objects.erase(it);
+	    delete *it;
+	    return;
 	}
     }
 }

@@ -21,7 +21,6 @@ namespace DamnCute {
 	    float _XSpeed;
 	    float _YSpeed;
 	    sf::Sprite _bg;
-	    glm::vec3 _pos;
 	    sf::Texture _tex;
     };
 }
