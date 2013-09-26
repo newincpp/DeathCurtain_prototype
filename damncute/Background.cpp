@@ -24,8 +24,6 @@ float DamnCute::Background::getYScrollSpeed() const {
     return _YSpeed;
 }
 
-#include <iostream>
-
 void DamnCute::Background::update(sf::RenderWindow* w_ptr) {
     //_pos.x += _XSpeed / 10000;
     //_pos.y += _YSpeed / 10000;

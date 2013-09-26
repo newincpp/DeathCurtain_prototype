@@ -3,15 +3,15 @@
 
 #include <iostream>
 #include <vector>
-#include "../APlayer.hh"
-#include "../Actions/ActFocus.hh"
+#include "../damncute/APlayer.hh"
+/*#include "../Actions/ActFocus.hh"
 #include "../Actions/ActMoveLeft.hh"
 #include "../Actions/ActMoveRight.hh"
 #include "../Actions/ActMoveUp.hh"
 #include "../Actions/ActMoveDown.hh"
 #include "../Actions/ActZDown.hh"
 #include "../Actions/ActZUp.hh"
-#include "../Actions/ActWeapon.hh"
+#include "../Actions/ActWeapon.hh"*/
 
 namespace DamnCute
 {

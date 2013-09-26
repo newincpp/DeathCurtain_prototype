@@ -5,7 +5,6 @@ typedef struct s_pos
 {
     float x;
     float y;
-    float z;
 } t_pos;
 
 #endif

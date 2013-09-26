@@ -4,6 +4,7 @@ SRC		= damncute/Bullet.cpp \
 		  damncute/Background.cpp \
 		  damncute/Core/Core.cpp \
 		  damncute/Menu.cpp \
+		  damncute/Player.cpp \
 		  src/DisplayManager.cpp \
 		  src/main.cpp \
 		  src/TestPattern.cpp

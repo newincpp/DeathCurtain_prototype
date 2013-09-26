@@ -4,27 +4,27 @@
 class ActFocus : public DamnCute::AAction
 {
     public:
-	explicit ActFocus(DamnCute::APlayer *p, const std::string& texfile, int k) :
-	    AAction(p, k), _name("ActFocus")
-    {
-	_id = _player->_p.loadTex(texfile);
-    }
+        explicit ActFocus(DamnCute::APlayer *p, const std::string& texfile, int k) :
+            AAction(p, k), _name("ActFocus")
+        {
+            _id = _player->_p.loadTex(texfile);
+        }
 
-	void execute()
-	{
-	    _player->_p.render(_id);
-	}
+        void execute()
+        {
+            _player->_p.render(_id);
+        }
 
-	const std::string getName() const
-	{
-	    return (_name);
-	}
+        const std::string getName() const
+        {
+            return (_name);
+        }
 
-	virtual ~ActFocus() {}
+        virtual ~ActFocus() {}
 
     private:
-	int _id;
-	const std::string _name;
+        int _id;
+        const std::string _name;
 
 };
 

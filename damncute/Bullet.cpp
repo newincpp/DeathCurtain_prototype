@@ -7,7 +7,7 @@ DamnCute::Bullet::Bullet(const glm::vec2& origin, const float rot, unsigned int 
 
 DamnCute::Bullet::Bullet(const DamnCute::Bullet& b) : _origin(b._origin), _rot(b._rot),	_selfTransform(glm::translate(glm::rotate(glm::mat4(), b._rot, glm::vec3(0.0f, 0.0f, 1.0f)), glm::vec3(-b._origin.x, -b._origin.y, 0))), _tex(b._tex), _lifeTime(b._lifeTime) {
     if (b._tex) {
-	_s.setTexture(*_tex);
+        _s.setTexture(*_tex);
     }
 }
 
