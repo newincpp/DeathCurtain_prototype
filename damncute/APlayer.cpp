@@ -14,10 +14,6 @@ void DamnCute::APlayer::update(sf::RenderWindow* w_ptr)
     w_ptr->draw(_player);
 }
 
-//GL::ShadeProgram* DamnCute::APlayer::getShader() const {
-//    return _shad;
-//}
-
 /*
 void DamnCute::APlayer::action()
 {
@@ -36,14 +32,6 @@ void DamnCute::APlayer::setActionKey(const std::string& name, int key)
             (_actions[i])->setKey(key);
         }
     }
-}
-
-void DamnCute::APlayer::update()
-{
-    action();
-    //    _shad->enable();
-    //_p.render();
-    //    _shad->disable();
 }
 
 void DamnCute::APlayer::addAction(AAction* act)

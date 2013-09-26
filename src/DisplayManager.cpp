@@ -23,13 +23,12 @@ void DisplayManager::gameMode() {
     }
     DamnCute::Background* bg = new DamnCute::Background("ressources/mushihimesama.tga");
     TestPattern* test = new TestPattern();
-    DamnCute::Player* player = new DamnCute::
-    DamnCute::Player p("ressources/player.tga", 0.1, 0.1);
+    DamnCute::Player* player = new DamnCute::Player("ressources/player.tga", 980, 950);
     bg->setScrollSpeed(0,-0.1f);
 
     _engine->addObject(bg);
     _engine->addObject(test);
-    _engine->addObject(&p);
+    _engine->addObject(player);
 
     _engine->switchGameStatus();
 }
@@ -51,7 +50,7 @@ void DisplayManager::run() {
         _engine->flushEvent();
     }
     _engine->freeAll();
-    _engine->createWin(1920, 1024, false);
+    _engine->createWin(1920, 1200, false);
     gameMode();
     update();
     while (_alive) {

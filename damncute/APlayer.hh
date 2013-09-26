@@ -22,8 +22,7 @@ namespace DamnCute
             void update(sf::RenderWindow*);
             void addAction(AAction*);
             void setActionKey(const std::string&, int);
-            //@TODO void setPosX(float v) { _pos.x = v; }
-            //@TODO void setPosY(float v) { _pos.y = v; }
+            void setPos(float x, float y) { _player.setPosition(x, y); }
 
         private:
             void action();
