@@ -9,7 +9,7 @@ namespace DamnCute {
 	public:
 	    explicit Bullet(const glm::vec2&, const float = 0.0f, unsigned int = 60);
 	    explicit Bullet(const Bullet&);
-	    //explicit Bullet(Bullet&&);
+	    explicit Bullet(Bullet&&);
 	    virtual ~Bullet();
 	    Bullet& operator=(const Bullet&);
 	    void update(const glm::mat4&, sf::RenderWindow*);
