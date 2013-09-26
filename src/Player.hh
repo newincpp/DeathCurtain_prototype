@@ -21,7 +21,7 @@ namespace DamnCute
 
         public:
             explicit Player(const std::string& = "ressources/tmpPlayer.tga",
-                            float = 0, float = -0.5);
+                            float = 0.1, float = 0.1);
             virtual ~Player();
 
         private:

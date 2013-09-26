@@ -19,7 +19,7 @@ namespace DamnCute
                     float = 0, float = -0.9);
             virtual ~APlayer() { }
 
-            virtual void update(sf::RenderWindow*);
+            void update(sf::RenderWindow*);
             void addAction(AAction*);
             void setActionKey(const std::string&, int);
             //@TODO void setPosX(float v) { _pos.x = v; }

@@ -1,5 +1,5 @@
 #include <Background.hh>
-//#include "Player.hh"
+#include "Player.hh"
 #include <Menu.hh>
 #include <Core/Core.hh>
 #include "TestPattern.hh"
@@ -18,17 +18,18 @@ void DisplayManager::update() {
 
 void DisplayManager::gameMode() {
     if (!_engine) {
-	_engine = DamnCute::Core::getInstance();
-	std::cerr << "game is starting without menu =S" << std::endl;
+        _engine = DamnCute::Core::getInstance();
+        std::cerr << "game is starting without menu =S" << std::endl;
     }
     DamnCute::Background* bg = new DamnCute::Background("ressources/mushihimesama.tga");
     TestPattern* test = new TestPattern();
-    //DamnCute::Player p;
+    DamnCute::Player* player = new DamnCute::
+    DamnCute::Player p("ressources/player.tga", 0.1, 0.1);
     bg->setScrollSpeed(0,-0.1f);
 
     _engine->addObject(bg);
     _engine->addObject(test);
-    //_engine->addObject(&p);
+    _engine->addObject(&p);
 
     _engine->switchGameStatus();
 }
