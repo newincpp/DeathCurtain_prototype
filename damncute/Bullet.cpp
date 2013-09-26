@@ -10,6 +10,10 @@ DamnCute::Bullet::Bullet(const DamnCute::Bullet& b) : _origin(b._origin), _rot(b
 	_s.setTexture(*_tex);
     }
 }
+/*
+DamnCute::Bullet::Bullet(Bullet&& b) {
+}
+*/
 
 DamnCute::Bullet& DamnCute::Bullet::operator=(const Bullet& b) {
     _s = b._s;
