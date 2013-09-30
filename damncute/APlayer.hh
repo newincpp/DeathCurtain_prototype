@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "AAction.hh"
-#include "Actions/Position.hh"
+#include "Position.hh"
 #include "IRenderable.hh"
 #include "Core/Core.hh"
 
@@ -16,13 +16,21 @@ namespace DamnCute
 
         public:
             explicit APlayer(const std::string& = "ressources/player.tga",
-                    float = 0, float = -0.9);
+                    float = 980, float = 950);
             virtual ~APlayer() { }
 
             void update(sf::RenderWindow*);
             void addAction(AAction*);
-            void setActionKey(const std::string&, int);
-            void setPos(float x, float y) { _player.setPosition(x, y); }
+
+            void move(float x, float y) { _player.move(x, y); }
+            const sf::Vector2<float>& getPos() { return _player.getPosition(); }
+
+            void setActionInput(const std::string&, sf::Keyboard::Key);
+            void setActionInput(const std::string&, sf::Joystick::Axis);
+
+            std::vector<AAction*> getPlayerActions() const {
+                return _actions;
+            }
 
         private:
             void action();
@@ -31,7 +39,7 @@ namespace DamnCute
 
             sf::Sprite _player;
             sf::Texture _tex;
-
+            sf::Event _event;
     };
 
 }

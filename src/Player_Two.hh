@@ -1,5 +1,5 @@
-#ifndef PLAYER_H_
-# define PLAYER_H_
+#ifndef PLAYER_TWO_H_
+# define PLAYER_TWO_H_
 
 #include <iostream>
 #include <vector>
@@ -16,16 +16,16 @@
 namespace DamnCute
 {
 
-    class Player : public APlayer
+    class Player_Two : public APlayer
     {
 
         public:
-            explicit Player(const std::string& = "ressources/player.tga",
+            explicit Player_Two(const std::string& = "ressources/player.tga",
                             float = 980, float = 950);
-            virtual ~Player();
+            virtual ~Player_Two();
 
         private:
-            Player& operator=(const Player&);
+            Player_Two& operator=(const Player_Two&);
 
     };
 

@@ -1,5 +1,6 @@
 #include <Background.hh>
 #include "Player.hh"
+#include "Player_Two.hh"
 #include <Menu.hh>
 #include <Core/Core.hh>
 #include "TestPattern.hh"
@@ -23,12 +24,14 @@ void DisplayManager::gameMode() {
     }
     DamnCute::Background* bg = new DamnCute::Background("ressources/mushihimesama.tga");
     TestPattern* test = new TestPattern();
-    DamnCute::Player* player = new DamnCute::Player("ressources/player.tga", 980, 950);
+    DamnCute::Player* player_one = new DamnCute::Player();
+    DamnCute::Player_Two* player_two = new DamnCute::Player_Two("ressources/player_focus.tga", 800, 400);
     bg->setScrollSpeed(0,-0.1f);
 
     _engine->addObject(bg);
     _engine->addObject(test);
-    _engine->addObject(player);
+    _engine->addObject(player_one);
+    _engine->addObject(player_two);
 
     _engine->switchGameStatus();
 }

@@ -1,8 +1,8 @@
 #ifndef _AACTION_H_
 # define _AACTION_H_
 
-#include <GL/glew.h>
-#include <GL/glfw.h>
+#include "Core/Core.hh"
+#include <SFML/Window/Joystick.hpp>
 #include "APlayer.hh"
 
 namespace DamnCute
@@ -14,20 +14,24 @@ namespace DamnCute
     {
 
         public:
-            explicit AAction(APlayer *p, int k) : _key(k), _player(p) {}
+            explicit AAction(APlayer *p, sf::Keyboard::Key k, sf::Joystick::Axis s)
+                : _keyboard(k), _stick(s), _player(p) {}
             virtual ~AAction() {}
 
             virtual void execute() = 0;
-            virtual const std::string getName() const = 0;
+            virtual const std::string& getName() const = 0;
 
-            int getKey() const { return (_key); }
-            void setKey(int key)
-            {
-                _key = key;
-            }
+            /*sf::Joystick::Axis getStickInput() const {
+                return sf::Joystick::getAxisPosition(char, sf::Joystick);
+            }*/
+            void setStickInput(sf::Joystick::Axis input) { _stick = input; }
+
+            sf::Keyboard::Key getKeyboardInput() const { return (_keyboard); }
+            void setKeyboardInput(sf::Keyboard::Key input) { _keyboard = input; }
 
         protected:
-            int _key;
+            sf::Keyboard::Key _keyboard;
+            sf::Joystick::Axis _stick;
             APlayer *_player;
 
     };
