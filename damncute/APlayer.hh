@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 #include "AAction.hh"
-#include "Position.hh"
 #include "IRenderable.hh"
 #include "Core/Core.hh"
 

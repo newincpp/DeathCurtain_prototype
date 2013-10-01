@@ -21,7 +21,7 @@ void DamnCute::Core::freeAll() {
     objects.clear();
 }
 
-void DamnCute::Core::reset () {
+void DamnCute::Core::reset() {
     delete __coreInstance;
     __coreInstance = NULL;
 }
