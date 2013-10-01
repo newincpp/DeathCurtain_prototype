@@ -5,8 +5,11 @@
 #include <vector>
 #include "../damncute/APlayer.hh"
 /*#include "../Actions/ActFocus.hh"*/
-#include "Actions/ActMoveLeft.hh"
-#include "Actions/ActMoveRight.hh"
+/*#include "Actions/ActMoveLeft.hh"
+#include "Actions/ActMoveRight.hh"*/
+
+#include "Actions/ActMoveLateral.hh"
+
 /*#include "../Actions/ActMoveUp.hh"
 #include "../Actions/ActMoveDown.hh"
 #include "../Actions/ActZDown.hh"

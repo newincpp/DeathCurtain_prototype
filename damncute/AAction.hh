@@ -17,16 +17,17 @@ namespace DamnCute
 
         public:
             explicit AAction(APlayer *p, sf::Keyboard::Key k, sf::Joystick::Axis s)
-                : _key1(k), _key2(sf::Keyboard::Unknown), _stickAxis(s), _stickButton(DC_INPUT_NONE), _player(p){}
+                : _key1(k), _key2(sf::Keyboard::Unknown), _stickAxis(s), _stickButton(DC_INPUT_NONE), _hasAxis(true), _player(p) { }
 
             explicit AAction(APlayer *p, sf::Keyboard::Key k1, sf::Keyboard::Key k2, sf::Joystick::Axis s)
-                : _key1(k1), _key2(k2), _stickAxis(s), _stickButton(DC_INPUT_NONE), _player(p) {}
+                : _key1(k1), _key2(k2), _stickAxis(s), _stickButton(DC_INPUT_NONE), _hasAxis(true), _player(p) { }
 
             explicit AAction(APlayer *p, sf::Keyboard::Key k, int s)
-                : _key1(k), _key2(sf::Keyboard::Unknown), _stickAxis(DC_INPUT_NONE), _stickButton(s), _player(p){}
+                : _key1(k), _key2(sf::Keyboard::Unknown), _stickAxis(sf::Joystick::Axis::X), _stickButton(s), _hasAxis(false), _player(p) { }
+
             virtual ~AAction() {}
 
-            virtual void execute() = 0;
+            virtual void execute(int) = 0;
             virtual const std::string& getName() const = 0;
 
             
@@ -34,7 +35,8 @@ namespace DamnCute
             /***** STICK *****/
             /*****************/
 
-            /*sf::Joystick::Axis*/int getStickAxisInput() const { return _stickAxis; }
+            bool hasStickAxis() const { return _hasAxis; }
+            sf::Joystick::Axis getStickAxisInput() const { return _stickAxis; }
             int getStickButtonInput() const { return _stickButton; }
 
             void setStickInput(sf::Joystick::Axis input) { _stickAxis = input; }
@@ -54,8 +56,9 @@ namespace DamnCute
         protected:
             sf::Keyboard::Key _key1;
             sf::Keyboard::Key _key2;
-            int _stickAxis; // should be a sf::Joystick::Axis but this isn't possible
+            sf::Joystick::Axis _stickAxis;
             int _stickButton;
+            bool _hasAxis;
             APlayer *_player;
 
     };
