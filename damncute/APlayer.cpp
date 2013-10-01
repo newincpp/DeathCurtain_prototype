@@ -6,21 +6,23 @@ DamnCute::APlayer::APlayer(const std::string& texfile, float x, float y) :
 {
     _tex.loadFromFile(texfile);
     _player.setTexture(_tex);
-    _player.setPosition(x, y);    
+    _player.setPosition(x, y);
 }
 
 void DamnCute::APlayer::update(sf::RenderWindow* w_ptr)
 {
+    _event = Core::getInstance()->getEvent();
     action();
     w_ptr->draw(_player);
 }
 
 void DamnCute::APlayer::action()
 {
-    for (size_t i = 0; i < _actions.size(); ++i) {
-        if (sf::Keyboard::isKeyPressed(_actions[i]->getKeyboardInput())) {
-            (_actions[i])->execute();
-        }
+    if (_event.type == sf::Event::KeyPressed) {
+        /*for (size_t i = 0; i < _actions.size(); ++i) {
+          if (_event.key.code == _actions[i]->getKeyboardInput1())
+          (_actions[i])->execute();
+          }*/
     }
 }
 
@@ -29,7 +31,7 @@ void DamnCute::APlayer::setActionInput(const std::string& name, sf::Keyboard::Ke
     for (size_t i = 0; i < _actions.size(); ++i) {
         std::cout << name << " ; " << (_actions[i])->getName() << std::endl;
         if (name == (_actions[i])->getName()) {
-            (_actions[i])->setKeyboardInput(key);
+            (_actions[i])->setKeyboardInput1(key);
         }
     }
 }
