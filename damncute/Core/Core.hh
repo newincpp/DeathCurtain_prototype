@@ -30,6 +30,9 @@ namespace DamnCute {
 	    inline void switchGameStatus() {
 		_gameStatus = !_gameStatus;
 	    }
+	    inline sf::Event getEvent() const {
+		return event;
+	    }
 	    void flushEvent();
 	private:
 	    Core();
