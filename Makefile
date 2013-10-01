@@ -27,7 +27,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(OBJ) $(LDFLAGS) -o $(NAME)
-
 clean:
 	$(RM) $(OBJ) *.swp *~ *#
 
