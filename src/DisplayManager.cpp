@@ -1,6 +1,5 @@
 #include <Background.hh>
 #include "Player.hh"
-#include "Player_Two.hh"
 #include <Menu.hh>
 #include <Core/Core.hh>
 #include "TestPattern.hh"
