@@ -1,6 +1,6 @@
 #ifndef IMENU_H_
 # define IMENU_H_
-
+# define FONT_PATH "ressources/font.ttf"
 #include <vector>
 #include <string>
 #include <SFML/Graphics.hpp>
@@ -19,10 +19,9 @@ namespace DamnCute {
 			    value = C
 			};
 		};
-
 	    class Button : public IRenderable {
 		public:
-		    explicit Button(const std::string&, int, int, sf::Texture&);
+	      explicit Button(sf::Text &, int, int, sf::Texture&);
 		    inline void operator=(const Button& b) {
 			_tex = b._tex;
 			_s = b._s;
@@ -32,7 +31,7 @@ namespace DamnCute {
 		private:
 		    sf::Sprite _s;
 		    sf::Texture& _tex;
-		    const std::string _text;
+		    sf::Text& _text;
 	    };
 	    Background _bg;
 	    sf::Texture _tex;
