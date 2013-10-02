@@ -5,7 +5,6 @@ SRC		= damncute/Bullet.cpp \
 		  damncute/Core/Core.cpp \
 		  damncute/Menu.cpp \
 		  damncute/APlayer.cpp \
-		  src/Player.cpp \
 		  src/Player_Two.cpp \
 		  src/DisplayManager.cpp \
 		  src/main.cpp \
@@ -34,7 +33,7 @@ fclean: clean
 	$(RM) $(NAME)
 
 re:
-	make -B
+	make -B -j4
 
 .PHONY: all clean fclean re
 

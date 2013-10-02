@@ -17,26 +17,8 @@ void DamnCute::APlayer::update(sf::RenderWindow* w_ptr)
 void DamnCute::APlayer::action()
 {
     for (size_t i = 0; i < _actions.size(); ++i) {
-
-        if (sf::Keyboard::isKeyPressed(_actions[i]->getKeyboardInput1())) {
-            (_actions[i])->execute(1);
-        }
-
-        else if (sf::Keyboard::isKeyPressed(_actions[i]->getKeyboardInput2())) {
-            (_actions[i])->execute(2);
-        }
-
-        else if (_actions[i]->hasStickAxis() == true) {
-
-            if (sf::Joystick::getAxisPosition(_nbPlayer, _actions[i]->getStickAxisInput()) > 50) {
-                (_actions[i])->execute(3);
-            }
-
-            else if (sf::Joystick::getAxisPosition(_nbPlayer, _actions[i]->getStickAxisInput()) < -50) {
-                (_actions[i])->execute(4);
-            }
-
-        }
+        if (_actions[i]->hasInput(_nbPlayer) == true)
+            _actions[i]->execute();
     }
 }
 

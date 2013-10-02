@@ -27,28 +27,14 @@ namespace DamnCute
 
             virtual ~AAction() {}
 
-            virtual void execute(int) = 0;
+            virtual void execute() = 0;
             virtual const std::string& getName() const = 0;
-
+            virtual bool hasInput(int) = 0;
             
-            /*****************/
-            /***** STICK *****/
-            /*****************/
-
             bool hasStickAxis() const { return _hasAxis; }
-            sf::Joystick::Axis getStickAxisInput() const { return _stickAxis; }
-            int getStickButtonInput() const { return _stickButton; }
 
             void setStickInput(sf::Joystick::Axis input) { _stickAxis = input; }
             void setStickInput(int input) { _stickButton = input; }
-
-
-            /****************/
-            /*** KEYBOARD ***/
-            /****************/
-            
-            sf::Keyboard::Key getKeyboardInput1() const { return (_key1); }
-            sf::Keyboard::Key getKeyboardInput2() const { return (_key2); }
 
             void setKeyboardInput1(sf::Keyboard::Key input) { _key1 = input; }
             void setKeyboardInput2(sf::Keyboard::Key input) { _key2 = input; }

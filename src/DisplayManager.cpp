@@ -24,9 +24,11 @@ void DisplayManager::gameMode() {
     }
     DamnCute::Background* bg = new DamnCute::Background("ressources/mushihimesama.tga");
     TestPattern* test = new TestPattern();
-    DamnCute::Player* player_one = new DamnCute::Player();
-    DamnCute::Player_Two* player_two = new DamnCute::Player_Two("ressources/player_focus.tga", 800, 400);
     bg->setScrollSpeed(0,-0.1f);
+
+
+    DamnCute::APlayer* player_one = new DamnCute::Player<0>();
+    DamnCute::APlayer* player_two = new DamnCute::Player<1>("ressources/player_focus.tga", 800, 400);
 
     _engine->addObject(bg);
     _engine->addObject(test);
