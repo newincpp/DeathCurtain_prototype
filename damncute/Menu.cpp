@@ -1,12 +1,16 @@
 #include "Menu.hh"
+#include <SFML/Graphics/Text.hpp>
 
-DamnCute::Menu::Button::Button(const std::string& text, int x, int y, sf::Texture& t) : _tex(t), _text(text) {
+DamnCute::Menu::Button::Button(sf::Text &text, int x, int y, sf::Texture& t) : _tex(t), _text(text) {
+
     _s.setTexture(_tex);
     _s.setPosition(x, y);
+    _text.setPosition(x+40, y+90);
 }
 
 void DamnCute::Menu::Button::update(sf::RenderWindow* w_ptr) {
     w_ptr->draw(_s);
+    w_ptr->draw(_text); //Rajouter le txt au bouton
 }
 
 DamnCute::Menu::Button::~Button() {
@@ -36,7 +40,14 @@ void DamnCute::Menu::setTextureButton(const std::string& filename) {
 }
 
 void DamnCute::Menu::addButton(int x, int y, const std::string& text) {
-    Button* b = new Button(text, x, y, _tex);
-    _buttons.push_back(b);
-    Core::getInstance()->addObject(b);
+  sf::Font *font = new sf::Font();
+  unsigned int characterSize=80;
+  sf::Text *test;
+
+  font->loadFromFile(FONT_PATH);
+  test = new sf::Text(text, *font, characterSize);
+  test->setColor(sf::Color::Black);
+  Button* b = new Button(*test, x, y, _tex);
+  _buttons.push_back(b);
+  Core::getInstance()->addObject(b);
 }
