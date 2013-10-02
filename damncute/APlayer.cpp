@@ -1,4 +1,3 @@
-#include <glm/gtc/matrix_transform.hpp>
 #include "APlayer.hh"
 
 DamnCute::APlayer::APlayer(const std::string& texfile, float x, float y, int nb) :
@@ -23,17 +22,17 @@ void DamnCute::APlayer::action()
             (_actions[i])->execute(1);
         }
 
-        if (sf::Keyboard::isKeyPressed(_actions[i]->getKeyboardInput2())) {
+        else if (sf::Keyboard::isKeyPressed(_actions[i]->getKeyboardInput2())) {
             (_actions[i])->execute(2);
         }
 
-        if (_actions[i]->hasStickAxis() == true) {
+        else if (_actions[i]->hasStickAxis() == true) {
 
             if (sf::Joystick::getAxisPosition(_nbPlayer, _actions[i]->getStickAxisInput()) > 50) {
                 (_actions[i])->execute(3);
             }
 
-            if (sf::Joystick::getAxisPosition(_nbPlayer, _actions[i]->getStickAxisInput()) < -50) {
+            else if (sf::Joystick::getAxisPosition(_nbPlayer, _actions[i]->getStickAxisInput()) < -50) {
                 (_actions[i])->execute(4);
             }
 
