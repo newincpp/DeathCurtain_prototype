@@ -1,7 +1,7 @@
 #include "Player.hh"
 
 DamnCute::Player::Player(const std::string& texfile, float x, float y) :
-    APlayer(texfile, x, y)
+    APlayer(texfile, x, y, 0)
 {
 
     /*addAction(new ActFocus(this, "ressources/player_focus.tga", 'A'));*/

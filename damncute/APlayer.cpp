@@ -1,8 +1,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "APlayer.hh"
 
-DamnCute::APlayer::APlayer(const std::string& texfile, float x, float y) :
-    _tex()
+DamnCute::APlayer::APlayer(const std::string& texfile, float x, float y, int nb) :
+    _tex(), _nbPlayer(nb)
 {
     _tex.loadFromFile(texfile);
     _player.setTexture(_tex);
@@ -29,11 +29,11 @@ void DamnCute::APlayer::action()
 
         if (_actions[i]->hasStickAxis() == true) {
 
-            if (sf::Joystick::getAxisPosition(1, _actions[i]->getStickAxisInput()) > 50) {
+            if (sf::Joystick::getAxisPosition(_nbPlayer, _actions[i]->getStickAxisInput()) > 50) {
                 (_actions[i])->execute(3);
             }
 
-            if (sf::Joystick::getAxisPosition(1, _actions[i]->getStickAxisInput()) < -50) {
+            if (sf::Joystick::getAxisPosition(_nbPlayer, _actions[i]->getStickAxisInput()) < -50) {
                 (_actions[i])->execute(4);
             }
 

@@ -15,7 +15,7 @@ namespace DamnCute
 
         public:
             explicit APlayer(const std::string& = "ressources/player.tga",
-                    float = 980, float = 950);
+                    float = 980, float = 950, int nbPlayer = 1);
             virtual ~APlayer() { }
 
             void update(sf::RenderWindow*);
@@ -27,9 +27,7 @@ namespace DamnCute
             void setActionInput(const std::string&, sf::Keyboard::Key);
             void setActionInput(const std::string&, sf::Joystick::Axis);
 
-            std::vector<AAction*> getPlayerActions() const {
-                return _actions;
-            }
+            inline int getNumPlayer() const { return (_nbPlayer); }
 
         private:
             void action();
@@ -39,6 +37,7 @@ namespace DamnCute
             sf::Sprite _player;
             sf::Texture _tex;
             sf::Event _event;
+            int _nbPlayer;
     };
 
 }
