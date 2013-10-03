@@ -35,7 +35,6 @@ namespace DamnCute
 
             void setStickInput(sf::Joystick::Axis input) { _stickAxis = input; }
             void setStickInput(int input) { _stickButton = input; }
-
             void setKeyboardInput1(sf::Keyboard::Key input) { _key1 = input; }
             void setKeyboardInput2(sf::Keyboard::Key input) { _key2 = input; }
 

@@ -25,7 +25,9 @@ namespace DamnCute
             const sf::Vector2<float>& getPos() { return _player.getPosition(); }
 
             void setActionInput(const std::string&, sf::Keyboard::Key);
+            void setActionInput(const std::string&, sf::Keyboard::Key, sf::Keyboard::Key);
             void setActionInput(const std::string&, sf::Joystick::Axis);
+            void setActionInput(const std::string&, int);
 
             inline int getNumPlayer() const { return (_nbPlayer); }
 

@@ -25,9 +25,18 @@ void DamnCute::APlayer::action()
 void DamnCute::APlayer::setActionInput(const std::string& name, sf::Keyboard::Key key)
 {
     for (size_t i = 0; i < _actions.size(); ++i) {
-        std::cout << name << " ; " << (_actions[i])->getName() << std::endl;
         if (name == (_actions[i])->getName()) {
             (_actions[i])->setKeyboardInput1(key);
+        }
+    }
+}
+
+void DamnCute::APlayer::setActionInput(const std::string& name, sf::Keyboard::Key key1, sf::Keyboard::Key key2)
+{
+    for (size_t i = 0; i < _actions.size(); ++i) {
+        if (name == (_actions[i])->getName()) {
+            (_actions[i])->setKeyboardInput1(key1);
+            (_actions[i])->setKeyboardInput2(key2);
         }
     }
 }
@@ -35,9 +44,17 @@ void DamnCute::APlayer::setActionInput(const std::string& name, sf::Keyboard::Ke
 void DamnCute::APlayer::setActionInput(const std::string& name, sf::Joystick::Axis key)
 {
     for (size_t i = 0; i < _actions.size(); ++i) {
-        std::cout << name << " ; " << (_actions[i])->getName() << std::endl;
         if (name == (_actions[i])->getName()) {
             (_actions[i])->setStickInput(key);
+        }
+    }
+}
+
+void DamnCute::APlayer::setActionInput(const std::string& name, int button)
+{
+    for (size_t i = 0; i < _actions.size(); ++i) {
+        if (name == (_actions[i])->getName()) {
+            (_actions[i])->setStickInput(button);
         }
     }
 }
