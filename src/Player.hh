@@ -36,7 +36,6 @@ namespace DamnCute
         addAction(new ActMoveY(this, sf::Keyboard::Key::Up,
                     sf::Keyboard::Key::Down, sf::Joystick::Y));
         addAction(new ActFocus(this, sf::Keyboard::Key::LShift, 0));
-        //setActionInput("ActFocus", 1);
     }
 
     template <>

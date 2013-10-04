@@ -30,15 +30,8 @@ namespace DamnCute
             virtual void execute() = 0;
             virtual const std::string& getName() const = 0;
             virtual bool hasInput(int) = 0;
-            
-            bool hasStickAxis() const { return _hasAxis; }
 
-            /*template <typename T>
-            void setInput(T)
-            {
-            }*/
-
-            
+            inline bool hasStickAxis() const { return _hasAxis; }
 
             void setStickInput(sf::Joystick::Axis input) { _stickAxis = input; }
             void setStickInput(int input) { _stickButton = input; }

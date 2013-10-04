@@ -26,6 +26,21 @@ namespace DamnCute
             inline int& getSpeed() { return _speed; }
             inline int getNumPlayer() const { return _nbPlayer; }
 
+            template <int inputNumber, typename T>
+            void setAction(const std::string& name, T t) {
+
+                for (size_t i = 0; i < _actions.size(); ++i) {
+                    if (name == (_actions[i])->getName())
+                        setActionInput(i, t, inputNumber);
+                }
+            }
+
+            template <typename T>
+            void setActionInput(int i, T t, int a) {
+                (void)i; (void)t; (void)a;
+                std::cout << "Error: type is not defined for input." << std::endl;
+            }
+
         private:
             void action();
             APlayer& operator=(const APlayer&);

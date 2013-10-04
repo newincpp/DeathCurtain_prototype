@@ -22,45 +22,30 @@ void DamnCute::APlayer::action()
     }
 }
 
-/*void DamnCute::APlayer::setActionInput(const std::string& name, sf::Keyboard::Key key)
-{
-    for (size_t i = 0; i < _actions.size(); ++i) {
-        if (name == (_actions[i])->getName()) {
-            (_actions[i])->setKeyboardInput1(key);
-        }
-    }
-}
-
-void DamnCute::APlayer::setActionInput(const std::string& name, sf::Keyboard::Key key1, sf::Keyboard::Key key2)
-{
-    for (size_t i = 0; i < _actions.size(); ++i) {
-        if (name == (_actions[i])->getName()) {
-            (_actions[i])->setKeyboardInput1(key1);
-            (_actions[i])->setKeyboardInput2(key2);
-        }
-    }
-}
-
-void DamnCute::APlayer::setActionInput(const std::string& name, sf::Joystick::Axis key)
-{
-    for (size_t i = 0; i < _actions.size(); ++i) {
-        if (name == (_actions[i])->getName()) {
-            (_actions[i])->setStickInput(key);
-        }
-    }
-}
-
-void DamnCute::APlayer::setActionInput(const std::string& name, int button)
-{
-    for (size_t i = 0; i < _actions.size(); ++i) {
-        if (name == (_actions[i])->getName()) {
-            (_actions[i])->setStickInput(button);
-        }
-    }
-}
-*/
-
 void DamnCute::APlayer::addAction(AAction* act)
 {
     _actions.push_back(act);
+}
+
+
+template <>
+void DamnCute::APlayer::setActionInput<sf::Keyboard::Key>(int i, sf::Keyboard::Key key, int inputNumber) {
+    if (inputNumber == 1)
+        (_actions[i])->setKeyboardInput1(key);
+    else if (inputNumber == 2)
+        (_actions[i])->setKeyboardInput2(key);
+    else
+        std::cerr << "Error: key should be 1 or 2" << std::endl;
+}
+
+template <>
+void DamnCute::APlayer::setActionInput<sf::Joystick::Axis>(int i, sf::Joystick::Axis axis, int a) {
+    (void)a;
+    (_actions[i])->setStickInput(axis);
+}
+
+template <>
+void DamnCute::APlayer::setActionInput<int>(int i, int button, int a) {
+    (void)a;
+    (_actions[i])->setStickInput(button);
 }
