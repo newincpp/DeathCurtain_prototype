@@ -8,7 +8,6 @@
 #include "Actions/ActMoveX.hh"
 #include "Actions/ActMoveY.hh"
 #include "Actions/ActFocus.hh"
-#include "Actions/ActUnfocus.hh"
 
 namespace DamnCute
 {
