@@ -1,7 +1,7 @@
 #include "APlayer.hh"
 
-DamnCute::APlayer::APlayer(const std::string& texfile, float x, float y, int nb) :
-    _tex(), _nbPlayer(nb)
+DamnCute::APlayer::APlayer(const std::string& texfile, float x, float y, int nb, int speed) :
+    _tex(), _speed(speed), _nbPlayer(nb)
 {
     _tex.loadFromFile(texfile);
     _player.setTexture(_tex);
@@ -22,7 +22,7 @@ void DamnCute::APlayer::action()
     }
 }
 
-void DamnCute::APlayer::setActionInput(const std::string& name, sf::Keyboard::Key key)
+/*void DamnCute::APlayer::setActionInput(const std::string& name, sf::Keyboard::Key key)
 {
     for (size_t i = 0; i < _actions.size(); ++i) {
         if (name == (_actions[i])->getName()) {
@@ -58,6 +58,7 @@ void DamnCute::APlayer::setActionInput(const std::string& name, int button)
         }
     }
 }
+*/
 
 void DamnCute::APlayer::addAction(AAction* act)
 {

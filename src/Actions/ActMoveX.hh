@@ -43,9 +43,9 @@ class ActMoveX : public DamnCute::AAction
 
         void execute() {
             if (_who == K2 || _who == ST2)
-                _player->move(5, 0);
+                _player->getPlayer().move(_player->getSpeed(), 0);
             if (_who == K1 || _who == ST1)
-                _player->move(-5, 0);
+                _player->getPlayer().move(-(_player->getSpeed()), 0);
         }
 
         virtual inline const std::string& getName() const { return (_name); }

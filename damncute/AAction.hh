@@ -33,6 +33,13 @@ namespace DamnCute
             
             bool hasStickAxis() const { return _hasAxis; }
 
+            /*template <typename T>
+            void setInput(T)
+            {
+            }*/
+
+            
+
             void setStickInput(sf::Joystick::Axis input) { _stickAxis = input; }
             void setStickInput(int input) { _stickButton = input; }
             void setKeyboardInput1(sf::Keyboard::Key input) { _key1 = input; }
@@ -49,5 +56,11 @@ namespace DamnCute
     };
 
 }
+
+/*template <>
+void DamnCute::AAction::setInput(sf::Joystick::Axis input)
+{
+    _stickAxis = input;
+}*/
 
 #endif
