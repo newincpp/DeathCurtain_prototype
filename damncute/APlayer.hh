@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <type_traits>
 #include "AAction.hh"
 #include "IRenderable.hh"
 #include "Core/Core.hh"
@@ -38,7 +39,8 @@ namespace DamnCute
             template <typename T>
             void setActionInput(int i, T t, int a) {
                 (void)i; (void)t; (void)a;
-                std::cout << "Error: type is not defined for input." << std::endl;
+                //std::cout << "Error: type is not defined for input." << std::endl;
+		static_assert(std::is_same<T, int>::value || std::is_same<T, sf::Keyboard::Key>::value || std::is_same<T, sf::Joystick::Axis>::value, "Error: type is not defined for input.");
             }
 
         private:
