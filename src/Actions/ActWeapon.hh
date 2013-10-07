@@ -2,7 +2,6 @@
 # define ACTWEAPON_H_
 
 #include <SFML/Graphics.hpp>
-#include "WeaponPattern.hh"
 #include "../damncute/Core/Core.hh"
 
 class ShootPattern : public DamnCute::APattern {
