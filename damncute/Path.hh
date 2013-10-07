@@ -16,6 +16,9 @@ namespace DamnCute {
 	    virtual void update(sf::RenderWindow*);
 	    void moveOrigin(const glm::vec2&);
 	    bool isOn(APlayer*);
+	    inline void switchGen() {
+		_generate = !_generate;
+	    }
 	private:
 	    sf::Texture _tex;
 	    Bullet _bulletModel;
@@ -24,6 +27,7 @@ namespace DamnCute {
 	    unsigned int _timeSeparator;
 	    glm::mat4 _stepModifier;
 	    std::map<float, glm::mat4> _modifier;
+	    bool _generate;
     };
 }
 
