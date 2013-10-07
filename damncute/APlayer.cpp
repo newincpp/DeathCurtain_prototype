@@ -5,7 +5,7 @@ DamnCute::APlayer::APlayer(const std::string& texfile, float x, float y, int nb,
 {
     _tex.loadFromFile(texfile);
     _player.setTexture(_tex);
-    _player.setPosition(x, y);    
+    _player.setPosition(x, y);
 }
 
 void DamnCute::APlayer::update(sf::RenderWindow* w_ptr)
