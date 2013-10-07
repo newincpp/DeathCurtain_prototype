@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../damncute/Core/Core.hh"
+#include "../damncute/APattern.hh"
 
 class ShootPattern : public DamnCute::APattern {
     public:
