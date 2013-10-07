@@ -1,7 +1,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Path.hh"
 
-DamnCute::Path::Path(const glm::mat4& m, unsigned int timestep, const DamnCute::Bullet& model, const std::string& texfile) : _bulletModel(model), _timeLoad(0), _timeSeparator(timestep), _stepModifier(m) {
+DamnCute::Path::Path(const glm::mat4& m, unsigned int timestep, const DamnCute::Bullet& model, const std::string& texfile) : _bulletModel(model), _timeLoad(0), _timeSeparator(timestep), _stepModifier(m), _generate(true) {
     _tex.loadFromFile(texfile);
     _tex.setSmooth(true);
     _tex.setRepeated(false);
@@ -21,7 +21,7 @@ void DamnCute::Path::update(sf::RenderWindow* w_ptr) {
 	}
     }
     ++_timeLoad;
-    if (( _timeLoad / _timeSeparator) > 1) {
+    if ((( _timeLoad / _timeSeparator) > 1) && (_generate)) {
 	_timeLoad = 0;
 	_bullets.push_back(_bulletModel);
     }
