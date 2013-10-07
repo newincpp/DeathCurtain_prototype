@@ -12,16 +12,16 @@
 
 class DisplayManager {
     public:
-	DisplayManager(int width = __DWIDTH, int height = __DHEIGHT, bool type = false);
-	~DisplayManager();
-	void run();
-	void gameMode();
-	void menuMode();
+        DisplayManager(int width = __DWIDTH, int height = __DHEIGHT, bool type = false);
+        ~DisplayManager();
+        void run();
+        void gameMode();
+        void menuMode();
     private:
-	void update();
-	DamnCute::Core* _engine;
-	sf::RenderWindow _win;
-	bool _alive;
+        void update();
+        DamnCute::Core* _engine;
+        sf::RenderWindow _win;
+        bool _alive;
 };
 
 #endif /* !DISPLAYMANAGER_H_ */

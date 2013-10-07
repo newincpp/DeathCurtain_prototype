@@ -21,7 +21,8 @@ class ActFocus : public DamnCute::AAction
         void execute() {
 
             // @TODO: should not refresh texture at every frame, lazy programmers
-            if (sf::Keyboard::isKeyPressed(_key1) || sf::Joystick::isButtonPressed(_nbPlayer, _stickButton) == true) {
+            if (sf::Keyboard::isKeyPressed(_key1) ||
+                    sf::Joystick::isButtonPressed(_nbPlayer, _stickButton) == true) {
                 _player->getSpeed() = 2;
                 if (_nbPlayer == 0) {
                     _focusTex.loadFromFile("ressources/player_focus1.tga");
@@ -38,10 +39,9 @@ class ActFocus : public DamnCute::AAction
             } 
         }
 
-        virtual inline const std::string& getName() const { return (_name); }
+        virtual inline const std::string& getName() const { return _name; }
 
         virtual ~ActFocus() = default;
-
 
     private:
         int _nbPlayer;
