@@ -21,7 +21,7 @@ namespace DamnCute {
 	    }
 	private:
 	    sf::Texture _tex;
-	    Bullet _bulletModel;
+	    Bullet* _bulletModel;
 	    std::deque<Bullet> _bullets;
 	    unsigned int _timeLoad;
 	    unsigned int _timeSeparator;
