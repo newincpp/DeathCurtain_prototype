@@ -32,6 +32,11 @@ namespace DamnCute {
 		    _paths[i]->moveOrigin(std::move(n));
 		}
 	    }
+	    virtual void switchGen() {
+		for (unsigned int i = 0; i != _paths.size(); ++i) {
+		    _paths[i]->switchGen();
+		}
+	    }
 	private:
 	    std::vector<Path*> _paths;
     };
