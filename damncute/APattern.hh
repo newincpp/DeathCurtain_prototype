@@ -37,6 +37,11 @@ namespace DamnCute {
 		    _paths[i]->switchGen();
 		}
 	    }
+	    virtual void setStatusGen(bool&& b) {
+		for (unsigned int i = 0; i != _paths.size(); ++i) {
+		    _paths[i]->setStatusGen(std::move(b));
+		}
+	    }
 	private:
 	    std::vector<Path*> _paths;
     };
