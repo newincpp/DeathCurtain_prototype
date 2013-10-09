@@ -45,7 +45,7 @@ class ActWeapon : public DamnCute::AAction
             else if (sf::Joystick::isButtonPressed(_nbPlayer, _stickButton) == true)
                 return true;
             else {
-                _sp->switchGen();
+                _sp->disable();
                 return false;
             }
         }
@@ -55,6 +55,7 @@ class ActWeapon : public DamnCute::AAction
         }
 
         void execute() {
+            _sp->enable();
             _sp->moveOrigin(convertVec(_player->getPlayer().getPosition()));
         }
 
