@@ -29,7 +29,7 @@ class ActWeapon : public DamnCute::AAction
 {
 
     public:
-        explicit ActWeapon(DamnCute::APlayer *p, sf::Keyboard::Key k1, int button) 
+        explicit ActWeapon(DamnCute::APlayer *p, sf::Keyboard::Key k1, int button)
             : AAction(p, k1, button) {
                 _engine = DamnCute::Core::getInstance();
                 _sp = new ShootPattern(convertVec(_player->getPlayer().getPosition()));
@@ -41,7 +41,7 @@ class ActWeapon : public DamnCute::AAction
 
             _nbPlayer = nbPlayer;
             if (sf::Keyboard::isKeyPressed(_key1))
-                return true; 
+                return true;
             else if (sf::Joystick::isButtonPressed(_nbPlayer, _stickButton) == true)
                 return true;
             return false;
@@ -54,7 +54,6 @@ class ActWeapon : public DamnCute::AAction
         }
 
         void execute() {
-
             _sp->moveOrigin(convertVec(_player->getPlayer().getPosition()));
         }
 

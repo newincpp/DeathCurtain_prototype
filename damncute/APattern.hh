@@ -1,6 +1,7 @@
 #ifndef APATTERN_H_
 # define APATTERN_H_
 
+#include <type_traits>
 #include <vector>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Path.hh"
@@ -26,9 +27,9 @@ namespace DamnCute {
 		    _paths[i]->update(w_ptr);
 		}
 	    }
-	    virtual void moveOrigin(const glm::vec2& n) {
+	    virtual void moveOrigin(glm::vec2&& n) {
 		for (unsigned int i = 0; i != _paths.size(); ++i) {
-		    _paths[i]->moveOrigin(n);
+		    _paths[i]->moveOrigin(std::move(n));
 		}
 	    }
 	private:

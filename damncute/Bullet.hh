@@ -23,10 +23,13 @@ namespace DamnCute {
 	    inline unsigned int getLife() const {
 		return _lifeTime;
 	    }
+	    inline void moveOrigin(glm::vec2&& n) {
+		_origin = n;
+	    }
 	    void setTexure(sf::Texture*);
 	private:
-	    const glm::vec2 _origin;
-	    const float _rot;
+	    glm::vec2 _origin;
+	    float _rot;
 	    glm::mat4 _selfTransform;
 	    sf::Texture* _tex; // need to be deleted or changed by referance
 	    sf::Sprite _s;
