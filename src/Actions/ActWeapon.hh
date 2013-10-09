@@ -44,12 +44,13 @@ class ActWeapon : public DamnCute::AAction
                 return true;
             else if (sf::Joystick::isButtonPressed(_nbPlayer, _stickButton) == true)
                 return true;
-            return false;
+            else {
+                _sp->switchGen();
+                return false;
+            }
         }
 
         glm::vec2 convertVec(sf::Vector2f v) {
-            std::cout << v.x << std::endl;
-            std::cout << v.y << std::endl;
             return glm::vec2(float(v.x), float(v.y));
         }
 
