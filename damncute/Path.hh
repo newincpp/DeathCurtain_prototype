@@ -22,6 +22,9 @@ namespace DamnCute {
 	    inline void switchGen() {
 		_generate = !_generate;
 	    }
+	    inline void setStatusGen(bool&& b) {
+		_generate = b;
+	    }
 	private:
 	    sf::Texture _tex;
 	    Bullet _bulletModel;
