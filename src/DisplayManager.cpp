@@ -54,8 +54,8 @@ void DisplayManager::run() {
         _engine->flushEvent();
     }
     _engine->freeAll();
-    //_engine->createWin(1920, 1200, false);
-    _engine->createWin();
+    _engine->createWin(1920, 1200, false);
+    //_engine->createWin();
     gameMode();
     update();
     while (_alive) {
