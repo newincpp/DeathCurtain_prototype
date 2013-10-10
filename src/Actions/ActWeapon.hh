@@ -15,8 +15,8 @@ class ShootPattern : public DamnCute::APattern {
         virtual void initialize() {
 
             glm::mat4 m;
-            m = glm::translate(glm::mat4(), glm::vec3(0, 7, 0));
-            _z = new DamnCute::Path(m, 10, DamnCute::Bullet(_v, 0), "ressources/pink-bullet.tga");
+            m = glm::translate(glm::mat4(), glm::vec3(0, 15, 0));
+            _z = new DamnCute::Path(m, 6, DamnCute::Bullet(_v, 0, 120), "ressources/pink-bullet.tga");
             addPath(_z);
         }
 

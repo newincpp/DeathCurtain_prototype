@@ -11,7 +11,7 @@ SRC		= damncute/Bullet.cpp \
 
 NAME		= demo
 
-CXXFLAGS	= -Wall -Wextra -W -g -I./damncute -std=c++0x
+CXXFLAGS	= -Wall -Wextra -W -g -I./damncute -I./glm -std=c++0x
 
 LDFLAGS		= `pkg-config sfml-all --libs`
 
