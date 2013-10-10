@@ -21,15 +21,15 @@ void DisplayManager::gameMode() {
         _engine = DamnCute::Core::getInstance();
         std::cerr << "game is starting without menu =S" << std::endl;
     }
-    DamnCute::Background* bg = new DamnCute::Background("ressources/mushihimesama.tga");
+    //DamnCute::Background* bg = new DamnCute::Background("ressources/mushihimesama.tga");
     //TestPattern* test = new TestPattern();
-    bg->setScrollSpeed(0,-0.1f);
+    //bg->setScrollSpeed(0,-0.1f);
 
 
     DamnCute::APlayer* player_one = new DamnCute::Player<0>();
     DamnCute::APlayer* player_two = new DamnCute::Player<1>("ressources/player_focus.tga", 800, 400);
 
-    _engine->addObject(bg);
+    //_engine->addObject(bg);
     //_engine->addObject(test);
     _engine->addObject(player_one);
     _engine->addObject(player_two);

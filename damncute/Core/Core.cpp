@@ -1,3 +1,4 @@
+#include <sstream>
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -9,14 +10,14 @@ namespace DamnCute {
 
 DamnCute::Core* DamnCute::Core::getInstance() {
     if (!__coreInstance) {
-        __coreInstance = new DamnCute::Core;
+	__coreInstance = new DamnCute::Core;
     }
     return __coreInstance;
 }
 
 void DamnCute::Core::freeAll() {
     for (std::vector<IRenderable*>::iterator it = objects.begin() ; it != objects.end(); ++it) {
-        delete (*it);
+	delete (*it);
     }
     objects.clear();
 }
@@ -28,23 +29,33 @@ void DamnCute::Core::reset() {
 
 void DamnCute::Core::refresh() {
     for (unsigned int i = 0; i < objects.size(); ++i) {
-        objects[i]->update(_win);
+	objects[i]->update(_win);
     }
 }
 
 void DamnCute::Core::flushEvent() {
     while (_win->pollEvent(event))
     {
-        if (event.type == sf::Event::KeyPressed)
-            if (event.key.code == sf::Keyboard::Escape)
-                _win->close();
+	if (event.type == sf::Event::KeyPressed)
+	    if (event.key.code == sf::Keyboard::Escape)
+		_win->close();
     }
 }
 
 void DamnCute::Core::flushScene() {
+    float frate = _gameClock.getElapsedTime().asMilliseconds();
+
     _win->clear();
     refresh();
     _win->display();
+
+    std::stringstream ss;
+    ss << frate;
+    sf::Text t("lol", sf::Font());
+    t.setColor(sf::Color::Green);
+    t.setPosition(40,90);
+    _win->draw(t);
+    _gameClock.restart();
 }
 
 void DamnCute::Core::addObject(IRenderable* a) {
@@ -53,17 +64,24 @@ void DamnCute::Core::addObject(IRenderable* a) {
 
 void DamnCute::Core::createWin(unsigned int width, unsigned int height, bool full) {
     unsigned int style = full << 3;
-    _win = new sf::RenderWindow(sf::VideoMode(width, height), "Death Curtain", style);
+    //_win = new sf::RenderWindow(sf::VideoMode(width, height), "Death Curtain", style);
+    //sf::VideoMode::getDesktopMode()
+
+    if (width == 0 && height == 0) {
+	_win = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "Death Curtain", style);
+    } else {
+	_win = new sf::RenderWindow(sf::VideoMode(width, height), "Death Curtain", style);
+    }
     _win->setFramerateLimit(60);
 }
 
 void DamnCute::Core::delObject(IRenderable* a) {
     for (std::vector<IRenderable*>::iterator it = objects.begin() ; it != objects.end(); ++it) {
-        if ((*it) == a) {
-            objects.erase(it);
-            delete *it;
-            return;
-        }
+	if ((*it) == a) {
+	    objects.erase(it);
+	    delete *it;
+	    return;
+	}
     }
 }
 

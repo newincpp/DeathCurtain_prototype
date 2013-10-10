@@ -14,7 +14,7 @@ namespace DamnCute {
 	    void addObject(IRenderable*);
 	    void delObject(IRenderable*);
 	    void flushScene();
-	    void createWin(unsigned int, unsigned int, bool);
+	    void createWin(unsigned int = 0, unsigned int = 0, bool = false);
 	    inline int  getWindowStatus() const {
 		return _win->isOpen();
 	    }
@@ -48,6 +48,7 @@ namespace DamnCute {
 	    std::vector<IRenderable*> objects;
 	    bool _gameStatus;
 
+	    sf::Clock _gameClock;
 	    sf::Event event;
     };
 }
