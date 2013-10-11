@@ -6,8 +6,6 @@
 namespace DamnCute {
     class IRenderable {
 	public:
-	    explicit IRenderable() {
-	    }
 	    virtual void update(sf::RenderWindow*) = 0;
 	    virtual ~IRenderable() {}
     };

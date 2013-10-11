@@ -16,7 +16,7 @@ DamnCute::Core* DamnCute::Core::getInstance() {
 }
 
 void DamnCute::Core::freeAll() {
-    for (std::vector<IRenderable*>::iterator it = objects.begin() ; it != objects.end(); ++it) {
+    for (std::list<IRenderable*>::iterator it = objects.begin() ; it != objects.end(); ++it) {
 	delete (*it);
     }
     objects.clear();
@@ -28,8 +28,9 @@ void DamnCute::Core::reset() {
 }
 
 void DamnCute::Core::refresh() {
-    for (unsigned int i = 0; i < objects.size(); ++i) {
-	objects[i]->update(_win);
+    //for (unsigned int i = 0; i < objects.size(); ++i) {
+    for (std::list<IRenderable*>::iterator it = objects.begin() ; it != objects.end(); ++it) {
+	(*it)->update(_win);
     }
 }
 
@@ -43,23 +44,28 @@ void DamnCute::Core::flushEvent() {
 }
 
 void DamnCute::Core::flushScene() {
-    float frate = _gameClock.getElapsedTime().asMilliseconds();
+    float frate = _gameClock.getElapsedTime().asSeconds();
 
     _win->clear();
     refresh();
-    _win->display();
 
-    std::stringstream ss;
-    ss << frate;
-    sf::Text t("lol", sf::Font());
-    t.setColor(sf::Color::Green);
-    t.setPosition(40,90);
-    _win->draw(t);
+    //std::cout << 1 / frate << " FPS" << std::endl;
+    //std::stringstream ss;
+    //ss << frate;
+    //sf::Text t(ss.str(), sf::Font());
+    //t.setColor(sf::Color::Green);
+    //t.setPosition(40,90);
+    //_win->draw(t);
     _gameClock.restart();
+
+    _win->display();
 }
 
 void DamnCute::Core::addObject(IRenderable* a) {
     objects.push_back(a);
+}
+void DamnCute::Core::addOnBg(IRenderable* a) {
+    objects.push_front(a);
 }
 
 void DamnCute::Core::createWin(unsigned int width, unsigned int height, bool full) {
@@ -76,7 +82,7 @@ void DamnCute::Core::createWin(unsigned int width, unsigned int height, bool ful
 }
 
 void DamnCute::Core::delObject(IRenderable* a) {
-    for (std::vector<IRenderable*>::iterator it = objects.begin() ; it != objects.end(); ++it) {
+    for (std::list<IRenderable*>::iterator it = objects.begin() ; it != objects.end(); ++it) {
 	if ((*it) == a) {
 	    objects.erase(it);
 	    delete *it;

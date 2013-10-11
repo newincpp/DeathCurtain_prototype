@@ -1,7 +1,7 @@
 #ifndef CORE_H_
 # define CORE_H_
 
-#include <vector>
+#include <list>
 #include <SFML/Graphics.hpp>
 #include "../IRenderable.hh"
 
@@ -13,6 +13,7 @@ namespace DamnCute {
 	    void freeAll();
 	    void addObject(IRenderable*);
 	    void delObject(IRenderable*);
+	    void addOnBg(IRenderable*);
 	    void flushScene();
 	    void createWin(unsigned int = 0, unsigned int = 0, bool = false);
 	    inline int  getWindowStatus() const {
@@ -45,7 +46,7 @@ namespace DamnCute {
 
 	    static Core* __coreInstance;
 	    sf::RenderWindow* _win;
-	    std::vector<IRenderable*> objects;
+	    std::list<IRenderable*> objects;
 	    bool _gameStatus;
 
 	    sf::Clock _gameClock;

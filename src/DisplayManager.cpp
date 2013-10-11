@@ -18,18 +18,17 @@ void DisplayManager::update() {
 
 void DisplayManager::gameMode() {
     if (!_engine) {
-        _engine = DamnCute::Core::getInstance();
-        std::cerr << "game is starting without menu =S" << std::endl;
+	_engine = DamnCute::Core::getInstance();
+	std::cerr << "game is starting without menu =S" << std::endl;
     }
     DamnCute::Background* bg = new DamnCute::Background("ressources/mushihimesama.tga");
     //TestPattern* test = new TestPattern();
-    //bg->setScrollSpeed(0,-0.1f);
-
+    bg->setScrollSpeed(0,-0.1f);
 
     DamnCute::APlayer* player_one = new DamnCute::Player<0>();
     DamnCute::APlayer* player_two = new DamnCute::Player<1>("ressources/player_focus.tga", 800, 400);
 
-    _engine->addObject(bg);
+    _engine->addOnBg(bg);
     //_engine->addObject(test);
     _engine->addObject(player_one);
     _engine->addObject(player_two);
@@ -38,7 +37,7 @@ void DisplayManager::gameMode() {
 }
 
 void DisplayManager::menuMode() {
-  DamnCute::Menu* m = new DamnCute::Menu("ressources/title.png"); // Instanciation
+    DamnCute::Menu* m = new DamnCute::Menu("ressources/title.png"); // Instanciation
     _engine->addObject(m);
     m->setTextureButton("ressources/button1.png");/*Set texture*/
     m->addButton(50, 100, "start"); /*Pose la texture sur le screen*/
@@ -49,9 +48,9 @@ void DisplayManager::run() {
 
     menuMode();
     while (_alive) {
-        update();
-        _engine->flushScene();
-        _engine->flushEvent();
+	update();
+	_engine->flushScene();
+	_engine->flushEvent();
     }
     _engine->freeAll();
     _engine->createWin(1920, 1200, false);
@@ -59,8 +58,8 @@ void DisplayManager::run() {
     gameMode();
     update();
     while (_alive) {
-        update();
-        _engine->flushScene();
-        _engine->flushEvent();
+	update();
+	_engine->flushScene();
+	_engine->flushEvent();
     }
 }
