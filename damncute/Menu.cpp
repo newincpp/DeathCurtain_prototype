@@ -1,16 +1,19 @@
 #include "Menu.hh"
 #include <SFML/Graphics/Text.hpp>
 
-DamnCute::Menu::SubMenu::SubMenu(sf::Text &text, const std::string &optionName, std::vector<std::string> optionChoice) : _text(text) {
-  _text.setPosition(400, 90);
+DamnCute::Menu::SubMenu::SubMenu(sf::Text &text, const std::string &optionName, std::vector<sf::Text *> optionChoice) : _text(text), _options(optionChoice) {
+  _posx = 400;
+  _posy = 90;
+  _it = _options.begin();
+  _text.setPosition(_posx, _posy);
+  (*_it)->setPosition(_posx, _posy + 80);
  if (optionName == optionName)
-    return;
-  if (optionChoice == optionChoice)
     return;
 }
 
 void DamnCute::Menu::SubMenu::update(sf::RenderWindow* w_ptr) {
   w_ptr->draw(_text); //Rajouter le txt au bouton
+  w_ptr->draw(*(*_it));
 }
 
 DamnCute::Menu::SubMenu::~SubMenu()
@@ -38,7 +41,6 @@ DamnCute::Menu::Button::~Button() {
 /********************************************************/
 
 DamnCute::Menu::Menu(const std::string& texfile) : IRenderable(), _bg(texfile)  {
-  _characterSize=80;
   _font.loadFromFile(FONT_PATH);
   clicked = false;
 }
@@ -71,7 +73,11 @@ void DamnCute::Menu::addButton(int x, int y, const std::string& text) {
 void DamnCute::Menu::addSubMenu(const std::string &Button, const std::string &Option, std::vector<std::string> listOption )
 {
   sf::Text test(Option, _font, _characterSize);
+  std::vector<sf::Text *> listoption2;
 
-  SubMenu *b = new SubMenu(test, Option, listOption);
+  for (std::vector<std::string>::iterator it = listOption.begin() ; it != listOption.end(); ++it) {
+    listoption2.push_back(new sf::Text(*it, _font, _characterSize));
+  }
+  SubMenu *b = new SubMenu(test, Option, listoption2);
   Core::getInstance()->addObject(b);
 }

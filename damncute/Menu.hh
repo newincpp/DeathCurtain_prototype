@@ -22,14 +22,18 @@ namespace DamnCute {
 
 	    class SubMenu : public IRenderable {
 	    public:
-	      explicit SubMenu(sf::Text &, const std::string & , std::vector<std::string>);
+	      explicit SubMenu(sf::Text &, const std::string & , std::vector<sf::Text *>);
 	      inline void operator=(const SubMenu& b) {
 		_text = b._text;
 	      }
 	      virtual void update(sf::RenderWindow*);
 	      virtual ~SubMenu();
 	    private:
+	      int _posx;
+	      int _posy;
 	      sf::Text _text;
+	      std::vector<sf::Text *>::iterator _it;
+	      std::vector<sf::Text *> _options;
 	    };
 	    class Button : public IRenderable {
 		public:
@@ -47,8 +51,8 @@ namespace DamnCute {
 		    sf::Text _text;
 	    };
         private:
-      unsigned int _characterSize=80;
-           sf::Font _font;
+	    unsigned int _characterSize=20;
+	    sf::Font _font;
 	    bool clicked;
 	    Background _bg;
 	    sf::Texture _tex;
