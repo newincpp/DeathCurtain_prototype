@@ -37,10 +37,13 @@ void DisplayManager::gameMode() {
 }
 
 void DisplayManager::menuMode() {
+  std::vector<std::string> listOption;
+
     DamnCute::Menu* m = new DamnCute::Menu("ressources/title.png"); // Instanciation
     _engine->addObject(m);
     m->setTextureButton("ressources/button1.png");/*Set texture*/
     m->addButton(50, 100, "start"); /*Pose la texture sur le screen*/
+    m->addSubMenu("Button Name", "Sous Menu:", listOption);
 }
 
 void DisplayManager::run() {

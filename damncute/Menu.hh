@@ -19,20 +19,37 @@ namespace DamnCute {
 			    value = C
 			};
 		};
+
+	    class SubMenu : public IRenderable {
+	    public:
+	      explicit SubMenu(sf::Text &, const std::string & , std::vector<std::string>);
+	      inline void operator=(const SubMenu& b) {
+		_text = b._text;
+	      }
+	      virtual void update(sf::RenderWindow*);
+	      virtual ~SubMenu();
+	    private:
+	      sf::Text _text;
+	    };
 	    class Button : public IRenderable {
 		public:
 	      explicit Button(sf::Text &, int, int, sf::Texture&);
 		    inline void operator=(const Button& b) {
 			_tex = b._tex;
 			_s = b._s;
+			_text = b._text;
 		    }
 		    virtual void update(sf::RenderWindow*);
 		    virtual ~Button();
 		private:
 		    sf::Sprite _s;
 		    sf::Texture& _tex;
-		    sf::Text& _text;
+		    sf::Text _text;
 	    };
+        private:
+      unsigned int _characterSize=80;
+           sf::Font _font;
+	    bool clicked;
 	    Background _bg;
 	    sf::Texture _tex;
 	    std::vector<Button*> _buttons;
@@ -46,6 +63,7 @@ namespace DamnCute {
 	    }
 	    void setTextureButton(const std::string&);
 	    void addButton(int x, int y, const std::string&);
+	    void addSubMenu(const std::string &Button, const std::string &Option /*Nom de l'option*/, std::vector<std::string> listOption );
     };
 }
 
