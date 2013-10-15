@@ -27,7 +27,7 @@ namespace DamnCute {
 		    _paths[i]->update(w_ptr);
 		}
 	    }
-	    virtual void moveOrigin(glm::vec2&& n) {
+	    virtual void moveOrigin(glm::vec2&& n) noexcept {
 		for (unsigned int i = 0; i != _paths.size(); ++i) {
 		    _paths[i]->moveOrigin(std::move(n));
 		}

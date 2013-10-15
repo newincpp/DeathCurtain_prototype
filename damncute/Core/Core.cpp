@@ -49,7 +49,7 @@ void DamnCute::Core::flushScene() {
     _win->clear();
     refresh();
 
-    //std::cout << 1 / frate << " FPS" << std::endl;
+    std::cout << 1 / frate << " FPS" << std::endl;
     //std::stringstream ss;
     //ss << frate;
     //sf::Text t(ss.str(), sf::Font());
