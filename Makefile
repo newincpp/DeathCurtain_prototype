@@ -11,15 +11,15 @@ SRC		= damncute/Bullet.cpp \
 
 NAME		= demo
 
-UNAME_S := $(shell uname -s)
+CXXFLAGS	= -Wall -Wextra -W -g -I./damncute -I./glm -std=c++0x
 
+UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-	CXXFLAGS	= -Wall -Wextra -W -g -I./damncute -I./glm -std=c++0x
 	LDFLAGS		= `pkg-config sfml-all --libs`
 endif
 
 ifeq ($(UNAME_S),Darwin)
-	CXXFLAGS	= -Wall -Wextra -W -g -I./damncute -I./glm -std=c++0x -stdlib=libc++
+	CXXFLAGS	+= -stdlib=libc++
 	LDFLAGS		= -framework SFML -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system -std=c++0x -stdlib=libc++
 endif
 
