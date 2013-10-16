@@ -49,9 +49,9 @@ void DamnCute::Core::flushScene() {
     _win->clear();
     refresh();
 
-    std::cout << 1 / frate << " FPS" << std::endl;
+    //std::cout << 1 / frate << " FPS" << std::endl;
     //std::stringstream ss;
-    //ss << frate;
+    //ss << 1 / frate;
     //sf::Text t(ss.str(), sf::Font());
     //t.setColor(sf::Color::Green);
     //t.setPosition(40,90);
