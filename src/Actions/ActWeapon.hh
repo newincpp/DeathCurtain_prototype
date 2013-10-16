@@ -32,7 +32,7 @@ class ActWeapon : public DamnCute::AAction<DamnCute::APlayer>
         explicit ActWeapon(DamnCute::APlayer *p, sf::Keyboard::Key k1, int button)
             : AAction(p, k1, button) {
                 _engine = DamnCute::Core::getInstance();
-                _sp = new ShootPattern(convertVec(_player->getPlayer().getPosition()));
+                _sp = new ShootPattern(convertVec(_entity->getPlayer().getPosition()));
                 _name = "ActWeapon";
                 _engine->addObject(_sp);
             }
@@ -56,7 +56,7 @@ class ActWeapon : public DamnCute::AAction<DamnCute::APlayer>
 
         void execute() {
             _sp->setStatusGen(true);
-            _sp->moveOrigin(convertVec(_player->getPlayer().getPosition()));
+            _sp->moveOrigin(convertVec(_entity->getPlayer().getPosition()));
         }
 
         virtual inline const std::string& getName() const { return _name; }

@@ -22,7 +22,7 @@ namespace DamnCute
 	    void update(sf::RenderWindow*);
 	    void addAction(AAction<APlayer>*);
 
-	    inline sf::Sprite& getPlayer() { return _player; }
+	    inline sf::Sprite& getPlayer() { return _entity; }
 	    inline sf::Texture& getTexture() { return _tex; }
 	    inline int& getSpeed() { return _speed; }
 	    inline int getNumPlayer() const { return _nbPlayer; }
@@ -47,7 +47,7 @@ namespace DamnCute
 	    APlayer& operator=(const APlayer&);
 	    std::vector<AAction<APlayer>*> _actions;
 
-	    sf::Sprite _player;
+	    sf::Sprite _entity;
 	    sf::Texture _tex;
 	    sf::Event _event;
 	    int _speed;

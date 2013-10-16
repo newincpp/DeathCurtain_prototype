@@ -34,8 +34,12 @@ namespace DamnCute {
 	    inline sf::Event getEvent() const {
 		return event;
 	    }
+	    inline void setFPSDisplay(bool value) {
+		_displayFPS = value;
+	    }
 	    void flushEvent();
 	private:
+
 	    Core();
 	    ~Core();
 	    Core(const Core&);
@@ -48,6 +52,7 @@ namespace DamnCute {
 	    sf::RenderWindow* _win;
 	    std::list<IRenderable*> objects;
 	    bool _gameStatus;
+	    bool _displayFPS;
 
 	    sf::Clock _gameClock;
 	    sf::Event event;

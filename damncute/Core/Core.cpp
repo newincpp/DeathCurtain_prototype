@@ -28,7 +28,6 @@ void DamnCute::Core::reset() {
 }
 
 void DamnCute::Core::refresh() {
-    //for (unsigned int i = 0; i < objects.size(); ++i) {
     for (std::list<IRenderable*>::iterator it = objects.begin() ; it != objects.end(); ++it) {
 	(*it)->update(_win);
     }
@@ -49,15 +48,19 @@ void DamnCute::Core::flushScene() {
     _win->clear();
     refresh();
 
-    //std::cout << 1 / frate << " FPS" << std::endl;
-    //std::stringstream ss;
-    //ss << 1 / frate;
-    //sf::Text t(ss.str(), sf::Font());
-    //t.setColor(sf::Color::Green);
-    //t.setPosition(40,90);
-    //_win->draw(t);
-    _gameClock.restart();
+    std::stringstream ss;
+    ss << 1 / frate;
+    sf::Font font;
+    font.loadFromFile("resources/font.ttf");
+    sf::Text t(ss.str(), font);
+    t.setCharacterSize(24);
+    t.setColor(sf::Color::Green);
+    t.setPosition(900, 10);
 
+    if (_displayFPS) {
+	_win->draw(t);
+    }
+    _gameClock.restart();
     _win->display();
 }
 
@@ -70,8 +73,6 @@ void DamnCute::Core::addOnBg(IRenderable* a) {
 
 void DamnCute::Core::createWin(unsigned int width, unsigned int height, bool full) {
     unsigned int style = full << 3;
-    //_win = new sf::RenderWindow(sf::VideoMode(width, height), "Death Curtain", style);
-    //sf::VideoMode::getDesktopMode()
 
     if (width == 0 && height == 0) {
 	_win = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "Death Curtain", style);
@@ -85,13 +86,13 @@ void DamnCute::Core::delObject(IRenderable* a) {
     for (std::list<IRenderable*>::iterator it = objects.begin() ; it != objects.end(); ++it) {
 	if ((*it) == a) {
 	    objects.erase(it);
-	    delete *it;
+	    delete a;
 	    return;
 	}
     }
 }
 
-DamnCute::Core::Core() : _gameStatus(false) {
+DamnCute::Core::Core() : _gameStatus(false), _displayFPS(false) {
 }
 
 DamnCute::Core::Core(const DamnCute::Core&) {
