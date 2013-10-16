@@ -23,9 +23,6 @@ DamnCute::Bullet& DamnCute::Bullet::operator=(Bullet&& b) {
     return *this;
 }
 
-DamnCute::Bullet::~Bullet() {
-}
-
 void DamnCute::Bullet::update(const glm::mat4& transform, sf::RenderWindow* w_ptr) {
     _selfTransform *= transform;
 

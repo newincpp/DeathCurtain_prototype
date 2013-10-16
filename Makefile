@@ -1,6 +1,5 @@
 SRC		= damncute/Bullet.cpp \
 		  damncute/Path.cpp \
-		  damncute/Input.cpp \
 		  damncute/Background.cpp \
 		  damncute/Core/Core.cpp \
 		  damncute/Menu.cpp \
@@ -13,14 +12,19 @@ NAME		= demo
 
 CXXFLAGS	= -Wall -Wextra -W -g -I./damncute -I./glm -std=c++0x
 
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S),Linux)
-	LDFLAGS		= `pkg-config sfml-all --libs`
-endif
+ifeq ($(OS),Windows_NT)
+	error:
+		$(info Windows is not yet supported!)
+else
+	UNAME_S := $(shell uname -s)
+	ifeq ($(UNAME_S),Linux)
+		LDFLAGS		= `pkg-config sfml-all --libs`
+	endif
 
-ifeq ($(UNAME_S),Darwin)
-	CXXFLAGS	+= -stdlib=libc++
-	LDFLAGS		= -framework SFML -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system -std=c++0x -stdlib=libc++
+	ifeq ($(UNAME_S),Darwin)
+		CXXFLAGS	+= -stdlib=libc++
+		LDFLAGS		= -framework SFML -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system -std=c++0x -stdlib=libc++
+	endif
 endif
 
 OBJ		= $(SRC:.cpp=.o)
@@ -33,6 +37,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(OBJ) $(LDFLAGS) -o $(NAME)
+
 clean:
 	$(RM) $(OBJ) *.swp *~ *#
 

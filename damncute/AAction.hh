@@ -50,10 +50,4 @@ namespace DamnCute
 
 }
 
-/*template <>
-void DamnCute::AAction::setInput(sf::Joystick::Axis input)
-{
-    _stickAxis = input;
-}*/
-
 #endif
