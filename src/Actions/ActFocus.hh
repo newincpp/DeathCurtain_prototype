@@ -23,19 +23,19 @@ class ActFocus : public DamnCute::AAction<DamnCute::APlayer>
             // @TODO: should not refresh texture at every frame, lazy programmers
             if (sf::Keyboard::isKeyPressed(_key1) ||
                     sf::Joystick::isButtonPressed(_nbPlayer, _stickButton) == true) {
-                _player->getSpeed() = 2;
+                _entity->getSpeed() = 2;
                 if (_nbPlayer == 0) {
                     _focusTex.loadFromFile("resources/player_focus1.tga");
-                    _player->getPlayer().setTexture(_focusTex);
+                    _entity->getPlayer().setTexture(_focusTex);
                 }
                 if (_nbPlayer == 1) {
                     _focusTex.loadFromFile("resources/player_focus2.tga");
-                    _player->getPlayer().setTexture(_focusTex);
+                    _entity->getPlayer().setTexture(_focusTex);
                 }
             }
             else {
-                _player->getPlayer().setTexture(_player->getTexture());
-                _player->getSpeed() = 5;
+                _entity->getPlayer().setTexture(_entity->getTexture());
+                _entity->getSpeed() = 5;
             } 
         }
 

@@ -4,14 +4,14 @@ DamnCute::APlayer::APlayer(const std::string& texfile, float x, float y, int nb,
     _tex(), _speed(speed), _nbPlayer(nb)
 {
     _tex.loadFromFile(texfile);
-    _player.setTexture(_tex);
-    _player.setPosition(x, y);
+    _entity.setTexture(_tex);
+    _entity.setPosition(x, y);
 }
 
 void DamnCute::APlayer::update(sf::RenderWindow* w_ptr)
 {
     action();
-    w_ptr->draw(_player);
+    w_ptr->draw(_entity);
 }
 
 void DamnCute::APlayer::action()

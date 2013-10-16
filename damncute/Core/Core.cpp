@@ -49,13 +49,16 @@ void DamnCute::Core::flushScene() {
     _win->clear();
     refresh();
 
-    std::cout << 1 / frate << " FPS" << std::endl;
-    //std::stringstream ss;
-    //ss << frate;
-    //sf::Text t(ss.str(), sf::Font());
-    //t.setColor(sf::Color::Green);
-    //t.setPosition(40,90);
-    //_win->draw(t);
+    //std::cout << 1 / frate << " FPS" << std::endl;
+    std::stringstream ss;
+    ss << 1 / frate;
+    sf::Font font;
+    font.loadFromFile("resources/font.ttf");
+    sf::Text t(ss.str(), font);
+    t.setCharacterSize(24);
+    t.setColor(sf::Color::Green);
+    t.setPosition(900, 10);
+    _win->draw(t);
     _gameClock.restart();
 
     _win->display();
