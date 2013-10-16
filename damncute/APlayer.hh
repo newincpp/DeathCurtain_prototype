@@ -15,7 +15,7 @@ namespace DamnCute
     {
 
 	public:
-	    explicit APlayer(const std::string& = "ressources/player.tga",
+	    explicit APlayer(const std::string& = "resources/player.tga",
 		    float = 980, float = 950, int nbPlayer = 1, int speed = 5);
 	    virtual ~APlayer() = default;
 

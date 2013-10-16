@@ -25,11 +25,11 @@ class ActFocus : public DamnCute::AAction
                     sf::Joystick::isButtonPressed(_nbPlayer, _stickButton) == true) {
                 _player->getSpeed() = 2;
                 if (_nbPlayer == 0) {
-                    _focusTex.loadFromFile("ressources/player_focus1.tga");
+                    _focusTex.loadFromFile("resources/player_focus1.tga");
                     _player->getPlayer().setTexture(_focusTex);
                 }
                 if (_nbPlayer == 1) {
-                    _focusTex.loadFromFile("ressources/player_focus2.tga");
+                    _focusTex.loadFromFile("resources/player_focus2.tga");
                     _player->getPlayer().setTexture(_focusTex);
                 }
             }

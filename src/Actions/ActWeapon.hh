@@ -2,8 +2,8 @@
 # define ACTWEAPON_H_
 
 #include <SFML/Graphics.hpp>
-#include "../damncute/Core/Core.hh"
-#include "../damncute/APattern.hh"
+#include "Core/Core.hh"
+#include "APattern.hh"
 
 class ShootPattern : public DamnCute::APattern {
     public:
@@ -16,7 +16,7 @@ class ShootPattern : public DamnCute::APattern {
 
             glm::mat4 m;
             m = glm::translate(glm::mat4(), glm::vec3(0, 15, 0));
-            _z = new DamnCute::Path(m, 6, DamnCute::Bullet(_v, 0, 120), "ressources/pink-bullet.tga");
+            _z = new DamnCute::Path(m, 6, DamnCute::Bullet(_v, 0, 120), "resources/pink-bullet.tga");
             addPath(_z);
         }
 

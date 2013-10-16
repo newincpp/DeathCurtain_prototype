@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "../damncute/APlayer.hh"
+#include "APlayer.hh"
 
 #include "Actions/ActMoveX.hh"
 #include "Actions/ActMoveY.hh"
@@ -17,7 +17,7 @@ namespace DamnCute
     class Player : public APlayer {
 
         public:
-            explicit Player(const std::string& texfile = "ressources/player.tga", float x = 980, float y = 950, int speed = 5) :
+            explicit Player(const std::string& texfile = "resources/player.tga", float x = 980, float y = 950, int speed = 5) :
                 APlayer(texfile, x, y, I, speed) {}
 
             virtual ~Player() = default;

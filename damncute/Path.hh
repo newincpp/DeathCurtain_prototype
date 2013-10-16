@@ -13,7 +13,7 @@
 namespace DamnCute {
     class Path : public IRenderable {
 	public:
-	    explicit Path(const glm::mat4&, unsigned int frameStep = 5, Bullet&& = Bullet(glm::vec2(0,0)), const std::string& = "ressources/test.tga");
+	    explicit Path(const glm::mat4&, unsigned int frameStep = 5, Bullet&& = Bullet(glm::vec2(0,0)), const std::string& = "resources/test.tga");
 	    virtual ~Path();
 	    virtual void update(sf::RenderWindow*);
 	    inline void moveOrigin(glm::vec2&& n) noexcept {
