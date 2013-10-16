@@ -8,9 +8,6 @@ DamnCute::Background::Background(const std::string& texfile) : _tex() {
     _bg.setTexture(_tex);
 }
 
-DamnCute::Background::~Background() {
-}
-
 void DamnCute::Background::setScrollSpeed(float x, float y) {
     _XSpeed = x;
     _YSpeed = y;

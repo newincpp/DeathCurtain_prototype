@@ -10,40 +10,40 @@
 
 namespace DamnCute {
     class APattern : public IRenderable {
-	public:
-	    APattern() {
-	    }
-	    ~APattern() {
-		for (unsigned int i = 0; i != _paths.size(); ++i) {
-		    delete _paths[i];
-		}
-	    }
-	    virtual void initialize() = 0;
-	    virtual void addPath(Path* p) {
-		_paths.push_back(p);
-	    }
-	    virtual void update(sf::RenderWindow* w_ptr) {
-		for (unsigned int i = 0; i != _paths.size(); ++i) {
-		    _paths[i]->update(w_ptr);
-		}
-	    }
-	    virtual void moveOrigin(glm::vec2&& n) noexcept {
-		for (unsigned int i = 0; i != _paths.size(); ++i) {
-		    _paths[i]->moveOrigin(std::move(n));
-		}
-	    }
-	    virtual void switchGen() {
-		for (unsigned int i = 0; i != _paths.size(); ++i) {
-		    _paths[i]->switchGen();
-		}
-	    }
-	    virtual void setStatusGen(bool&& b) {
-		for (unsigned int i = 0; i != _paths.size(); ++i) {
-		    _paths[i]->setStatusGen(std::move(b));
-		}
-	    }
-	private:
-	    std::vector<Path*> _paths;
+        public:
+            APattern() = default;
+
+            ~APattern() {
+                for (unsigned int i = 0; i != _paths.size(); ++i) {
+                    delete _paths[i];
+                }
+            }
+            virtual void initialize() = 0;
+            virtual void addPath(Path* p) {
+                _paths.push_back(p);
+            }
+            virtual void update(sf::RenderWindow* w_ptr) {
+                for (unsigned int i = 0; i != _paths.size(); ++i) {
+                    _paths[i]->update(w_ptr);
+                }
+            }
+            virtual void moveOrigin(glm::vec2&& n) noexcept {
+                for (unsigned int i = 0; i != _paths.size(); ++i) {
+                    _paths[i]->moveOrigin(std::move(n));
+                }
+            }
+            virtual void switchGen() {
+                for (unsigned int i = 0; i != _paths.size(); ++i) {
+                    _paths[i]->switchGen();
+                }
+            }
+            virtual void setStatusGen(bool&& b) {
+                for (unsigned int i = 0; i != _paths.size(); ++i) {
+                    _paths[i]->setStatusGen(std::move(b));
+                }
+            }
+        private:
+            std::vector<Path*> _paths;
     };
 }
 
