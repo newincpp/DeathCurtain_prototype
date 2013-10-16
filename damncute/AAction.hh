@@ -12,18 +12,19 @@ namespace DamnCute
 
     class APlayer;
 
+    template <typename T>
     class AAction
     {
 
         public:
             explicit AAction(APlayer *p, sf::Keyboard::Key k, sf::Joystick::Axis s)
-                : _key1(k), _key2(sf::Keyboard::Unknown), _stickAxis(s), _stickButton(DC_INPUT_NONE), _hasAxis(true), _player(p) { }
+                : _key1(k), _key2(sf::Keyboard::Unknown), _stickAxis(s), _stickButton(DC_INPUT_NONE), _hasAxis(true), _entity(p) { }
 
             explicit AAction(APlayer *p, sf::Keyboard::Key k1, sf::Keyboard::Key k2, sf::Joystick::Axis s)
-                : _key1(k1), _key2(k2), _stickAxis(s), _stickButton(DC_INPUT_NONE), _hasAxis(true), _player(p) { }
+                : _key1(k1), _key2(k2), _stickAxis(s), _stickButton(DC_INPUT_NONE), _hasAxis(true), _entity(p) { }
 
             explicit AAction(APlayer *p, sf::Keyboard::Key k, int s)
-                : _key1(k), _key2(sf::Keyboard::Unknown), _stickAxis(sf::Joystick::Axis::X), _stickButton(s), _hasAxis(false), _player(p) { }
+                : _key1(k), _key2(sf::Keyboard::Unknown), _stickAxis(sf::Joystick::Axis::X), _stickButton(s), _hasAxis(false), _entity(p) { }
 
             virtual ~AAction() {}
 
@@ -44,7 +45,7 @@ namespace DamnCute
             sf::Joystick::Axis _stickAxis;
             int _stickButton;
             bool _hasAxis;
-            APlayer *_player;
+            T* _entity;
 
     };
 

@@ -22,7 +22,7 @@ void DamnCute::APlayer::action()
     }
 }
 
-void DamnCute::APlayer::addAction(AAction* act)
+void DamnCute::APlayer::addAction(AAction<APlayer>* act)
 {
     _actions.push_back(act);
 }

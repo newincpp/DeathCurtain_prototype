@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class ActFocus : public DamnCute::AAction
+class ActFocus : public DamnCute::AAction<DamnCute::APlayer>
 {
 
     public:

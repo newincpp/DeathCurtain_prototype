@@ -6,7 +6,7 @@
 #define ST1 2
 #define ST2 3
 
-class ActMoveX : public DamnCute::AAction
+class ActMoveX : public DamnCute::AAction<DamnCute::APlayer>
 {
 
     public:

@@ -25,7 +25,7 @@ class ShootPattern : public DamnCute::APattern {
         glm::vec2 _v;
 };
 
-class ActWeapon : public DamnCute::AAction
+class ActWeapon : public DamnCute::AAction<DamnCute::APlayer>
 {
 
     public:

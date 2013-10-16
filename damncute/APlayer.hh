@@ -20,7 +20,7 @@ namespace DamnCute
 	    virtual ~APlayer() = default;
 
 	    void update(sf::RenderWindow*);
-	    void addAction(AAction*);
+	    void addAction(AAction<APlayer>*);
 
 	    inline sf::Sprite& getPlayer() { return _player; }
 	    inline sf::Texture& getTexture() { return _tex; }
@@ -45,7 +45,7 @@ namespace DamnCute
 	private:
 	    void action();
 	    APlayer& operator=(const APlayer&);
-	    std::vector<AAction*> _actions;
+	    std::vector<AAction<APlayer>*> _actions;
 
 	    sf::Sprite _player;
 	    sf::Texture _tex;
