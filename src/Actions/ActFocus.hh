@@ -36,7 +36,7 @@ class ActFocus : public DamnCute::AAction<DamnCute::APlayer>
             else {
                 _entity->getPlayer().setTexture(_entity->getTexture());
                 _entity->getSpeed() = 5;
-            } 
+            }
         }
 
         virtual inline const std::string& getName() const { return _name; }
