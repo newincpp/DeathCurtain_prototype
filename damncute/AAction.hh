@@ -3,7 +3,7 @@
 
 #include "Core/Core.hh"
 #include <SFML/Window/Joystick.hpp>
-#include "APlayer.hh"
+//#include "APlayer.hh"
 
 #define DC_INPUT_NONE 99999
 

@@ -1,6 +1,7 @@
 #ifndef _ACTMENU_H_
 # define _ACTMENU_H_
 
+#include <iostream>
 #include "AAction.hh"
 
 #define K1 0
@@ -8,6 +9,9 @@
 #define ST1 2
 #define ST2 3
 
+namespace DamnCute {
+  class Menu;
+}
 class ActMenu : public DamnCute::AAction<DamnCute::Menu>
 {
 
@@ -53,7 +57,7 @@ class ActMenu : public DamnCute::AAction<DamnCute::Menu>
         }
 
         virtual inline const std::string& getName() const { return (_name); }
-        virtual ~ActMenu() = default;
+         virtual ~ActMenu() = default;
 
     private:
         int _who;
