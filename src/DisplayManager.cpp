@@ -1,9 +1,9 @@
 #include <Background.hh>
-#include "Player.hh"
 #include <Menu.hh>
 #include <Core/Core.hh>
 #include "TestPattern.hh"
 #include "DisplayManager.hh"
+#include "Player.hh"
 
 DisplayManager::DisplayManager(int width, int height, bool fullscreen) : _alive(true) {
     DamnCute::Core::getInstance()->createWin(width, height, fullscreen);
@@ -23,14 +23,17 @@ void DisplayManager::gameMode() {
     }
     _engine->setFPSDisplay(true);
     DamnCute::Background* bg = new DamnCute::Background("resources/mushihimesama.tga");
-    TestPattern* test = new TestPattern();
+    //TestPattern* test = new TestPattern();
+    pat1 *p1 = new pat1();
+
     bg->setScrollSpeed(0, -0.1f);
 
     DamnCute::APlayer* player_one = new DamnCute::Player<0>();
     DamnCute::APlayer* player_two = new DamnCute::Player<1>("resources/player_focus.tga", 800, 400);
 
     _engine->addOnBg(bg);
-    _engine->addObject(test);
+    //_engine->addObject(test);
+    _engine->addObject(p1);
     _engine->addObject(player_one);
     _engine->addObject(player_two);
 
