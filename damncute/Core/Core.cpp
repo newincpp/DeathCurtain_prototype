@@ -79,6 +79,7 @@ void DamnCute::Core::createWin(unsigned int width, unsigned int height, bool ful
     } else {
         _win = new sf::RenderWindow(sf::VideoMode(width, height), "Death Curtain", style);
     }
+    _win->setVerticalSyncEnabled(true);
     _win->setFramerateLimit(60);
 }
 
