@@ -18,6 +18,7 @@ namespace DamnCute
 	    explicit APlayer(const std::string& = "resources/player.tga",
 		    float = 980, float = 950, int nbPlayer = 1, int speed = 5);
 	    virtual ~APlayer() = default;
+	    APlayer& operator=(const APlayer&) = delete;
 
 	    void update(sf::RenderWindow*);
 	    void addAction(AAction<APlayer>*);
@@ -44,12 +45,10 @@ namespace DamnCute
 
 	private:
 	    void action();
-	    APlayer& operator=(const APlayer&);
 	    std::vector<AAction<APlayer>*> _actions;
 
 	    sf::Sprite _entity;
 	    sf::Texture _tex;
-	    sf::Event _event;
 	    int _speed;
 	    int _nbPlayer;
     };
