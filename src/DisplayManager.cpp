@@ -23,14 +23,14 @@ void DisplayManager::gameMode() {
     }
     _engine->setFPSDisplay(true);
     DamnCute::Background* bg = new DamnCute::Background("resources/mushihimesama.tga");
-    //TestPattern* test = new TestPattern();
+    TestPattern* test = new TestPattern();
     bg->setScrollSpeed(0, -0.1f);
 
     DamnCute::APlayer* player_one = new DamnCute::Player<0>();
     DamnCute::APlayer* player_two = new DamnCute::Player<1>("resources/player_focus.tga", 800, 400);
 
     _engine->addOnBg(bg);
-    //_engine->addObject(test);
+    _engine->addObject(test);
     _engine->addObject(player_one);
     _engine->addObject(player_two);
 

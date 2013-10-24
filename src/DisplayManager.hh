@@ -20,7 +20,6 @@ class DisplayManager {
     private:
         void update();
         DamnCute::Core* _engine;
-        sf::RenderWindow _win;
         bool _alive;
 };
 

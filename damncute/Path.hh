@@ -33,7 +33,6 @@ namespace DamnCute {
             unsigned int _timeLoad;
             unsigned int _timeSeparator;
             glm::mat4 _stepModifier;
-            //std::map<float, glm::mat4> _modifier;
             bool _generate;
     };
 }

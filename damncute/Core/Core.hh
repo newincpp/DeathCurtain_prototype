@@ -50,7 +50,7 @@ namespace DamnCute {
 
 	    static Core* __coreInstance;
 	    sf::RenderWindow* _win;
-	    std::list<IRenderable*> objects;
+	    std::list<IRenderable*> _objects;
 	    bool _gameStatus;
 	    bool _displayFPS;
 
