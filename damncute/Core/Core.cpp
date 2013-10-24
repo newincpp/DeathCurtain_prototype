@@ -17,7 +17,7 @@ DamnCute::Core* DamnCute::Core::getInstance() {
 
 void DamnCute::Core::freeAll() {
     for (std::list<IRenderable*>::iterator it = _objects.begin() ; it != _objects.end(); ++it) {
-	delete (*it);
+        delete (*it);
     }
     _objects.clear();
 }
@@ -29,7 +29,7 @@ void DamnCute::Core::reset() {
 
 void DamnCute::Core::refresh() {
     for (std::list<IRenderable*>::iterator it = _objects.begin() ; it != _objects.end(); ++it) {
-	(*it)->update(_win);
+        (*it)->update(_win);
     }
 }
 
@@ -84,11 +84,11 @@ void DamnCute::Core::createWin(unsigned int width, unsigned int height, bool ful
 
 void DamnCute::Core::delObject(IRenderable* a) {
     for (std::list<IRenderable*>::iterator it = _objects.begin() ; it != _objects.end(); ++it) {
-	if ((*it) == a) {
-	    _objects.erase(it);
-	    delete a;
-	    return;
-	}
+        if ((*it) == a) {
+            _objects.erase(it);
+            delete a;
+            return;
+        }
     }
 }
 
