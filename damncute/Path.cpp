@@ -2,7 +2,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Path.hh"
 
-DamnCute::Path::Path(const glm::mat4& m, unsigned int timestep, DamnCute::Bullet&& model, const std::string& texfile) : _bulletModel(std::move(model)), _timeLoad(0), _timeSeparator(timestep), _stepModifier(m), _generate(true), _futureframe(UINT_MAX) {
+DamnCute::Path::Path(const glm::mat4& m, unsigned int timestep, DamnCute::Bullet&& model, const std::string& texfile) : _bulletModel(std::move(model)), _timeLoad(0), _timeSeparator(timestep), _stepModifier(m), _generate(true), _futureframe(UINT_MAX), _newMat(_stepModifier) {
     _tex.loadFromFile(texfile);
     _tex.setSmooth(true);
     _tex.setRepeated(false);
@@ -36,5 +36,4 @@ void DamnCute::Path::update(sf::RenderWindow* w_ptr) {
 void DamnCute::Path::countdownSetMoveModifier(int framme, const glm::mat4& newMat) {
     _futureframe = framme;
     _newMat = newMat;
-    //_stepModifier = newMat;
 }

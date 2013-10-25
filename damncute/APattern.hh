@@ -26,6 +26,7 @@ namespace DamnCute {
                 for (unsigned int i = 0; i != _paths.size(); ++i) {
                     _paths[i]->update(w_ptr);
                 }
+		up();
             }
             virtual void moveOrigin(glm::vec2&& n) noexcept {
                 for (unsigned int i = 0; i != _paths.size(); ++i) {
@@ -47,6 +48,8 @@ namespace DamnCute {
 	    }
         private:
             std::vector<Path*> _paths;
+	protected:
+	    virtual void up() {}
     };
 }
 

@@ -26,7 +26,10 @@ namespace DamnCute {
             inline void setStatusGen(bool&& b) {
                 _generate = b;
             }
-        private:
+	    inline void setTimeSepatator(unsigned int newTs) {
+		_timeSeparator = newTs;
+	    }
+	private:
             sf::Texture _tex;
             Bullet _bulletModel;
             std::list<Bullet> _bullets;
