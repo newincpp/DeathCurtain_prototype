@@ -42,6 +42,9 @@ namespace DamnCute {
                     _paths[i]->setStatusGen(std::move(b));
                 }
             }
+	    virtual void countdownSetMoveModifier(unsigned int f, const glm::mat4& m, unsigned int pathNumber) {
+		_paths[pathNumber]->countdownSetMoveModifier(f, m);
+	    }
         private:
             std::vector<Path*> _paths;
     };
