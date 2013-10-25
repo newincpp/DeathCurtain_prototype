@@ -19,4 +19,12 @@ class pat1 : public DamnCute::APattern {
 
 };
 
+class pat2 : public DamnCute::APattern {
+    public:
+        explicit pat2();
+        virtual ~pat2() = default;
+        virtual void initialize();
+
+};
+
 #endif /* !TESTPATTERN_H_ */

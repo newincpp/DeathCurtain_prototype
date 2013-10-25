@@ -24,7 +24,7 @@ void DisplayManager::gameMode() {
     _engine->setFPSDisplay(true);
     DamnCute::Background* bg = new DamnCute::Background("resources/mushihimesama.tga");
     //TestPattern* test = new TestPattern();
-    pat1 *p1 = new pat1();
+    pat2 *p2 = new pat2();
 
     bg->setScrollSpeed(0, -0.1f);
 
@@ -33,7 +33,7 @@ void DisplayManager::gameMode() {
 
     _engine->addOnBg(bg);
     //_engine->addObject(test);
-    _engine->addObject(p1);
+    _engine->addObject(p2);
     _engine->addObject(player_one);
     _engine->addObject(player_two);
 
