@@ -16,10 +16,10 @@ namespace DamnCute {
             explicit Path(const glm::mat4&, unsigned int frameStep = 5, Bullet&& = Bullet(glm::vec2(0,0)), const std::string& = "resources/test.tga");
             virtual ~Path() = default;
             virtual void update(sf::RenderWindow*);
+	    void countdownSetMoveModifier(int, const glm::mat4&);
             inline void moveOrigin(glm::vec2&& n) noexcept {
                 _bulletModel.moveOrigin(std::move(n));
             }
-            bool isOn(APlayer*);
             inline void switchGen() {
                 _generate = !_generate;
             }
@@ -34,6 +34,9 @@ namespace DamnCute {
             unsigned int _timeSeparator;
             glm::mat4 _stepModifier;
             bool _generate;
+
+	    unsigned int _futureframe;
+            glm::mat4 _newMat;
     };
 }
 

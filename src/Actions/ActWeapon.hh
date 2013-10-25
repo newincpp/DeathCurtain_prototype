@@ -2,6 +2,7 @@
 # define ACTWEAPON_H_
 
 #include <SFML/Graphics.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include "Core/Core.hh"
 #include "APattern.hh"
 
@@ -38,8 +39,10 @@ class ActWeapon : public DamnCute::AAction<DamnCute::APlayer>
             }
 
         bool hasInput(int nbPlayer) {
-
             _nbPlayer = nbPlayer;
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return)) {
+		_sp->countdownSetMoveModifier(60, glm::translate(glm::mat4(), glm::vec3(-15, 0, 0)), 0);
+	    }
             if (sf::Keyboard::isKeyPressed(_key1))
                 return true;
             else if (sf::Joystick::isButtonPressed(_nbPlayer, _stickButton) == true)
