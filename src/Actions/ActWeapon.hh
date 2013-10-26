@@ -41,7 +41,8 @@ class ActWeapon : public DamnCute::AAction<DamnCute::APlayer>
         bool hasInput(int nbPlayer) {
             _nbPlayer = nbPlayer;
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return)) {
-		_sp->countdownSetMoveModifier(60, glm::translate(glm::mat4(), glm::vec3(-15, 0, 0)), 0);
+		_sp->countdownPushMoveModifier(60, glm::translate(glm::mat4(), glm::vec3(-15, 0, 0)), 0);
+		_sp->countdownPushMoveModifier(60, glm::translate(glm::mat4(), glm::vec3(15, 0, 0)), 0);
 	    }
             if (sf::Keyboard::isKeyPressed(_key1))
                 return true;
