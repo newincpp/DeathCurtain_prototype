@@ -19,8 +19,9 @@ namespace DamnCute {
                 }
             }
             virtual void initialize() = 0;
-            virtual void addPath(Path* p) {
+            virtual int addPath(Path* p) {
                 _paths.push_back(p);
+		return _paths.size() - 1;
             }
             virtual void update(sf::RenderWindow* w_ptr) {
                 for (unsigned int i = 0; i != _paths.size(); ++i) {
@@ -45,6 +46,12 @@ namespace DamnCute {
             }
 	    virtual void countdownSetMoveModifier(unsigned int f, const glm::mat4& m, unsigned int pathNumber) {
 		_paths[pathNumber]->countdownSetMoveModifier(f, m);
+	    }
+
+	    virtual void setTimeSeparator(unsigned int newT) {
+		for (unsigned int i = 0; i != _paths.size(); ++i) {
+                    _paths[i]->setTimeSeparator(std::move(b));
+                }
 	    }
         private:
             std::vector<Path*> _paths;
