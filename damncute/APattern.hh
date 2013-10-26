@@ -48,10 +48,8 @@ namespace DamnCute {
 		_paths[pathNumber]->countdownSetMoveModifier(f, m);
 	    }
 
-	    virtual void setTimeSeparator(unsigned int newT) {
-		for (unsigned int i = 0; i != _paths.size(); ++i) {
-                    _paths[i]->setTimeSeparator(newT);
-                }
+	    virtual void setTimeSeparator(unsigned int newT, unsigned int p) {
+                    _paths[p]->setTimeSeparator(newT);
 	    }
         private:
             std::vector<Path*> _paths;
