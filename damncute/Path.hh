@@ -26,7 +26,7 @@ namespace DamnCute {
             inline void setStatusGen(bool&& b) {
                 _generate = b;
             }
-	    inline void setTimeSepatator(unsigned int newTs) {
+	    inline void setTimeSeparator(unsigned int newTs) {
 		_timeSeparator = newTs;
 	    }
 	private:
