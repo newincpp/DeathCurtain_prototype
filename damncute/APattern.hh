@@ -21,13 +21,13 @@ namespace DamnCute {
             virtual void initialize() = 0;
             virtual int addPath(Path* p) {
                 _paths.push_back(p);
-		return _paths.size() - 1;
+                return _paths.size() - 1;
             }
             virtual void update(sf::RenderWindow* w_ptr) {
                 for (unsigned int i = 0; i != _paths.size(); ++i) {
                     _paths[i]->update(w_ptr);
                 }
-		up();
+                up();
             }
             virtual void moveOrigin(glm::vec2&& n) noexcept {
                 for (unsigned int i = 0; i != _paths.size(); ++i) {
@@ -44,17 +44,16 @@ namespace DamnCute {
                     _paths[i]->setStatusGen(std::move(b));
                 }
             }
-	    virtual void countdownSetMoveModifier(unsigned int f, const glm::mat4& m, unsigned int pathNumber) {
-		_paths[pathNumber]->countdownSetMoveModifier(f, m);
-	    }
+            virtual void countdownSetMoveModifier(unsigned int f, const glm::mat4& m, unsigned int pathNumber) {
+                _paths[pathNumber]->countdownSetMoveModifier(f, m);
+            }
 
-	    virtual void setTimeSeparator(unsigned int newT, unsigned int p) {
-                    _paths[p]->setTimeSeparator(newT);
-	    }
-        private:
+            virtual void setTimeSeparator(unsigned int newT, unsigned int p) {
+                _paths[p]->setTimeSeparator(newT);
+            }
+        protected:
+            virtual void up() {}
             std::vector<Path*> _paths;
-	protected:
-	    virtual void up() {}
     };
 }
 

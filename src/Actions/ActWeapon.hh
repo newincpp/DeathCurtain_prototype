@@ -17,8 +17,8 @@ class ShootPattern : public DamnCute::APattern {
 
             glm::mat4 m;
             /*m = glm::translate(glm::mat4(), glm::vec3(0, 15, 0));
-            _z = new DamnCute::Path(m, 6, DamnCute::Bullet(_v, 0, 120), "resources/pink-bullet.tga");
-            addPath(_z);*/
+              _z = new DamnCute::Path(m, 6, DamnCute::Bullet(_v, 0, 120), "resources/pink-bullet.tga");
+              addPath(_z);*/
 
             m = glm::translate(glm::rotate(glm::mat4(), -1.0f, glm::vec3(0.0f, 4.0f, -2.0f)), glm::vec3(0, -5, -5));
             _z = new DamnCute::Path(m, 3, DamnCute::Bullet(glm::vec2(700, 40.0f), 0, 2000), "resources/pink-bullet.tga");
@@ -46,8 +46,8 @@ class ActWeapon : public DamnCute::AAction<DamnCute::APlayer>
         bool hasInput(int nbPlayer) {
             _nbPlayer = nbPlayer;
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return)) {
-		_sp->countdownSetMoveModifier(60, glm::translate(glm::mat4(), glm::vec3(-15, 0, 0)), 0);
-	    }
+                _sp->countdownSetMoveModifier(60, glm::translate(glm::mat4(), glm::vec3(-15, 0, 0)), 0);
+            }
             if (sf::Keyboard::isKeyPressed(_key1))
                 return true;
             else if (sf::Joystick::isButtonPressed(_nbPlayer, _stickButton) == true)

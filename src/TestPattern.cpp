@@ -33,30 +33,9 @@ pat2::pat2() : APattern() {
 
 void pat2::initialize() {
     glm::mat4 m;
-    glm::mat4 m1;
-    glm::mat4 m2;
 
-
-    m = glm::rotate(glm::translate(glm::mat4(), glm::vec3(0, 5, 0)), -1.0f, glm::vec3(0.0f, 0.0f, 1.0f));
-    DamnCute::Path *a1 = new DamnCute::Path(m, 2, DamnCute::Bullet(glm::vec2(700, 400.0f), 0, 2000), "resources/pink-bullet.tga");
-
-    /*m = glm::translate(glm::rotate(glm::mat4(), -1.0f, glm::vec3(2.0f, 4.0f, -2.0f)), glm::vec3(0, -5, -5));
+    m = glm::translate(glm::rotate(glm::mat4(), -1.0f, glm::vec3(2.0f, 4.0f, -2.0f)), glm::vec3(0, -5, -5));
     DamnCute::Path *a1 = new DamnCute::Path(m, 2, DamnCute::Bullet(glm::vec2(700, 40.0f), 0, 2000), "resources/pink-bullet.tga");
-
-    m = glm::translate(glm::rotate(glm::mat4(), -1.0f, glm::vec3(-2.0f, -4.0f, -2.0f)), glm::vec3(0, -5, -5));
-    DamnCute::Path *a2 = new DamnCute::Path(m, 2, DamnCute::Bullet(glm::vec2(700, 40.0f), 0, 2000), "resources/pink-bullet.tga");*/
-
-    /*m = glm::translate(glm::rotate(glm::mat4(), -1.0f, glm::vec3(4.0f, 4.0f, -2.0f)), glm::vec3(0, -5, -5));
-      DamnCute::Path *a2 = new DamnCute::Path(m, 3, DamnCute::Bullet(glm::vec2(700, 40.0f), 0, 2000), "resources/pink-bullet.tga");
-
-      m = glm::translate(glm::rotate(glm::mat4(), -1.0f, glm::vec3(6.5f, 4.5f, -2.0f)), glm::vec3(0, -5, -5));
-      DamnCute::Path *a3 = new DamnCute::Path(m, 3, DamnCute::Bullet(glm::vec2(700, 40.0f), 0, 2000), "resources/pink-bullet.tga");
-
-      m = glm::translate(glm::rotate(glm::mat4(), -1.0f, glm::vec3(8.5f, 5.5f, -2.0f)), glm::vec3(0, -5, -5));
-      DamnCute::Path *a4 = new DamnCute::Path(m, 3, DamnCute::Bullet(glm::vec2(700, 40.0f), 0, 2000), "resources/pink-bullet.tga");
-
-      m = glm::translate(glm::rotate(glm::mat4(), -1.0f, glm::vec3(0.05f, 4.5f, -2.0f)), glm::vec3(0, -5, -5));
-      DamnCute::Path *a5 = new DamnCute::Path(m, 1, DamnCute::Bullet(glm::vec2(700, 40.0f), 0, 2000), "resources/pink-bullet.tga");*/
 
     /*
        c'est un putain de rond en 3D trop cool pour faire comme sur touhou, tu sais, sur le 8 avec les cercles qui se referment
@@ -64,70 +43,88 @@ void pat2::initialize() {
        m = glm::translate(glm::rotate(glm::mat4(), -1.0f, glm::vec3(0.4f, 3.0f, -2.9f)), glm::vec3(0, -5, -5));
        DamnCute::Path *a4 = new DamnCute::Path(m, 2, DamnCute::Bullet(glm::vec2(700, 40.0f), 0, 2000), "resources/pink-bullet.tga");*/
 
-    /*m = glm::translate(m, glm::vec3(-1, 0, 0));
-      DamnCute::Path *a2 = new DamnCute::Path(m, 3, DamnCute::Bullet(glm::vec2(1300, 40.0f), 0, 2000), "resources/pink-bullet.tga");*/
-
-
-    /*m1 = glm::rotate(m, float(M_PI_2), glm::vec3(1, 0, 0));
-      m2 = glm::translate(m1, glm::vec3(-1, 0, 0));
-      DamnCute::Path *a2 = new DamnCute::Path(m2, 3, DamnCute::Bullet(glm::vec2(1400, 40.0f), 0, 2000), "resources/pink-bullet.tga");*/
-
     addPath(a1);
-    //addPath(a2);
-    /*  addPath(a3);
-      addPath(a4);
-      addPath(a5);*/
 }
 
 pat1::pat1() : APattern() {
     initialize();
 }
 
-void pat1::initialize() {
+void pat1::labyrinth(int z) {
+
+    int grp;
     glm::mat4 m;
-    // bullet labyrinth
+    std::default_random_engine generator;
+    std::uniform_int_distribution<int> bullet_space(1, 3);
+    std::uniform_int_distribution<int> lateral_space(25, 65);
 
-    m = glm::translate(glm::mat4(), glm::vec3(-5, -35, -5));
-    DamnCute::Path *a1 = new DamnCute::Path(m, 8, DamnCute::Bullet(glm::vec2(700, 40.0f), 0, 2000), "resources/pink-bullet.tga");
+    for (int i = 5; i < 25; ++i) {
 
-    m = glm::translate(glm::mat4(), glm::vec3(0, -3, -5));
-    DamnCute::Path *b1 = new DamnCute::Path(m, 8, DamnCute::Bullet(glm::vec2(700, 40.0f), 0, 2000), "resources/pink-bullet.tga");
+        z += lateral_space(generator);
+        m = glm::translate(glm::mat4(), glm::vec3(0, -20, -i));
+        DamnCute::Path *pattern = new DamnCute::Path(m, bullet_space(generator), DamnCute::Bullet(glm::vec2(z, 40.0f), 0, 500), "resources/pink-bullet.tga");
+        pattern->countdownSetMoveModifier(55, glm::rotate(glm::translate(glm::mat4(), glm::vec3(0, -1, -i)), 1.0f, glm::vec3(2.0f, 4.0f, -2.0f)));
+        grp = addPath(pattern);
+        labyrinthGroup.push_back(grp);
+    }
+}
 
-    m = glm::translate(glm::mat4(), glm::vec3(0, -3, -6));
-    DamnCute::Path *b2 = new DamnCute::Path(m, 8, DamnCute::Bullet(glm::vec2(650, 40.0f), 0, 2000), "resources/pink-bullet.tga");
+void pat1::up() {
 
-    m = glm::translate(glm::mat4(), glm::vec3(0, -3, -7));
-    DamnCute::Path *b3 = new DamnCute::Path(m, 6, DamnCute::Bullet(glm::vec2(600, 40.0f), 0, 2000), "resources/pink-bullet.tga");
+    _timeframe--;
+    if (_timeframe == 0) {
+        switchGen();
+        /*for (size_t i = 0; i < labyrinthGroup.size(); ++i) {
+            setTimeSeparator(50, i);
+        }
+        for (size_t i = 0; i < _paths.size(); ++i) {
+            countdownSetMoveModifier(60, glm::translate(glm::mat4(), glm::vec3(-15, 0, 0)), i);
+        }*/
+    }
+}
 
-    m = glm::translate(glm::mat4(), glm::vec3(0, -3, -8));
-    DamnCute::Path *b4 = new DamnCute::Path(m, 12, DamnCute::Bullet(glm::vec2(550, 40.0f), 0, 2000), "resources/pink-bullet.tga");
+void pat1::a_roulette() {
 
-    m = glm::translate(glm::mat4(), glm::vec3(0, -3, -9));
-    DamnCute::Path *b5 = new DamnCute::Path(m, 14, DamnCute::Bullet(glm::vec2(500, 40.0f), 0, 2000), "resources/pink-bullet.tga");
+    std::cout << "VROUM VROUM" << std::endl;
+}
 
-    m = glm::translate(glm::mat4(), glm::vec3(0, -3, -5));
-    DamnCute::Path *c1 = new DamnCute::Path(m, 8, DamnCute::Bullet(glm::vec2(750, 40.0f), 0, 2000), "resources/pink-bullet.tga");
+void pat1::initialize() {
 
-    m = glm::translate(glm::mat4(), glm::vec3(0, -3, -6));
-    DamnCute::Path *c2 = new DamnCute::Path(m, 8, DamnCute::Bullet(glm::vec2(800, 40.0f), 0, 2000), "resources/pink-bullet.tga");
+    //labyrinth(600);
+    glm::mat4 m; 
 
-    m = glm::translate(glm::mat4(), glm::vec3(0, -3, -7));
-    DamnCute::Path *c3 = new DamnCute::Path(m, 6, DamnCute::Bullet(glm::vec2(850, 40.0f), 0, 2000), "resources/pink-bullet.tga");
+    m = glm::translate(glm::mat4(), glm::vec3(0, -20, -4));
+    DamnCute::Path *pattern = new DamnCute::Path(m, 10, DamnCute::Bullet(glm::vec2(400, 40.0f), 0, 500), "resources/pink-bullet.tga");
+    pattern->countdownSetMoveModifier(60, glm::translate(glm::mat4(), glm::vec3(0, 0, -4)));
+    addPath(pattern);
+}
 
-    m = glm::translate(glm::mat4(), glm::vec3(0, -3, -8));
-    DamnCute::Path *c4 = new DamnCute::Path(m, 12, DamnCute::Bullet(glm::vec2(900, 40.0f), 0, 2000), "resources/pink-bullet.tga");
 
-    m = glm::translate(glm::mat4(), glm::vec3(0, -3, -9));
-    DamnCute::Path *c5 = new DamnCute::Path(m, 14, DamnCute::Bullet(glm::vec2(670, 40.0f), 0, 2000), "resources/pink-bullet.tga");
 
-    addPath(b1);
-    addPath(b2);
-    addPath(b3);
-    addPath(b4);
-    addPath(b5);
-    addPath(c1);
-    addPath(c2);
-    addPath(c3);
-    addPath(c4);
-    addPath(c5);
+
+
+CrossingDeath::CrossingDeath() {
+    initialize();
+}
+
+void CrossingDeath::generate(int direction, int start, int stop, int step) {
+
+    glm::mat4 m;
+    glm::mat4 m1;
+    glm::vec4 vec(1.0f, 0.0f, 0.0f, 0.0f);
+
+    m = glm::translate(glm::mat4(), glm::vec3(direction, -2, direction));
+    for (int i = start; i < stop; i += step) {
+        m1 *= glm::rotate(glm::mat4(), 1.0f, glm::vec3(0, 0, 1));
+        vec = m1 * vec;
+        m = glm::translate(glm::mat4(), glm::vec3(vec.x, vec.y, vec.z));
+        DamnCute::Path *pattern = new DamnCute::Path(m, 15, DamnCute::Bullet(glm::vec2(i, 600.0f), 0, 1000), "resources/pink-bullet.tga");
+        addPath(pattern);
+    }
+}
+
+void CrossingDeath::initialize() {
+
+    generate(-14, 800, 1300, 1);
+    //generate(5, 1100, 1300, 60);
 }
