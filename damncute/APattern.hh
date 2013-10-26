@@ -50,7 +50,7 @@ namespace DamnCute {
 
 	    virtual void setTimeSeparator(unsigned int newT) {
 		for (unsigned int i = 0; i != _paths.size(); ++i) {
-                    _paths[i]->setTimeSeparator(std::move(b));
+                    _paths[i]->setTimeSeparator(newT);
                 }
 	    }
         private:
