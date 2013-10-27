@@ -2,7 +2,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Path.hh"
 
-DamnCute::Path::Path(const glm::mat4& m, unsigned int timestep, DamnCute::Bullet&& model, const std::string& texfile) : _bulletModel(std::move(model)), _timeLoad(0), _timeSeparator(timestep), _stepModifier(m), _generate(true), _futureframe(UINT_MAX), _newMat(_stepModifier) {
+DamnCute::Path::Path(const glm::mat4& m, unsigned int timestep, DamnCute::Bullet&& model, const std::string& texfile) : _bulletModel(std::move(model)), _timeLoad(0), _timeSeparator(timestep), _stepModifier(m), _generate(true) {
     _tex.loadFromFile(texfile);
     _tex.setSmooth(true);
     _tex.setRepeated(false);
@@ -19,10 +19,19 @@ void DamnCute::Path::update(sf::RenderWindow* w_ptr) {
 	}
     }
 
-    if (_futureframe == 0) {
-        _stepModifier = _newMat;
-    } else {
-	 -- _futureframe;
+    //if (_futureframe == 0) {
+    //    _stepModifier = _newMat;
+    //} else {
+    //     -- _futureframe;
+    //}
+
+    if (_modEventStack.size() > 0) {
+	if (_modEventStack.top()._futureframe == 0) {
+	    _stepModifier = _modEventStack.top()._newMat;
+	    _modEventStack.pop();
+	} else {
+	    -- _modEventStack.top()._futureframe;
+	}
     }
 
     if ((( _timeLoad == _timeSeparator) > 0) && (_generate)) {
@@ -33,7 +42,8 @@ void DamnCute::Path::update(sf::RenderWindow* w_ptr) {
     }
 }
 
-void DamnCute::Path::countdownSetMoveModifier(int framme, const glm::mat4& newMat) {
-    _futureframe = framme;
-    _newMat = newMat;
+void DamnCute::Path::countdownPushMoveModifier(unsigned int framme, const glm::mat4& newMat) {
+    _modEventStack.push({framme, newMat});
+    //_futureframe = framme;
+    //_newMat = newMat;
 }

@@ -44,15 +44,19 @@ void DamnCute::Core::flushEvent() {
 
 void DamnCute::Core::flushScene() {
     float frate = _gameClock.getElapsedTime().asSeconds();
+    numberOfBullets = 0;
 
     _win->clear();
     refresh();
 
     std::stringstream ss;
     ss << ceil(1 / frate);
+    ss << " fps for ";
+    ss << numberOfBullets;
+    ss << " bullets";
     sf::Font font;
     font.loadFromFile("resources/font.ttf");
-    sf::Text t(ss.str() + " fps", font);
+    sf::Text t(ss.str(), font);
     t.setCharacterSize(24);
     t.setColor(sf::Color::Green);
     t.setPosition(900, 10);

@@ -10,7 +10,7 @@ SRC		= damncute/Bullet.cpp \
 
 NAME		= demo
 
-CXXFLAGS	= -Wall -Wextra -W -g -I./damncute -I./glm -std=c++0x
+CXXFLAGS	= -O3 -Wall -Wextra -W -g -I./damncute -I./glm -std=c++0x
 
 ifeq ($(OS),Windows_NT)
 	error:

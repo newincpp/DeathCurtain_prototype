@@ -1,6 +1,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 #include "Bullet.hh"
+#include "Core/Core.hh"
 
 DamnCute::Bullet::Bullet(const glm::vec2& origin, const float rot, unsigned int lifeTime) : _origin(origin), _rot(rot), _selfTransform(glm::translate(glm::rotate(glm::mat4(), rot, glm::vec3(0.0f, 0.0f, 1.0f)), glm::vec3(-origin.x, -origin.y, 0))), _tex(NULL), _lifeTime(lifeTime) {
 }
@@ -26,6 +27,7 @@ void DamnCute::Bullet::update(const glm::mat4& transform, sf::RenderWindow* w_pt
 
     _s.setPosition(retVec.x, retVec.y);
     w_ptr->draw(_s);
+    DamnCute::Core::getInstance()->addBulletsCounter();
 }
 
 void DamnCute::Bullet::setTexure(sf::Texture* tex) {

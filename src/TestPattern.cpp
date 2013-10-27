@@ -63,7 +63,7 @@ void pat1::labyrinth(int z) {
         z += lateral_space(generator);
         m = glm::translate(glm::mat4(), glm::vec3(0, -20, -i));
         DamnCute::Path *pattern = new DamnCute::Path(m, bullet_space(generator), DamnCute::Bullet(glm::vec2(z, 40.0f), 0, 500), "resources/pink-bullet.tga");
-        pattern->countdownSetMoveModifier(55, glm::rotate(glm::translate(glm::mat4(), glm::vec3(0, -1, -i)), 1.0f, glm::vec3(2.0f, 4.0f, -2.0f)));
+        pattern->countdownPushMoveModifier(55, glm::rotate(glm::translate(glm::mat4(), glm::vec3(0, -1, -i)), 1.0f, glm::vec3(2.0f, 4.0f, -2.0f)));
         grp = addPath(pattern);
         labyrinthGroup.push_back(grp);
     }
@@ -95,13 +95,9 @@ void pat1::initialize() {
 
     m = glm::translate(glm::mat4(), glm::vec3(0, -20, -4));
     DamnCute::Path *pattern = new DamnCute::Path(m, 10, DamnCute::Bullet(glm::vec2(400, 40.0f), 0, 500), "resources/pink-bullet.tga");
-    pattern->countdownSetMoveModifier(60, glm::translate(glm::mat4(), glm::vec3(0, 0, -4)));
+    pattern->countdownPushMoveModifier(60, glm::translate(glm::mat4(), glm::vec3(0, 0, -4)));
     addPath(pattern);
 }
-
-
-
-
 
 CrossingDeath::CrossingDeath() {
     initialize();
@@ -125,6 +121,6 @@ void CrossingDeath::generate(int direction, int start, int stop, int step) {
 
 void CrossingDeath::initialize() {
 
-    generate(-14, 800, 1300, 1);
+    generate(-14, 800, 1300, 3);
     //generate(5, 1100, 1300, 60);
 }

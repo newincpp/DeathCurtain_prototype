@@ -37,6 +37,9 @@ namespace DamnCute {
             inline void setFPSDisplay(bool value) {
                 _displayFPS = value;
             }
+	    inline void addBulletsCounter() {
+		++numberOfBullets;
+	    }
             void flushEvent();
         private:
 
@@ -53,6 +56,7 @@ namespace DamnCute {
 	    std::list<IRenderable*> _objects;
 	    bool _gameStatus;
 	    bool _displayFPS;
+	    unsigned int numberOfBullets;
 
             sf::Clock _gameClock;
             sf::Event event;
