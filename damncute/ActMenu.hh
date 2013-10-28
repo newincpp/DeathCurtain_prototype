@@ -49,13 +49,10 @@ class ActMenu : public DamnCute::AAction<DamnCute::Menu>
 
         void execute() {
 	  if (_who == K2 || _who == ST2)
-	    std::cout << "test" << std::endl;
-	      /*Action sur menu*/
-	  /*            if (_who == K1 || _who == ST1)
-	      _entity.moveUp();*/
-              /*Action sur menu*/
-        }
-
+	    std::cout << "MoveDown" << std::endl;
+	  if (_who == K1 || _who == ST1)
+	    std::cout << "Moveup" << std::endl;
+	}
         virtual inline const std::string& getName() const { return (_name); }
          virtual ~ActMenu() = default;
 

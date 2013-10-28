@@ -41,9 +41,9 @@ DamnCute::Menu::Button::~Button() {
 /********************************************************/
 
 DamnCute::Menu::Menu(const std::string& texfile) : IRenderable(), _bg(texfile)  {
-  //  new ActMenu(this, sf::Keyboard::Key::Up, sf::Keyboard::Key::Down, sf::Joystick::Y);
+  _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Up, sf::Keyboard::Key::Down, sf::Joystick::Y));
   _font.loadFromFile(FONT_PATH);
-  clicked = false;
+  _clicked = false;
 }
 
 DamnCute::Menu::~Menu() {
@@ -55,6 +55,16 @@ DamnCute::Menu::~Menu() {
 }
 
 void DamnCute::Menu::update(sf::RenderWindow* win) {
+  for (size_t i = 0; i < _actions.size(); ++i) {
+    if (_actions[i]->hasInput(2) == true)
+      {
+	if (_clicked == true)
+	  _actions[i]->execute();
+	_clicked = false;
+      }
+    else
+      _clicked = true;
+  }
     _bg.update(win);
 }
 
@@ -83,10 +93,3 @@ void DamnCute::Menu::addSubMenu(const std::string &Button, const std::string &Op
     Core::getInstance()->addObject(b);
 }
 
-/*void DamnCute::Menu::action()
-{
-  for (size_t i = 0; i < _actions.size(); ++i) {
-    if (_actions[i]->hasInput(_nbPlayer) == true)
-      _actions[i]->execute();
-  }
-  }*/

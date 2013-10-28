@@ -54,10 +54,11 @@ namespace DamnCute {
         private:
             unsigned int _characterSize=20;
             sf::Font _font;
-            bool clicked;
+            bool _clicked;
             Background _bg;
             sf::Texture _tex;
             std::vector<Button*> _buttons;
+            std::vector<AAction<Menu>*> _actions;
         public:
             explicit Menu(const std::string& texfile);
             virtual ~Menu();
