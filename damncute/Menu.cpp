@@ -5,7 +5,7 @@
 // Login   <strohe_d@epitech.net>
 // 
 // Started on  Wed Oct 30 01:33:44 2013 Dorian Stroher
-// Last update Wed Oct 30 01:36:07 2013 Dorian Stroher
+// Last update Wed Oct 30 23:01:55 2013 Dorian Stroher
 //
 
 #include "ActMenu.hh"
@@ -34,14 +34,20 @@ DamnCute::Menu::SubMenu::~SubMenu()
 }
 
 DamnCute::Menu::Button::Button(sf::Text &text, int x, int y, sf::Texture& t) : _tex(t), _text(text) {
+    _alive = true;
+    _x = x;
+    _y = y;
     _s.setTexture(_tex);
     _s.setPosition(x, y);
     _text.setPosition(x+40, y+90);
 }
 
 void	DamnCute::Menu::Button::update(sf::RenderWindow* w_ptr) {
-    w_ptr->draw(_s);
-    w_ptr->draw(_text); //Rajouter le txt au bouton
+  if (_alive == true)
+    {
+      w_ptr->draw(_s);
+      w_ptr->draw(_text); //Rajouter le txt au bouton
+    }
 }
 
 DamnCute::Menu::Button::~Button() {
@@ -52,12 +58,12 @@ DamnCute::Menu::Button::~Button() {
 /********************************************************/
 
 DamnCute::Menu::Menu(const std::string& texfile) : IRenderable(), _bg(texfile)  {
-  _itButtons = _buttons.begin();
   _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Up, sf::Keyboard::Key::Down, sf::Joystick::Y));
   _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Right, sf::Keyboard::Key::Left, sf::Joystick::R));
   _font.loadFromFile(FONT_PATH);
   _clicked = false;
   _clicked2 = false;
+  _alive = true;
 }
 
 DamnCute::Menu::~Menu() {
@@ -71,23 +77,38 @@ DamnCute::Menu::~Menu() {
 void	DamnCute::Menu::update(sf::RenderWindow* win) {
   for (size_t i = 0; i < _actions.size(); ++i)
     {
-    if (_actions[i]->hasInput(2) == true)
-      {
-	if (_clicked != true)
-	  _actions[i]->execute();
-	_clicked =true;
-	_clicked2 = true;
-      }
+      if (_actions[i]->hasInput(2) == true)
+	{
+	  if (_clicked != true)
+	    _actions[i]->execute();
+	  _clicked =true;
+	  _clicked2 = true;
+	}
     }
   if (_clicked2 == false)
     _clicked = false;
   _clicked2 = false;
+  if (_alive == true)
+      {
+	_cursor->setPosition((*_itButtons)->getX() + _cursPosX, (*_itButtons)->getY() + _cursPosY);
+	win->draw(*_cursor);
+      }
   _bg.update(win);
 }
 
 void	DamnCute::Menu::setTextureButton(const std::string& filename) {
     _tex.loadFromFile(filename);
 }
+
+void	DamnCute::Menu::setTextureCursor(const std::string& filename, int x, int y) {
+  sf::Texture tmp;
+
+  _tex2.loadFromFile(filename);
+  _cursor = new sf::Sprite(_tex2);
+  /*  _cursPosX = x;
+  _cursPosY = y;
+  _cursor->setTexture(*_tex2);*/
+ }
 
 void	DamnCute::Menu::addButton(int x, int y, const std::string& text) {
     sf::Text test(text, _font, _characterSize);
@@ -96,6 +117,7 @@ void	DamnCute::Menu::addButton(int x, int y, const std::string& text) {
     Button* b = new Button(test, x, y, _tex);
     _buttons.push_back(b);
     Core::getInstance()->addObject(b);
+    _itButtons = _buttons.begin();
 }
 
 void	DamnCute::Menu::addSubMenu(const std::string &Button, const std::string &Option, std::vector<std::string> listOption )
@@ -107,13 +129,14 @@ void	DamnCute::Menu::addSubMenu(const std::string &Button, const std::string &Op
         listoption2.push_back(new sf::Text(*it, _font, _characterSize));
     }
     SubMenu *b = new SubMenu(test, Option, listoption2);
+    /***Rattacher a un bouton****/
     Core::getInstance()->addObject(b);
 }
 
 void	DamnCute::Menu::MoveDown()
 {
-  std::cout << "MoveDown" << std::endl;
-  if (_itButtons != _buttons.end())
+  std::cout << "MoveDown " << std::endl;
+  if (_itButtons + 1 != _buttons.end())
     _itButtons++;
   else
     _itButtons = _buttons.begin();
@@ -123,7 +146,18 @@ void	DamnCute::Menu::MoveUp()
 {
 std::cout << "Moveup" << std::endl;
   if (_itButtons != _buttons.begin())
-    _itButtons--;
+   _itButtons--;
   else
-    _itButtons = _buttons.end();
+    {
+      if (_buttons.size() > 1)
+	{
+	  while(_itButtons !=  _buttons.end())
+	    {
+	      _itButtons++;
+	    }
+	  _itButtons--;
+	}
+      else
+	_itButtons = _buttons.begin();
+    }
 }
