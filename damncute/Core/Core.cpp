@@ -1,6 +1,5 @@
 #include <sstream>
 #include <iostream>
-#include <SFML/Graphics.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Core.hh"
 
@@ -97,7 +96,7 @@ void DamnCute::Core::delObject(IRenderable* a) {
     }
 }
 
-DamnCute::Core::Core() : _gameStatus(false), _displayFPS(false) {
+DamnCute::Core::Core() : _phisicTree(), _gameStatus(false), _displayFPS(false){
 }
 
 DamnCute::Core::Core(const DamnCute::Core&) {

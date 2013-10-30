@@ -55,7 +55,9 @@ void DisplayManager::menuMode() {
     _engine->addObject(m);
     m->setTextureButton("resources/button1.png");/*Set texture*/
     m->addButton(50, 100, "start"); /*Pose la texture sur le screen*/
+    m->addButton(50, 400, "Test"); /*Pose la texture sur le screen*/
     m->addSubMenu("Button Name", "Sous Menu:", listOption);
+    m->setTextureCursor("resources/cursor.png", -10, 10);
 }
 
 void DisplayManager::run() {
