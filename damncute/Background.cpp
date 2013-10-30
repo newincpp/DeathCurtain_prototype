@@ -1,7 +1,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Background.hh"
 
-DamnCute::Background::Background(const std::string& texfile) : _tex() {
+DamnCute::Background::Background(const std::string& texfile, int xscroll, int yscroll) : _XSpeed(xscroll), _YSpeed(yscroll), _tex() {
     _tex.loadFromFile(texfile);
     _tex.setSmooth(true);
     _tex.setRepeated(false);
