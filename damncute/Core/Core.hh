@@ -2,7 +2,7 @@
 # define CORE_H_
 
 #include <list>
-#include <SFML/Graphics.hpp>
+#include "QuadTree.hh"
 #include "../IRenderable.hh"
 
 namespace DamnCute {
@@ -40,6 +40,9 @@ namespace DamnCute {
 	    inline void addBulletsCounter() {
 		++numberOfBullets;
 	    }
+	    inline const QuadTree<IRenderable, 5>& getQuadTree() const {
+		return _phisicTree;
+	    }
             void flushEvent();
         private:
 
@@ -52,6 +55,7 @@ namespace DamnCute {
             void refresh();
 
 	    static Core* __coreInstance;
+	    const QuadTree<IRenderable, 5> _phisicTree;
 	    sf::RenderWindow* _win;
 	    std::list<IRenderable*> _objects;
 	    bool _gameStatus;
