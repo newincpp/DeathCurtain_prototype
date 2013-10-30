@@ -10,7 +10,7 @@ SRC		= damncute/Bullet.cpp \
 
 NAME		= demo
 
-CXXFLAGS	= -Wall -Wextra -W -g -I./damncute -I./glm -std=c++0x
+CXXFLAGS	= -Wall -Wextra -W -I./damncute -I./glm -std=c++0x # -emit-llvm -O4
 
 ifeq ($(OS),Windows_NT)
 	error:
@@ -18,7 +18,7 @@ ifeq ($(OS),Windows_NT)
 else
 	UNAME_S := $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
-		LDFLAGS		= `pkg-config sfml-all --libs`
+		LDFLAGS		= `pkg-config sfml-all --libs` -flto
 	endif
 
 	ifeq ($(UNAME_S),Darwin)
