@@ -6,8 +6,8 @@
 #include <string>
 #include <type_traits>
 #include <SFML/Graphics.hpp>
-#include "ActMenu.hh"
 #include "Background.hh"
+#include "AAction.hh"
 #include "Core/Core.hh"
 
 namespace DamnCute {
@@ -54,10 +54,13 @@ namespace DamnCute {
         private:
             unsigned int _characterSize=20;
             sf::Font _font;
-            bool clicked;
+            bool _clicked;
+           bool _clicked2;
             Background _bg;
             sf::Texture _tex;
+	    std::vector<Button*>::iterator _itButtons;
             std::vector<Button*> _buttons;
+            std::vector<AAction<Menu>*> _actions;
         public:
             explicit Menu(const std::string& texfile);
             virtual ~Menu();
@@ -69,6 +72,8 @@ namespace DamnCute {
             void setTextureButton(const std::string&);
             void addButton(int x, int y, const std::string&);
             void addSubMenu(const std::string &Button, const std::string &Option /*Nom de l'option*/, std::vector<std::string> listOption );
+	    void    MoveDown();
+	    void    MoveUp();
     };
 }
 

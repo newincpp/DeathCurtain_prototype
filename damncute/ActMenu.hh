@@ -3,15 +3,13 @@
 
 #include <iostream>
 #include "AAction.hh"
+#include "Menu.hh"
 
 #define K1 0
 #define K2 1
 #define ST1 2
 #define ST2 3
 
-namespace DamnCute {
-  class Menu;
-}
 class ActMenu : public DamnCute::AAction<DamnCute::Menu>
 {
 
@@ -48,14 +46,15 @@ class ActMenu : public DamnCute::AAction<DamnCute::Menu>
         }
 
         void execute() {
-	  if (_who == K2 || _who == ST2)
-	    std::cout << "test" << std::endl;
-	      /*Action sur menu*/
-	  /*            if (_who == K1 || _who == ST1)
-	      _entity.moveUp();*/
-              /*Action sur menu*/
-        }
-
+	   if ((_who == K2 || _who == ST2) && _key2 == sf::Keyboard::Key::Down)
+	     _entity->MoveDown();
+	   if ((_who == K1 || _who == ST1)  && _key1 == sf::Keyboard::Key::Up)
+	     _entity->MoveUp();
+	  if ((_who == K2 || _who == ST2) && _key2 == sf::Keyboard::Key::Left)
+	    std::cout << "MoveLeft" << std::endl;
+	  if ((_who == K1 || _who == ST1)  && _key1 == sf::Keyboard::Key::Right)
+	    std::cout << "MoveRight" << std::endl;
+	}
         virtual inline const std::string& getName() const { return (_name); }
          virtual ~ActMenu() = default;
 
