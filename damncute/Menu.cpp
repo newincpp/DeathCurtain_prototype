@@ -1,3 +1,14 @@
+//
+// Menu.cpp for damncute in /home/strohe_d/Svn/DeathCurtain_prototype
+// 
+// Made by Dorian Stroher
+// Login   <strohe_d@epitech.net>
+// 
+// Started on  Wed Oct 30 01:33:44 2013 Dorian Stroher
+// Last update Wed Oct 30 01:36:07 2013 Dorian Stroher
+//
+
+#include "ActMenu.hh"
 #include <SFML/Graphics/Text.hpp>
 #include "Menu.hh"
 
@@ -11,7 +22,7 @@ DamnCute::Menu::SubMenu::SubMenu(sf::Text &text, const std::string &optionName, 
         return;
 }
 
-void DamnCute::Menu::SubMenu::update(sf::RenderWindow* w_ptr) {
+void	DamnCute::Menu::SubMenu::update(sf::RenderWindow* w_ptr) {
     w_ptr->draw(_text); //Rajouter le txt au bouton
     w_ptr->draw(*(*_it));
 }
@@ -28,7 +39,7 @@ DamnCute::Menu::Button::Button(sf::Text &text, int x, int y, sf::Texture& t) : _
     _text.setPosition(x+40, y+90);
 }
 
-void DamnCute::Menu::Button::update(sf::RenderWindow* w_ptr) {
+void	DamnCute::Menu::Button::update(sf::RenderWindow* w_ptr) {
     w_ptr->draw(_s);
     w_ptr->draw(_text); //Rajouter le txt au bouton
 }
@@ -41,9 +52,12 @@ DamnCute::Menu::Button::~Button() {
 /********************************************************/
 
 DamnCute::Menu::Menu(const std::string& texfile) : IRenderable(), _bg(texfile)  {
+  _itButtons = _buttons.begin();
   _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Up, sf::Keyboard::Key::Down, sf::Joystick::Y));
+  _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Right, sf::Keyboard::Key::Left, sf::Joystick::R));
   _font.loadFromFile(FONT_PATH);
   _clicked = false;
+  _clicked2 = false;
 }
 
 DamnCute::Menu::~Menu() {
@@ -54,25 +68,28 @@ DamnCute::Menu::~Menu() {
 
 }
 
-void DamnCute::Menu::update(sf::RenderWindow* win) {
-  for (size_t i = 0; i < _actions.size(); ++i) {
+void	DamnCute::Menu::update(sf::RenderWindow* win) {
+  for (size_t i = 0; i < _actions.size(); ++i)
+    {
     if (_actions[i]->hasInput(2) == true)
       {
-	if (_clicked == true)
+	if (_clicked != true)
 	  _actions[i]->execute();
-	_clicked = false;
+	_clicked =true;
+	_clicked2 = true;
       }
-    else
-      _clicked = true;
-  }
-    _bg.update(win);
+    }
+  if (_clicked2 == false)
+    _clicked = false;
+  _clicked2 = false;
+  _bg.update(win);
 }
 
-void DamnCute::Menu::setTextureButton(const std::string& filename) {
+void	DamnCute::Menu::setTextureButton(const std::string& filename) {
     _tex.loadFromFile(filename);
 }
 
-void DamnCute::Menu::addButton(int x, int y, const std::string& text) {
+void	DamnCute::Menu::addButton(int x, int y, const std::string& text) {
     sf::Text test(text, _font, _characterSize);
 
     test.setColor(sf::Color::Black);
@@ -81,7 +98,7 @@ void DamnCute::Menu::addButton(int x, int y, const std::string& text) {
     Core::getInstance()->addObject(b);
 }
 
-void DamnCute::Menu::addSubMenu(const std::string &Button, const std::string &Option, std::vector<std::string> listOption )
+void	DamnCute::Menu::addSubMenu(const std::string &Button, const std::string &Option, std::vector<std::string> listOption )
 {
     sf::Text test(Option, _font, _characterSize);
     std::vector<sf::Text *> listoption2;
@@ -93,3 +110,20 @@ void DamnCute::Menu::addSubMenu(const std::string &Button, const std::string &Op
     Core::getInstance()->addObject(b);
 }
 
+void	DamnCute::Menu::MoveDown()
+{
+  std::cout << "MoveDown" << std::endl;
+  if (_itButtons != _buttons.end())
+    _itButtons++;
+  else
+    _itButtons = _buttons.begin();
+}
+
+void	DamnCute::Menu::MoveUp()
+{
+std::cout << "Moveup" << std::endl;
+  if (_itButtons != _buttons.begin())
+    _itButtons--;
+  else
+    _itButtons = _buttons.end();
+}

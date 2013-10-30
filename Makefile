@@ -18,7 +18,7 @@ ifeq ($(OS),Windows_NT)
 else
 	UNAME_S := $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
-		LDFLAGS		= `pkg-config sfml-all --libs` -flto
+		LDFLAGS		= `pkg-config sfml-all --libs` #-flto
 	endif
 
 	ifeq ($(UNAME_S),Darwin)
