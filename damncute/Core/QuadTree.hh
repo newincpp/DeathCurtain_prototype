@@ -1,3 +1,4 @@
+#include <functional>
 #include <array>
 
 #ifndef QUADTREE_H_
@@ -37,7 +38,7 @@ namespace {
 	    public:
 		explicit QuadTree() : _level(LEVEL), _head(new TreeNode<T>(LEVEL)) {}
 
-		T& getDataTreeNode(__path_ar_& path) const {
+		T* getDataTreeNode(__path_ar_& path) const {
 		    return *_getNode(path)->data;
 		}
 

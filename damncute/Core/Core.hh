@@ -6,6 +6,7 @@
 #include "../IRenderable.hh"
 
 namespace DamnCute {
+    class APhysics;
     class Core {
         public:
             static Core* getInstance();
@@ -40,7 +41,7 @@ namespace DamnCute {
 	    inline void addBulletsCounter() {
 		++numberOfBullets;
 	    }
-	    inline const QuadTree<IRenderable, 5>& getQuadTree() const {
+	    inline const QuadTree<APhysics, 5>& getQuadTree() const {
 		return _phisicTree;
 	    }
             void flushEvent();
@@ -55,7 +56,7 @@ namespace DamnCute {
             void refresh();
 
 	    static Core* __coreInstance;
-	    const QuadTree<IRenderable, 5> _phisicTree;
+	    const QuadTree<APhysics, 5> _phisicTree;
 	    sf::RenderWindow* _win;
 	    std::list<IRenderable*> _objects;
 	    bool _gameStatus;

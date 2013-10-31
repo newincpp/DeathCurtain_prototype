@@ -51,7 +51,8 @@ void DisplayManager::run() {
         update();
         _engine->flushScene();
         _engine->flushEvent();
-	}*/
+	 }*/
+    _engine->freeAll();
 }
 
 bool update() {

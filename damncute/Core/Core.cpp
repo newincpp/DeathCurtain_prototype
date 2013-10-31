@@ -75,6 +75,7 @@ void DamnCute::Core::addOnBg(IRenderable* a) {
 }
 
 void DamnCute::Core::createWin(unsigned int width, unsigned int height, bool full) {
+    std::cout << "fuu"  <<std::endl;
     unsigned int style = full << 3;
 
     if (width == 0 && height == 0) {
