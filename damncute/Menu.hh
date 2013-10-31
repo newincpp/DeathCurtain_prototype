@@ -30,7 +30,8 @@ namespace DamnCute {
                     virtual void update(sf::RenderWindow*);
                     virtual ~SubMenu();
                 private:
-                    int _posx;
+		    bool _alive;
+	            int _posx;
                     int _posy;
                     sf::Text _text;
                     std::vector<sf::Text *>::iterator _it;
@@ -45,8 +46,17 @@ namespace DamnCute {
                         _text = b._text;
                     }
                     virtual void update(sf::RenderWindow*);
+	      int getX(){
+		return (_x);
+	      }
+	      int getY(){
+		return (_y);
+	      }
                     virtual ~Button();
                 private:
+	            bool _alive;
+	            int _x;
+	            int _y;
                     sf::Sprite _s;
                     sf::Texture& _tex;
                     sf::Text _text;
@@ -54,14 +64,20 @@ namespace DamnCute {
         private:
             unsigned int _characterSize=20;
             sf::Font _font;
+            bool _alive;
             bool _clicked;
-           bool _clicked2;
+            bool _clicked2;
             Background _bg;
+	    int _cursPosX;
+	    int _cursPosY;
             sf::Texture _tex;
+            sf::Texture _tex2;
+            sf::Sprite *_cursor;
 	    std::vector<Button*>::iterator _itButtons;
             std::vector<Button*> _buttons;
             std::vector<AAction<Menu>*> _actions;
         public:
+            void    setTextureCursor(const std::string&, int, int);
             explicit Menu(const std::string& texfile);
             virtual ~Menu();
             virtual void update(sf::RenderWindow* win);
