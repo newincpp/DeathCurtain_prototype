@@ -34,7 +34,7 @@ void DisplayManager::gameMode() {
     DamnCute::APlayer* player_one = new DamnCute::Player<0>();
     DamnCute::APlayer* player_two = new DamnCute::Player<1>("resources/player_focus.tga", 800, 400);
 
-    _engine->addOnBg(bg);
+    //_engine->addOnBg(bg);
     //_engine->addObject(test);
     //_engine->addObject(p1);
     //_engine->addObject(p2);
@@ -51,7 +51,7 @@ void DisplayManager::menuMode() {
     listOption.push_back("Option 1");
     listOption.push_back("Option 2");
     listOption.push_back("Option 3");
-    DamnCute::Menu* m = new DamnCute::Menu("resources/title.png"); // Instanciation
+    DamnCute::Menu* m = new DamnCute::Menu("resources/pink-bullet.tga"); // Instanciation
     _engine->addObject(m);
     m->setTextureButton("resources/button1.png");/*Set texture*/
     m->addButton(50, 100, "start"); /*Pose la texture sur le screen*/

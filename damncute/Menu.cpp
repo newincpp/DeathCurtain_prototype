@@ -43,10 +43,10 @@ DamnCute::Menu::Button::Button(sf::Text &text, int x, int y, sf::Texture& t) : _
 }
 
 void	DamnCute::Menu::Button::update(sf::RenderWindow* w_ptr) {
-  if (_alive == true)
+    if (_alive == true)
     {
-      w_ptr->draw(_s);
-      w_ptr->draw(_text); //Rajouter le txt au bouton
+        w_ptr->draw(_s);
+        w_ptr->draw(_text); //Rajouter le txt au bouton
     }
 }
 
@@ -58,12 +58,12 @@ DamnCute::Menu::Button::~Button() {
 /********************************************************/
 
 DamnCute::Menu::Menu(const std::string& texfile) : IRenderable(), _bg(texfile)  {
-  _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Up, sf::Keyboard::Key::Down, sf::Joystick::Y));
-  _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Right, sf::Keyboard::Key::Left, sf::Joystick::R));
-  _font.loadFromFile(FONT_PATH);
-  _clicked = false;
-  _clicked2 = false;
-  _alive = true;
+    _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Up, sf::Keyboard::Key::Down, sf::Joystick::Y));
+    _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Right, sf::Keyboard::Key::Left, sf::Joystick::R));
+    _font.loadFromFile(FONT_PATH);
+    _clicked = false;
+    _clicked2 = false;
+    _alive = true;
 }
 
 DamnCute::Menu::~Menu() {
@@ -75,25 +75,25 @@ DamnCute::Menu::~Menu() {
 }
 
 void	DamnCute::Menu::update(sf::RenderWindow* win) {
-  for (size_t i = 0; i < _actions.size(); ++i)
+    for (size_t i = 0; i < _actions.size(); ++i)
     {
-      if (_actions[i]->hasInput(2) == true)
-	{
-	  if (_clicked != true)
-	    _actions[i]->execute();
-	  _clicked =true;
-	  _clicked2 = true;
-	}
+        if (_actions[i]->hasInput(2) == true)
+        {
+            if (_clicked != true)
+                _actions[i]->execute();
+            _clicked =true;
+            _clicked2 = true;
+        }
     }
-  if (_clicked2 == false)
-    _clicked = false;
-  _clicked2 = false;
-  if (_alive == true)
-      {
-	_cursor->setPosition((*_itButtons)->getX() + _cursPosX, (*_itButtons)->getY() + _cursPosY);
-	win->draw(*_cursor);
-      }
-  _bg.update(win);
+    if (_clicked2 == false)
+        _clicked = false;
+    _clicked2 = false;
+    if (_alive == true)
+    {
+        _cursor->setPosition((*_itButtons)->getX() + _cursPosX, (*_itButtons)->getY() + _cursPosY);
+        win->draw(*_cursor);
+    }
+    _bg.update(win);
 }
 
 void	DamnCute::Menu::setTextureButton(const std::string& filename) {
@@ -101,14 +101,14 @@ void	DamnCute::Menu::setTextureButton(const std::string& filename) {
 }
 
 void	DamnCute::Menu::setTextureCursor(const std::string& filename, int x, int y) {
-  sf::Texture tmp;
+    sf::Texture tmp;
 
-  _tex2.loadFromFile(filename);
-  _cursor = new sf::Sprite(_tex2);
-  /*  _cursPosX = x;
-  _cursPosY = y;
-  _cursor->setTexture(*_tex2);*/
- }
+    _tex2.loadFromFile(filename);
+    _cursor = new sf::Sprite;//(_tex2);
+    _cursor->setTexture(_tex2);
+    _cursPosX = x;
+    _cursPosY = y;
+}
 
 void	DamnCute::Menu::addButton(int x, int y, const std::string& text) {
     sf::Text test(text, _font, _characterSize);
@@ -135,29 +135,29 @@ void	DamnCute::Menu::addSubMenu(const std::string &Button, const std::string &Op
 
 void	DamnCute::Menu::MoveDown()
 {
-  std::cout << "MoveDown " << std::endl;
-  if (_itButtons + 1 != _buttons.end())
-    _itButtons++;
-  else
-    _itButtons = _buttons.begin();
+    std::cout << "MoveDown " << std::endl;
+    if (_itButtons + 1 != _buttons.end())
+        _itButtons++;
+    else
+        _itButtons = _buttons.begin();
 }
 
 void	DamnCute::Menu::MoveUp()
 {
-std::cout << "Moveup" << std::endl;
-  if (_itButtons != _buttons.begin())
-   _itButtons--;
-  else
+    std::cout << "Moveup" << std::endl;
+    if (_itButtons != _buttons.begin())
+        _itButtons--;
+    else
     {
-      if (_buttons.size() > 1)
-	{
-	  while(_itButtons !=  _buttons.end())
-	    {
-	      _itButtons++;
-	    }
-	  _itButtons--;
-	}
-      else
-	_itButtons = _buttons.begin();
+        if (_buttons.size() > 1)
+        {
+            while(_itButtons !=  _buttons.end())
+            {
+                _itButtons++;
+            }
+            _itButtons--;
+        }
+        else
+            _itButtons = _buttons.begin();
     }
 }

@@ -30,8 +30,8 @@ namespace DamnCute {
                     virtual void update(sf::RenderWindow*);
                     virtual ~SubMenu();
                 private:
-		    bool _alive;
-	            int _posx;
+                    bool _alive;
+                    int _posx;
                     int _posy;
                     sf::Text _text;
                     std::vector<sf::Text *>::iterator _it;
@@ -46,17 +46,17 @@ namespace DamnCute {
                         _text = b._text;
                     }
                     virtual void update(sf::RenderWindow*);
-	      int getX(){
-		return (_x);
-	      }
-	      int getY(){
-		return (_y);
-	      }
+                    int getX(){
+                        return (_x);
+                    }
+                    int getY(){
+                        return (_y);
+                    }
                     virtual ~Button();
                 private:
-	            bool _alive;
-	            int _x;
-	            int _y;
+                    bool _alive;
+                    int _x;
+                    int _y;
                     sf::Sprite _s;
                     sf::Texture& _tex;
                     sf::Text _text;
@@ -68,12 +68,12 @@ namespace DamnCute {
             bool _clicked;
             bool _clicked2;
             Background _bg;
-	    int _cursPosX;
-	    int _cursPosY;
+            int _cursPosX;
+            int _cursPosY;
             sf::Texture _tex;
             sf::Texture _tex2;
             sf::Sprite *_cursor;
-	    std::vector<Button*>::iterator _itButtons;
+            std::vector<Button*>::iterator _itButtons;
             std::vector<Button*> _buttons;
             std::vector<AAction<Menu>*> _actions;
         public:
@@ -88,8 +88,8 @@ namespace DamnCute {
             void setTextureButton(const std::string&);
             void addButton(int x, int y, const std::string&);
             void addSubMenu(const std::string &Button, const std::string &Option /*Nom de l'option*/, std::vector<std::string> listOption );
-	    void    MoveDown();
-	    void    MoveUp();
+            void    MoveDown();
+            void    MoveUp();
     };
 }
 
