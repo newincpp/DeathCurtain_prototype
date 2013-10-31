@@ -13,31 +13,7 @@ DisplayManager::~DisplayManager() {
 }
 
 void DisplayManager::update() {
-    _alive  = DamnCute::Core::getInstance()->getWindowStatus();
-}
-
-void DisplayManager::gameMode() { /***A Implementer dans le menu*****/
-  /*    if (!_engine) {
-                std::cerr << "game is starting without menu =S" << std::endl;
-		}*/
-  _engine = DamnCute::Core::getInstance();
-  _engine->setFPSDisplay(true);
-  DamnCute::Background* bg = new DamnCute::Background("resources/mushihimesama.tga");
-  //TestPattern* test = new TestPattern();
-  pat1 *p1 = new pat1();
-  
-  bg->setScrollSpeed(0, -0.1f);
-  
-  DamnCute::APlayer* player_one = new DamnCute::Player<0>();
-  DamnCute::APlayer* player_two = new DamnCute::Player<1>("resources/player_focus.tga", 800, 400);
-
-  _engine->addOnBg(bg);
-  //_engine->addObject(test);
-  _engine->addObject(p1);
-  _engine->addObject(player_one);
-  _engine->addObject(player_two);
-  
-  _engine->switchGameStatus();
+  _alive = DamnCute::Core::getInstance()->getWindowStatus();
 }
 
 void DisplayManager::menuMode() {
@@ -54,6 +30,7 @@ void DisplayManager::menuMode() {
     m->addButton(500, 100, "Test3"); /*Pose la texture sur le screen*/
     m->addButton(500, 400, "Test4"); /*Pose la texture sur le screen*/
     m->addSubMenu("Test2", "Sous Menu:", listOption, 50, 50);
+    m->addSubMenu("Test2", "Sous Menu2:", listOption, 50, 150);
     m->setTextureCursor("resources/cursor.png", -50, 100);
 }
 
@@ -66,14 +43,53 @@ void DisplayManager::run() {
         _engine->flushScene();
         _engine->flushEvent();
     }
-    _engine->freeAll();
+    /*_engine->freeAll();
     _engine->createWin(1920, 1080, false);
-    //_engine->createWin();
-    gameMode();
+       GameMode();
     update();
     while (_alive) {
         update();
         _engine->flushScene();
         _engine->flushEvent();
-    }
+	}*/
+}
+
+bool update() {
+  return (DamnCute::Core::getInstance()->getWindowStatus());
+}
+
+void gameMode(DamnCute::Core* engine) {
+
+  engine->setFPSDisplay(true);
+  DamnCute::Background* bg = new DamnCute::Background("resources/mushihimesama.tga");
+  //TestPattern* test = new TestPattern();
+  pat1 *p1 = new pat1();
+
+  bg->setScrollSpeed(0, -0.1f);
+
+  DamnCute::APlayer* player_one = new DamnCute::Player<0>();
+  DamnCute::APlayer* player_two = new DamnCute::Player<1>("resources/player_focus.tga", 800, 400);
+
+  engine->addOnBg(bg);
+  //_engine->addObject(test);
+  engine->addObject(p1);
+  engine->addObject(player_one);
+  engine->addObject(player_two);
+  engine->switchGameStatus();
+}
+
+
+void runGame()
+{
+  DamnCute::Core* engine;
+
+  engine = DamnCute::Core::getInstance();
+  engine->freeAll();
+  engine->createWin(1920, 1080, false);
+  gameMode(engine);
+  while (update()) {
+    engine->flushScene();
+    engine->flushEvent();
+  }
+  //  exit(1);
 }

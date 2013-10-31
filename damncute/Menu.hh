@@ -27,8 +27,13 @@ namespace DamnCute {
                     inline void operator=(const SubMenu& b) {
                         _text = b._text;
                     }
+       	    void    MoveRight();
+            void    MoveLeft();
 	      void	setAlive(){
-		_alive = true;
+		if (_alive == false)
+		  _alive = true;
+		else
+		  _alive = false;
 	      }
                     virtual void update(sf::RenderWindow*);
                     virtual ~SubMenu();
@@ -46,8 +51,13 @@ namespace DamnCute {
                         _s = b._s;
                         _text = b._text;
                     }
+	    void    MoveDown();
+	    void    MoveUp();
+       	    void    MoveRight();
+            void    MoveLeft();
 	void	addSubMenu(SubMenu *b){
 	  _Sub.push_back(b);
+	  _itSub=_Sub.begin();
 	}
                     virtual void update(sf::RenderWindow*);
 	      int getX(){
@@ -62,7 +72,10 @@ namespace DamnCute {
 	  }
 	}
 	      void	setAlive() {
-		_alive = false;
+		if (_alive)
+		  _alive = false;
+		else
+		  _alive = true;
 	      }
 	      const std::string getName()
 	      {
@@ -70,6 +83,7 @@ namespace DamnCute {
 	      }
                     virtual ~Button();
                 private:
+	    std::vector<SubMenu*>::iterator _itSub;
             std::vector<SubMenu*> _Sub;
 		    const std::string _name;
 	            bool _alive;
@@ -104,11 +118,20 @@ namespace DamnCute {
                 _buttons[ID] = b;
             }
             void setTextureButton(const std::string&);
+      bool	getAlive(){
+	return (_alive);
+      }
             void addButton(int x, int y, const std::string&);
       void addSubMenu(const std::string &Button, const std::string &Option /*Nom de l'option*/, std::vector<std::string> listOption, int x, int y);
+      void update() {
+	_alive  = DamnCute::Core::getInstance()->getWindowStatus();
+      }
 	    void    MoveDown();
 	    void    MoveUp();
+      void	MoveRight();
+     void	MoveLeft();
             void    MoveReturn();
+      void	gameMode();
     };
 }
 

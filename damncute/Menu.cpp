@@ -5,12 +5,14 @@
 // Login   <strohe_d@epitech.net>
 // 
 // Started on  Wed Oct 30 01:33:44 2013 Dorian Stroher
-// Last update Thu Oct 31 01:23:43 2013 Dorian Stroher
+// Last update Thu Oct 31 03:20:53 2013 Dorian Stroher
 //
 
 #include "ActMenu.hh"
 #include <SFML/Graphics/Text.hpp>
 #include "Menu.hh"
+
+void runGame();
 
 DamnCute::Menu::SubMenu::SubMenu(sf::Text &text, const std::string &optionName, std::vector<sf::Text *> optionChoice) : _text(text), _options(optionChoice) {
     _it = _options.begin();
@@ -132,7 +134,7 @@ void	DamnCute::Menu::addSubMenu(const std::string &Button, const std::string &Op
     test.setPosition(x, y);
     for (std::vector<std::string>::iterator it = listOption.begin() ; it != listOption.end(); ++it) {
       tmp = new sf::Text(*it, _font, _characterSize);
-      tmp->setPosition(x, y + 80);
+      tmp->setPosition(x+15, y + 25);
       listoption2.push_back(tmp);
     }
     SubMenu *b = new SubMenu(test, Option, listoption2);
@@ -152,6 +154,8 @@ void	DamnCute::Menu::MoveDown()
       else
 	_itButtons = _buttons.begin();
     }
+  else
+    (*_itButtons)->MoveUp();
 }
 
 void	DamnCute::Menu::MoveUp()
@@ -175,12 +179,104 @@ std::cout << "Moveup" << std::endl;
 	   _itButtons = _buttons.begin();
        }
    }
+ else
+   (*_itButtons)->MoveUp();
 }
 
 void	DamnCute::Menu::MoveReturn()
 {
-  _alive = false;
+  if (_alive)
+    {
+      if( (*_itButtons)->getName() == "start")
+	{
+	  runGame();
+	  delete(this);
+	}
+      _alive = false;
+    }
+  else
+    _alive = true;
   (*_itButtons)->setAlive2();
   for (std::vector<DamnCute::Menu::Button*>::iterator it = _buttons.begin() ; it != _buttons.end(); ++it)
     (*it)->setAlive();
+}
+
+void	DamnCute::Menu::MoveRight()
+{
+  if (_alive == false)
+    {
+      (*_itButtons)->MoveRight();
+    }
+}
+
+void	DamnCute::Menu::Button::MoveRight()
+{
+  (*_itSub)->MoveRight();
+}
+
+void	DamnCute::Menu::MoveLeft()
+{
+  if (_alive == false)
+    {
+      (*_itButtons)->MoveLeft();
+    }
+}
+
+void	DamnCute::Menu::Button::MoveDown()
+{
+      if (_itSub + 1 != _Sub.end())
+	_itSub++;
+      else
+	_itSub = _Sub.begin();
+}
+
+void	DamnCute::Menu::Button::MoveUp()
+{
+     if (_itSub != _Sub.begin())
+       _itSub--;
+     else
+       {
+	 if (_Sub.size() > 1)
+	   {
+	     while(_itSub !=  _Sub.end())
+	       {
+		 _itSub++;
+	       }
+	     _itSub--;
+	   }
+	 else
+	   _itSub = _Sub.begin();
+       }
+}
+
+void	DamnCute::Menu::Button::MoveLeft()
+{
+  (*_itSub)->MoveLeft();
+}
+
+void	DamnCute::Menu::SubMenu::MoveRight()
+{
+  if (_it + 1 != _options.end())
+    _it++;
+  else
+    _it = _options.begin();
+}
+
+void	DamnCute::Menu::SubMenu::MoveLeft()
+{
+     if (_it != _options.begin())
+       _it--;
+     else
+       {
+	 if (_options.size() > 1)
+	   {
+	     while(_it !=  _options.end())
+	       {
+		 _it++;
+	       }
+	     _it--;
+	   }
+	 else
+	   _it = _options.begin();
+       }
 }
