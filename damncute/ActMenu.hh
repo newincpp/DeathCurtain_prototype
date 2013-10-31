@@ -51,9 +51,13 @@ class ActMenu : public DamnCute::AAction<DamnCute::Menu>
 	   if ((_who == K1 || _who == ST1)  && _key1 == sf::Keyboard::Key::Up)
 	     _entity->MoveUp();
 	  if ((_who == K2 || _who == ST2) && _key2 == sf::Keyboard::Key::Left)
-	    std::cout << "MoveLeft" << std::endl;
+	    	    _entity->MoveLeft();
 	  if ((_who == K1 || _who == ST1)  && _key1 == sf::Keyboard::Key::Right)
-	    std::cout << "MoveRight" << std::endl;
+	    _entity->MoveRight();
+	  if ((_who == K1 || _who == ST1)  && _key1 == sf::Keyboard::Return && _entity->getAlive() == true)
+	    _entity->MoveReturn();
+	  if ((_who == K2 || _who == ST2)  && _key2 == sf::Keyboard::Escape && _entity->getAlive() == false)
+	    _entity->MoveReturn();
 	}
         virtual inline const std::string& getName() const { return (_name); }
          virtual ~ActMenu() = default;
