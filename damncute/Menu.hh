@@ -27,24 +27,28 @@ namespace DamnCute {
                     inline void operator=(const SubMenu& b) {
                         _text = b._text;
                     }
+	      void	setAlive(){
+		_alive = true;
+	      }
                     virtual void update(sf::RenderWindow*);
                     virtual ~SubMenu();
                 private:
 		    bool _alive;
-	            int _posx;
-                    int _posy;
                     sf::Text _text;
                     std::vector<sf::Text *>::iterator _it;
                     std::vector<sf::Text *> _options;
             };
-            class Button : public IRenderable {
-                public:
-                    explicit Button(sf::Text &, int, int, sf::Texture&);
+      class Button : public IRenderable {
+	    public:
+	      explicit Button(const std::string &, sf::Text &, int, int, sf::Texture&);
                     inline void operator=(const Button& b) {
                         _tex = b._tex;
                         _s = b._s;
                         _text = b._text;
                     }
+	void	addSubMenu(SubMenu *b){
+	  _Sub.push_back(b);
+	}
                     virtual void update(sf::RenderWindow*);
 	      int getX(){
 		return (_x);
@@ -52,8 +56,22 @@ namespace DamnCute {
 	      int getY(){
 		return (_y);
 	      }
+	void	setAlive2(){
+	  for (std::vector<SubMenu*>::iterator it = _Sub.begin() ; it != _Sub.end(); ++it) {
+	    (*it)->setAlive();
+	  }
+	}
+	      void	setAlive() {
+		_alive = false;
+	      }
+	      const std::string getName()
+	      {
+		return (_name);
+	      }
                     virtual ~Button();
                 private:
+            std::vector<SubMenu*> _Sub;
+		    const std::string _name;
 	            bool _alive;
 	            int _x;
 	            int _y;
@@ -87,9 +105,10 @@ namespace DamnCute {
             }
             void setTextureButton(const std::string&);
             void addButton(int x, int y, const std::string&);
-            void addSubMenu(const std::string &Button, const std::string &Option /*Nom de l'option*/, std::vector<std::string> listOption );
+      void addSubMenu(const std::string &Button, const std::string &Option /*Nom de l'option*/, std::vector<std::string> listOption, int x, int y);
 	    void    MoveDown();
 	    void    MoveUp();
+            void    MoveReturn();
     };
 }
 

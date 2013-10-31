@@ -16,28 +16,28 @@ void DisplayManager::update() {
     _alive  = DamnCute::Core::getInstance()->getWindowStatus();
 }
 
-void DisplayManager::gameMode() {
-    if (!_engine) {
-        _engine = DamnCute::Core::getInstance();
-        std::cerr << "game is starting without menu =S" << std::endl;
-    }
-    _engine->setFPSDisplay(true);
-    DamnCute::Background* bg = new DamnCute::Background("resources/mushihimesama.tga");
-    //TestPattern* test = new TestPattern();
-    pat1 *p1 = new pat1();
+void DisplayManager::gameMode() { /***A Implementer dans le menu*****/
+  /*    if (!_engine) {
+                std::cerr << "game is starting without menu =S" << std::endl;
+		}*/
+  _engine = DamnCute::Core::getInstance();
+  _engine->setFPSDisplay(true);
+  DamnCute::Background* bg = new DamnCute::Background("resources/mushihimesama.tga");
+  //TestPattern* test = new TestPattern();
+  pat1 *p1 = new pat1();
+  
+  bg->setScrollSpeed(0, -0.1f);
+  
+  DamnCute::APlayer* player_one = new DamnCute::Player<0>();
+  DamnCute::APlayer* player_two = new DamnCute::Player<1>("resources/player_focus.tga", 800, 400);
 
-    bg->setScrollSpeed(0, -0.1f);
-
-    DamnCute::APlayer* player_one = new DamnCute::Player<0>();
-    DamnCute::APlayer* player_two = new DamnCute::Player<1>("resources/player_focus.tga", 800, 400);
-
-    _engine->addOnBg(bg);
-    //_engine->addObject(test);
-    _engine->addObject(p1);
-    _engine->addObject(player_one);
-    _engine->addObject(player_two);
-
-    _engine->switchGameStatus();
+  _engine->addOnBg(bg);
+  //_engine->addObject(test);
+  _engine->addObject(p1);
+  _engine->addObject(player_one);
+  _engine->addObject(player_two);
+  
+  _engine->switchGameStatus();
 }
 
 void DisplayManager::menuMode() {
@@ -50,9 +50,11 @@ void DisplayManager::menuMode() {
     _engine->addObject(m);
     m->setTextureButton("resources/button1.png");/*Set texture*/
     m->addButton(50, 100, "start"); /*Pose la texture sur le screen*/
-    m->addButton(50, 400, "Test"); /*Pose la texture sur le screen*/
-    m->addSubMenu("Button Name", "Sous Menu:", listOption);
-    m->setTextureCursor("resources/cursor.png", 500, 500);
+    m->addButton(50, 400, "Test2"); /*Pose la texture sur le screen*/
+    m->addButton(500, 100, "Test3"); /*Pose la texture sur le screen*/
+    m->addButton(500, 400, "Test4"); /*Pose la texture sur le screen*/
+    m->addSubMenu("Test2", "Sous Menu:", listOption, 50, 50);
+    m->setTextureCursor("resources/cursor.png", -50, 100);
 }
 
 void DisplayManager::run() {
