@@ -42,11 +42,11 @@ namespace {
 		    return *_getNode(path)->data;
 		}
 
-		void setTreeNode(T* value, __path_ar_& path) {
+		void setTreeNode(T* value, const __path_ar_& path) {
 		    _getNode(path)->data = value;
 		}
 
-		void swap(__path_ar_& path1, __path_ar_ path2) {
+		void swap(__path_ar_& path1, const __path_ar_ path2) {
 		    T* a = _getNode(path1)->data;
 		    T* b = _getNode(path2)->data;
 		    T* tmp;
