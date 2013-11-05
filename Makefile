@@ -6,11 +6,12 @@ SRC		= damncute/Bullet.cpp \
 		  damncute/APlayer.cpp \
 		  src/DisplayManager.cpp \
 		  src/main.cpp \
-		  src/TestPattern.cpp
+		  src/TestPattern.cpp \
+		  src/Input.cpp
 
 NAME		= demo
 
-CXXFLAGS	= -Wall -Wextra -W -I./damncute -I./glm -std=c++0x # -emit-llvm -O4
+CXXFLAGS	= -Wall -Wextra -W -I./damncute -I./glm -std=c++0x -g # -emit-llvm -O4
 
 ifeq ($(OS),Windows_NT)
 	error:
