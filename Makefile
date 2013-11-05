@@ -1,6 +1,5 @@
 # http://scottmcpeak.com/autodepend/autodepend.html <- to manage dependances
 
-EXT		=cpp
 SRC		= damncute/Bullet.cpp \
 		  damncute/Path.cpp \
 		  damncute/Background.cpp \
@@ -8,11 +7,17 @@ SRC		= damncute/Bullet.cpp \
 		  damncute/Menu.cpp \
 		  damncute/APlayer.cpp \
 		  src/DisplayManager.cpp \
-		  src/main.cpp src/TestPattern.cpp
+		  src/main.cpp \
+		  src/TestPattern.cpp
 
 NAME		= demo
 
 CXXFLAGS	= -Wall -Wextra -W -I./damncute -I./glm -std=c++0x # -emit-llvm -O4
+
+OBJS    = $(SRC:.cpp=.o)
+#-include $(OBJS:.o=.d)
+
+RM		= rm -f
 
 ifeq ($(OS),Windows_NT)
     error:
@@ -31,10 +36,6 @@ else
 	endif
 endif
 
-OBJS		= $(SRC:.$(EXT)=.o)
-	# -include $(OBJS:.o=.d) <-
-	RM		= rm -f
-
 all: $(NAME)
 
 # compile and generate dependency info;
@@ -45,9 +46,9 @@ all: $(NAME)
 #   fmt -1: list words one per line
 #   sed:    strip leading spaces
 #   sed:    add trailing colons
-%.o: %.$(EXT)
-	$(CXX) -c $(CXXFLAGS) $*.$(EXT) -o $*.o
-	$(CXX) -MM $(CXXFLAGS) $*.$(EXT) > $*.d
+%.o: %.cpp
+	$(CXX) -c $(CXXFLAGS) $*.cpp -o $*.o
+	$(CXX) -MM $(CXXFLAGS) $*.cpp > $*.d
 	@mv -f $*.d $*.d.tmp
 	@sed -e 's|.*:|$*.o:|' < $*.d.tmp > $*.d
 	@sed -e 's/.*://' -e 's/\\$$//' < $*.d.tmp | fmt -1 | \
@@ -63,8 +64,8 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re:
-	make -B -j4
+re: fclean
+	make -j4
 
 .PHONY: all clean fclean re
 
