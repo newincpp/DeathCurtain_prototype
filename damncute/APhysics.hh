@@ -20,33 +20,32 @@ namespace DamnCute {
 	    QuadTree<APhysics, 5>::Array_Type_ _path;
 
 	    QuadTree<APhysics, 5>::Array_Type_ generateQuadTreePos(unsigned int x, unsigned int y) {
-            int nodeX = sCore->getWindowSizeX() / 2;
-            int nodeY = sCore->getWindowSizeY() / 2;
+            unsigned int nodeX = sCore->getWindowSizeX() / 2;
+            unsigned int nodeY = sCore->getWindowSizeY() / 2;
 
-            int i;
-            for (i = 0; i < _quadTree->getLevel(); ++i)
+            for (unsigned int i = 0; i < _quadTree->getLevel(); ++i)
             {
                 if (x < nodeX && y > nodeY)
                 {
-                    _path[i] = QuadTree::AZone;
+                    _path[i] = QuadTree<APhysics, 5>::AZone;
                     nodeX -= nodeX / 2;
                     nodeY += nodeY / 2;
                 }
                 else if (x > nodeX && y > nodeY)
                 {
-                    _path[i] = QuadTree::BZone;
+                    _path[i] = QuadTree<APhysics, 5>::BZone;
                     nodeX += nodeX / 2;
                     nodeY += nodeY / 2;
                 }
                 else if (x < nodeX && y < nodeY)
                 {
-                    _path[i] = QuadTree::CZone;
+                    _path[i] = QuadTree<APhysics, 5>::CZone;
                     nodeX -= nodeX / 2;
                     nodeY -= nodeY / 2;
                 }
                 else
                 {
-                    _path[i] = QuadTree::DZone;
+                    _path[i] = QuadTree<APhysics, 5>::DZone;
                     nodeX += nodeX / 2;
                     nodeY -= nodeY / 2;
                 }
