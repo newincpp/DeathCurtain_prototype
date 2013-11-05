@@ -68,4 +68,6 @@ namespace DamnCute {
     };
 }
 
+#define sCore Core::getInstance()
+
 #endif /* !CORE_H_ */

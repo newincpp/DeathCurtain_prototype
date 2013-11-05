@@ -4,6 +4,14 @@
 #include <iostream>
 #include "Core/Core.hh"
 
+/*
+ * -----
+ * |A|B|
+ * -----
+ * |C|D|
+ * -----
+*/
+
 namespace DamnCute {
     class APhysics {
 	private:
@@ -12,8 +20,38 @@ namespace DamnCute {
 	    QuadTree<APhysics, 5>::Array_Type_ _path;
 
 	    QuadTree<APhysics, 5>::Array_Type_ generateQuadTreePos(unsigned int x, unsigned int y) {
-		(void) x;
-		(void) y;
+            int nodeX = sCore->getWindowSizeX() / 2;
+            int nodeY = sCore->getWindowSizeY() / 2;
+
+            int i;
+            for (i = 0; i < _quadTree->getLevel(); ++i)
+            {
+                if (x < nodeX && y > nodeY)
+                {
+                    _path[i] = QuadTree::AZone;
+                    nodeX -= nodeX / 2;
+                    nodeY += nodeY / 2;
+                }
+                else if (x > nodeX && y > nodeY)
+                {
+                    _path[i] = QuadTree::BZone;
+                    nodeX += nodeX / 2;
+                    nodeY += nodeY / 2;
+                }
+                else if (x < nodeX && y < nodeY)
+                {
+                    _path[i] = QuadTree::CZone;
+                    nodeX -= nodeX / 2;
+                    nodeY -= nodeY / 2;
+                }
+                else
+                {
+                    _path[i] = QuadTree::DZone;
+                    nodeX += nodeX / 2;
+                    nodeY -= nodeY / 2;
+                }
+            }
+
 		return _path;
 	    }
 	public:
