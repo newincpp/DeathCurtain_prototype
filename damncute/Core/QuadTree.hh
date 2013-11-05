@@ -39,14 +39,17 @@ namespace {
 		explicit QuadTree() : _level(LEVEL), _head(new TreeNode<T>(LEVEL)) {}
 
 		T* getDataTreeNode(__path_ar_& path) const {
-		    return *_getNode(path)->data;
+		    return _getNode(path)->data;
+		}
+
+		void setCallback() {
 		}
 
 		void setTreeNode(T* value, const __path_ar_& path) {
 		    _getNode(path)->data = value;
 		}
 
-		void swap(__path_ar_& path1, const __path_ar_ path2) {
+		void swap(__path_ar_& path1, const __path_ar_& path2) {
 		    T* a = _getNode(path1)->data;
 		    T* b = _getNode(path2)->data;
 		    T* tmp;
@@ -54,6 +57,13 @@ namespace {
 		    tmp = a;
 		    a = b;
 		    b = tmp;
+		}
+
+		inline bool thereIsObject(const __path_ar_& p) {
+		    if (_getNode(p)->data) {
+			return true;
+		    }
+		    return false;
 		}
 
 		inline unsigned int getLevel() const {

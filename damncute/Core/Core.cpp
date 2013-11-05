@@ -97,7 +97,7 @@ void DamnCute::Core::delObject(IRenderable* a) {
     }
 }
 
-DamnCute::Core::Core() : _phisicTree(), _gameStatus(false), _displayFPS(false){
+DamnCute::Core::Core() : _physicTree(), _gameStatus(false), _displayFPS(false){
 }
 
 DamnCute::Core::Core(const DamnCute::Core&) {

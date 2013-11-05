@@ -7,28 +7,33 @@
 namespace DamnCute {
     class APhysics {
 	private:
-	    bool _phisicalyActive;
+	    bool _physicalyActive;
+	    QuadTree<APhysics, 5>* _quadTree;
 	    QuadTree<APhysics, 5>::Array_Type_ _path;
+
 	    QuadTree<APhysics, 5>::Array_Type_ generateQuadTreePos(unsigned int x, unsigned int y) {
-		QuadTree<APhysics, 5> _quadTree = Core::getInstance()->getQuadTree();
-		(void) _quadTree;
 		(void) x;
 		(void) y;
 		return _path;
 	    }
 	public:
-	    APhysics(unsigned int x, unsigned int y) : _phisicalyActive(true), _path(generateQuadTreePos(x, y)) {
+	    APhysics(unsigned int x, unsigned int y) : _physicalyActive(true), _quadTree(Core::getInstance()->getQuadTree()) ,_path(generateQuadTreePos(x, y)) {
 	    }
-	    void collision(APhysics* vs) {
-		(void) vs;
-		if (_phisicalyActive) {
-		std::cout << "SLASH !" << std::endl;
+
+	    void collision() {
+		if (_physicalyActive) {
+		    std::cout << "SLASH !" << std::endl;
 		} else {
 		    std::cout << "like a ghost !" << std::endl;
 		}
 	    }
+
 	    void updateQuadTreePos(unsigned int x, unsigned int y) {
 		_path = generateQuadTreePos(x, y);
+		if (_quadTree->thereIsObject(_path)) {
+		    collision();
+		}
+		_quadTree->getDataTreeNode(_path)->collision();
 	    }
     };
 }
