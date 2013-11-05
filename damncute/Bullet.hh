@@ -3,9 +3,10 @@
 
 #include <glm/glm.hpp>
 #include <SFML/Graphics.hpp>
+#include "APhysics.hh"
 
 namespace DamnCute {
-    class Bullet {
+    class Bullet : APhysics {
         public:
             explicit Bullet(const glm::vec2&, const float = 0.0f, unsigned int = 60);
             explicit Bullet(const Bullet&) = delete;

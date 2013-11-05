@@ -3,7 +3,7 @@
 
 #ifndef __DWIDTH
 #define __DWIDTH 1920
-#define __DHEIGHT 1024
+#define __DHEIGHT 1200
 #endif
 
 #include <iostream>
