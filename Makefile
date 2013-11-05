@@ -32,8 +32,8 @@ else
 endif
 
 OBJS		= $(SRC:.$(EXT)=.o)
-	# -include $(OBJS:.o=.d) <-
-	RM		= rm -f
+# -include $(OBJS:.o=.d) <-
+RM		= rm -f
 
 all: $(NAME)
 
