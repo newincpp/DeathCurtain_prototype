@@ -69,12 +69,11 @@ void gameMode(DamnCute::Core* engine) {
 
     engine->setFPSDisplay(true);
     Input *input = new Input();
-    DamnCute::Background* bg = new DamnCute::Background("resources/mushihimesama.tga");
+    DamnCute::Background* bg = new DamnCute::Background("resources/decor009.jpg");
     TestPattern* test = new TestPattern();
     //pat1 *p1 = new pat1();
     //CrossingDeath *cd = new CrossingDeath();
 
-    bg->setScrollSpeed(0, -0.1f);
 
     DamnCute::APlayer* player_one = new DamnCute::Player<0>();
     DamnCute::APlayer* player_two = new DamnCute::Player<1>("resources/player_focus.tga", 800, 400);
