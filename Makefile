@@ -16,7 +16,7 @@ NAME		= demo
 CXXFLAGS	= -Wall -Wextra -W -I./damncute -I./glm -std=c++0x -g # -emit-llvm -O4
 
 OBJS    = $(SRC:.cpp=.o)
-	#-include $(OBJS:.o=.d)
+#-include $(OBJS:.o=.d)
 
 RM		= rm -f
 

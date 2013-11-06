@@ -61,7 +61,7 @@ namespace {
 		    b = tmp;
 		}
 
-		inline bool thereIsObject(const __path_ar_& p) {
+		bool thereIsObject(const __path_ar_& p) {
 		    if (_getNode(p)->data) {
 			return true;
 		    }

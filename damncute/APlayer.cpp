@@ -13,6 +13,7 @@ void DamnCute::APlayer::update(sf::RenderWindow* w_ptr)
 {
     action();
     w_ptr->draw(_entity);
+    updateQuadTreePos((int)_entity.getPosition().x, (int)_entity.getPosition().y);
 }
 
 void DamnCute::APlayer::action()

@@ -59,7 +59,8 @@ namespace DamnCute {
 		}
 
 	public:
-	    APhysics(unsigned int x, unsigned int y, bool destructibility = true) : _physicallyActive(true), _destructible(destructibility), _quadTree(Core::getInstance()->getQuadTree()) ,_path(generateQuadTreePos<1920, 1080, 5>(x, y)) {
+	    APhysics(unsigned int x, unsigned int y, bool destructibility = true) : _physicallyActive(true), _destructible(destructibility), _quadTree(Core::getInstance()->getQuadTree()) {
+		generateQuadTreePos<1920, 1080, 5>(x, y);
 	    }
 	    inline bool isDestructible() {
 		return _destructible;
@@ -69,12 +70,12 @@ namespace DamnCute {
 	    virtual void collisionHandler(APhysics*) = 0;
 
 	    void updateQuadTreePos(unsigned int x, unsigned int y) {
+		_quadTree->setTreeNode(NULL, _path);
 		generateQuadTreePos<1920, 1080, 5>(x, y);
-		if (_quadTree->thereIsObject(_path)) {
-		    if (_physicallyActive) {
-			collisionHandler(_quadTree->getDataTreeNode(_path));
-			//_quadTree->getDataTreeNode(_path)->collision();
-		    }
+
+		if (_quadTree->thereIsObject(_path) && _physicallyActive) {
+		    collisionHandler(_quadTree->getDataTreeNode(_path));
+		    //_quadTree->getDataTreeNode(_path)->collision();
 		}
 		_quadTree->setTreeNode(this, _path);
 	    }

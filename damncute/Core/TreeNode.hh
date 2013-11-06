@@ -15,6 +15,7 @@ struct TreeNode {
 	    left = NULL;
 	    right = NULL;
 	}
+	data = NULL;
     }
 
     virtual ~TreeNode() {
@@ -24,7 +25,7 @@ struct TreeNode {
 	delete right;
     }
 
-    DATANODE* data;
+    DATANODE* data; // TODO must exist only for final recurtion
     TreeNode<T>* up;
     TreeNode<T>* down;
     TreeNode<T>* right;
