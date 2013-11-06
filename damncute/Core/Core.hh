@@ -5,6 +5,8 @@
 #include "QuadTree.hh"
 #include "../IRenderable.hh"
 
+#define __DQUADTREE_COMPLEXITY__ 5
+
 namespace DamnCute {
     class APhysics;
     class Core {
@@ -56,7 +58,7 @@ namespace DamnCute {
             void refresh();
 
 	    static Core* __coreInstance;
-	    QuadTree<APhysics, 5> _physicTree;
+	    QuadTree<APhysics, __DQUADTREE_COMPLEXITY__> _physicTree;
 	    sf::RenderWindow* _win;
 	    std::list<IRenderable*> _objects;
 	    bool _gameStatus;

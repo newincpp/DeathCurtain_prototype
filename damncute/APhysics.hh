@@ -18,33 +18,31 @@ namespace DamnCute {
 	private:
 	    bool _physicallyActive;
 	    bool _destructible;
-	    QuadTree<APhysics, 5>* _quadTree;
-	    QuadTree<APhysics, 5>::Array_Type_ _path;
+	    QuadTree<APhysics, __DQUADTREE_COMPLEXITY__>* _quadTree;
+	    QuadTree<APhysics, __DQUADTREE_COMPLEXITY__>::Array_Type_ _path;
 
-	    template <unsigned int sizeX, unsigned int sizeY, unsigned short iter>
-		inline QuadTree<APhysics, 5>::Array_Type_&& generateQuadTreePos(unsigned int x, unsigned int y) noexcept {
-		    //unsigned int nodeX = sCore->getWindowSizeX() / 2;
-		    //unsigned int nodeY = sCore->getWindowSizeY() / 2;
-		    unsigned int nodeX = sizeX;
-		    unsigned int nodeY = sizeY;
+	    template <unsigned short iter>
+		inline QuadTree<APhysics, __DQUADTREE_COMPLEXITY__>::Array_Type_&& generateQuadTreePos(unsigned int x, unsigned int y) noexcept {
+		    unsigned int nodeX = sCore->getWindowSizeX() / 2;
+		    unsigned int nodeY = sCore->getWindowSizeY() / 2;
 
 		    for (unsigned short i = 0; i < iter; ++i)
 		    {
 			if (x < nodeX && y > nodeY)
 			{
-			    _path[i] = QuadTree<APhysics, 5>::AZone;
+			    _path[i] = QuadTree<APhysics, __DQUADTREE_COMPLEXITY__>::AZone;
 			    nodeX -= nodeX / 2;
 			    nodeY += nodeY / 2;
 			}
 			else if (x > nodeX && y > nodeY)
 			{
-			    _path[i] = QuadTree<APhysics, 5>::BZone;
+			    _path[i] = QuadTree<APhysics, __DQUADTREE_COMPLEXITY__>::BZone;
 			    nodeX += nodeX / 2;
 			    nodeY += nodeY / 2;
 			}
 			else if (x < nodeX && y < nodeY)
 			{
-			    _path[i] = QuadTree<APhysics, 5>::CZone;
+			    _path[i] = QuadTree<APhysics, __DQUADTREE_COMPLEXITY__>::CZone;
 			    nodeX -= nodeX / 2;
 			    nodeY -= nodeY / 2;
 			}
@@ -60,7 +58,7 @@ namespace DamnCute {
 
 	public:
 	    APhysics(unsigned int x, unsigned int y, bool destructibility = true) : _physicallyActive(true), _destructible(destructibility), _quadTree(Core::getInstance()->getQuadTree()) {
-		generateQuadTreePos<1920, 1080, 5>(x, y);
+		generateQuadTreePos<__DQUADTREE_COMPLEXITY__>(x, y);
 	    }
 	    inline bool isDestructible() {
 		return _destructible;
@@ -71,7 +69,7 @@ namespace DamnCute {
 
 	    void updateQuadTreePos(unsigned int x, unsigned int y) {
 		_quadTree->setTreeNode(NULL, _path);
-		generateQuadTreePos<1920, 1080, 5>(x, y);
+		generateQuadTreePos<__DQUADTREE_COMPLEXITY__>(x, y);
 
 		if (_quadTree->thereIsObject(_path) && _physicallyActive) {
 		    collisionHandler(_quadTree->getDataTreeNode(_path));
