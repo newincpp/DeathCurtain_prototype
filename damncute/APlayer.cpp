@@ -1,7 +1,8 @@
+#include <iostream>
 #include "APlayer.hh"
 
 DamnCute::APlayer::APlayer(const std::string& texfile, float x, float y, int nb, int speed) :
-    _tex(), _speed(speed), _nbPlayer(nb)
+    APhysics((int)x, (int)y, true), _tex(), _speed(speed), _nbPlayer(nb)
 {
     _tex.loadFromFile(texfile);
     _entity.setTexture(_tex);
@@ -27,6 +28,8 @@ void DamnCute::APlayer::addAction(AAction<APlayer>* act)
     _actions.push_back(act);
 }
 
+
+
 namespace DamnCute {
     template <>
         void APlayer::setActionInput<sf::Keyboard::Key>(int i, sf::Keyboard::Key key, int inputNumber) {
@@ -49,4 +52,9 @@ namespace DamnCute {
             (void)a;
             (_actions[i])->setStickInput(button);
         }
+}
+
+void DamnCute::APlayer::collisionHandler(APhysics* other) {
+    (void) other;
+    std::cout << "fuck" << std::endl;
 }

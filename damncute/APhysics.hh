@@ -17,6 +17,7 @@ namespace DamnCute {
     class APhysics {
 	private:
 	    bool _physicallyActive;
+	    bool _destructible;
 	    QuadTree<APhysics, 5>* _quadTree;
 	    QuadTree<APhysics, 5>::Array_Type_ _path;
 
@@ -58,22 +59,23 @@ namespace DamnCute {
 		}
 
 	public:
-	    APhysics(unsigned int x, unsigned int y) : _physicallyActive(true), _quadTree(Core::getInstance()->getQuadTree()) ,_path(generateQuadTreePos<1920, 1080, 5>(x, y)) {
+	    APhysics(unsigned int x, unsigned int y, bool destructibility = true) : _physicallyActive(true), _destructible(destructibility), _quadTree(Core::getInstance()->getQuadTree()) ,_path(generateQuadTreePos<1920, 1080, 5>(x, y)) {
+	    }
+	    inline bool isDestructible() {
+		return _destructible;
 	    }
 
 	protected:
-	    void collision() {
-		//std::cout << "SLASH" << std::endl;
-	    }
+	    virtual void collisionHandler(APhysics*) = 0;
 
 	    void updateQuadTreePos(unsigned int x, unsigned int y) {
 		generateQuadTreePos<1920, 1080, 5>(x, y);
 		if (_quadTree->thereIsObject(_path)) {
 		    if (_physicallyActive) {
-			collision();
+			collisionHandler(_quadTree->getDataTreeNode(_path));
+			//_quadTree->getDataTreeNode(_path)->collision();
 		    }
 		}
-		_quadTree->getDataTreeNode(_path)->collision();
 		_quadTree->setTreeNode(this, _path);
 	    }
     };

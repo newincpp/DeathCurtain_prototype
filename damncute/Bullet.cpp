@@ -3,7 +3,7 @@
 #include "Bullet.hh"
 #include "Core/Core.hh"
 
-DamnCute::Bullet::Bullet(const glm::vec2& origin, const float rot, unsigned int lifeTime) : APhysics(origin.x, origin.y), _origin(origin), _rot(rot), _selfTransform(glm::translate(glm::rotate(glm::mat4(), rot, glm::vec3(0.0f, 0.0f, 1.0f)), glm::vec3(-origin.x, -origin.y, 0))), _tex(NULL), _lifeTime(lifeTime) {
+DamnCute::Bullet::Bullet(const glm::vec2& origin, const float rot, unsigned int lifeTime) : APhysics(origin.x, origin.y, false), _origin(origin), _rot(rot), _selfTransform(glm::translate(glm::rotate(glm::mat4(), rot, glm::vec3(0.0f, 0.0f, 1.0f)), glm::vec3(-origin.x, -origin.y, 0))), _tex(NULL), _lifeTime(lifeTime) {
 }
 
 DamnCute::Bullet::Bullet(DamnCute::Bullet&& b) : APhysics(b._origin.x, b._origin.y), _origin(b._origin), _rot(b._rot), _selfTransform(glm::translate(glm::rotate(glm::mat4(), b._rot, glm::vec3(0.0f, 0.0f, 1.0f)), glm::vec3(-b._origin.x, -b._origin.y, 0))), _tex(b._tex), _lifeTime(b._lifeTime) {
@@ -39,4 +39,8 @@ void DamnCute::Bullet::setTexure(sf::Texture* tex) {
 float DamnCute::Bullet::decreaseLifeTime() {
     --_lifeTime;
     return _lifeTime;
+}
+
+void DamnCute::Bullet::collisionHandler(APhysics* other) {
+    (void) other;
 }

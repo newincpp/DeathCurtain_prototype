@@ -7,11 +7,12 @@
 #include "AAction.hh"
 #include "IRenderable.hh"
 #include "Core/Core.hh"
+#include "APhysics.hh"
 
 namespace DamnCute
 {
 
-    class APlayer : public IRenderable
+    class APlayer : public IRenderable, public APhysics
     {
 
         public:
@@ -42,6 +43,8 @@ namespace DamnCute
                     (void)i; (void)t; (void)a;
                     static_assert(std::is_same<T, int>::value || std::is_same<T, sf::Keyboard::Key>::value || std::is_same<T, sf::Joystick::Axis>::value, "Error: type is not defined for input.");
                 }
+
+	    virtual void collisionHandler(APhysics*);
 
         private:
             void action();

@@ -29,6 +29,7 @@ namespace DamnCute {
                 _origin = n;
             }
             void setTexure(sf::Texture*);
+	    virtual void collisionHandler(APhysics*);
         private:
             glm::vec2 _origin;
             float _rot;
