@@ -9,7 +9,7 @@ DamnCute::Path::Path(const glm::mat4& m, unsigned int timestep, DamnCute::Bullet
     _bulletModel.setTexure(&_tex);
 }
 
-void DamnCute::Path::update(sf::RenderWindow* w_ptr) {
+void DamnCute::Path::update(sf::RenderTarget* w_ptr) {
     for (std::list<Bullet>::iterator it = _bullets.begin(); it != _bullets.end();) {
 	(*it).update(_stepModifier, w_ptr);
 	if ((*it).decreaseLifeTime() <= 0) {

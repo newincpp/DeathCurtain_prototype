@@ -14,7 +14,7 @@ namespace DamnCute {
             virtual ~Bullet() = default;
             Bullet& operator=(const Bullet&) = delete;
             Bullet& operator=(Bullet&&);
-            void update(const glm::mat4&, sf::RenderWindow*);
+            void update(const glm::mat4&, sf::RenderTarget*);
             float decreaseLifeTime();
             inline const glm::vec2& getOrigin() const {
                 return _origin;

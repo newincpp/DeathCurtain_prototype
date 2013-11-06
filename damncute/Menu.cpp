@@ -21,7 +21,7 @@ DamnCute::Menu::SubMenu::SubMenu(sf::Text &text, const std::string &optionName, 
         return;
 }
 
-void	DamnCute::Menu::SubMenu::update(sf::RenderWindow* w_ptr) {
+void	DamnCute::Menu::SubMenu::update(sf::RenderTarget* w_ptr) {
     if (_alive == true)
     {
         w_ptr->draw(_text); //Rajouter le txt au bouton
@@ -44,7 +44,7 @@ DamnCute::Menu::Button::Button(const std::string &Name, sf::Text &text, int x, i
     _text.setPosition(x+40, y+90);
 }
 
-void	DamnCute::Menu::Button::update(sf::RenderWindow* w_ptr) {
+void	DamnCute::Menu::Button::update(sf::RenderTarget* w_ptr) {
     if (_alive == true)
     {
         w_ptr->draw(_s);
@@ -81,7 +81,7 @@ DamnCute::Menu::~Menu() {
 
 }
 
-void	DamnCute::Menu::update(sf::RenderWindow* win) {
+void	DamnCute::Menu::update(sf::RenderTarget* win) {
     for (size_t i = 0; i < _actions.size(); ++i)
     {
         if (_actions[i]->hasInput(2) == true)

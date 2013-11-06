@@ -25,7 +25,7 @@ void DamnCute::Background::setPosition(int x, int y) {
     _bg.setPosition(x, y);
 }
 
-void DamnCute::Background::update(sf::RenderWindow* w_ptr) {
+void DamnCute::Background::update(sf::RenderTarget* w_ptr) {
     _bg.move(_XSpeed, _YSpeed);
     w_ptr->draw(_bg);
 }

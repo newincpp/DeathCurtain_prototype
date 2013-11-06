@@ -35,7 +35,7 @@ namespace DamnCute {
                         else
                             _alive = false;
                     }
-                    virtual void update(sf::RenderWindow*);
+                    virtual void update(sf::RenderTarget*);
                     virtual ~SubMenu();
                 private:
                     bool _alive;
@@ -59,7 +59,7 @@ namespace DamnCute {
                         _Sub.push_back(b);
                         _itSub=_Sub.begin();
                     }
-                    virtual void update(sf::RenderWindow*);
+                    virtual void update(sf::RenderTarget*);
                     int getX(){
                         return (_x);
                     }
@@ -112,7 +112,7 @@ namespace DamnCute {
             void    setTextureCursor(const std::string&, int, int);
             explicit Menu(const std::string& texfile);
             virtual ~Menu();
-            virtual void update(sf::RenderWindow* win);
+            virtual void update(sf::RenderTarget* win);
             template <int ID> void setButton(Button* b) {
                 static_assert(IfThenElse<_buttons.size() < ID>::value, "ID is out of bounds");
                 _buttons[ID] = b;

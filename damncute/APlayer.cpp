@@ -9,7 +9,7 @@ DamnCute::APlayer::APlayer(const std::string& texfile, float x, float y, int nb,
     _entity.setPosition(x, y);
 }
 
-void DamnCute::APlayer::update(sf::RenderWindow* w_ptr)
+void DamnCute::APlayer::update(sf::RenderTarget* w_ptr)
 {
     action();
     w_ptr->draw(_entity);

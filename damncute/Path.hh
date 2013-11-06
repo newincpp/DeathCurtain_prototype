@@ -16,7 +16,7 @@ namespace DamnCute {
 	public:
 	    explicit Path(const glm::mat4&, unsigned int frameStep = 5, Bullet&& = Bullet(glm::vec2(0,0)), const std::string& = "resources/test.tga");
 	    virtual ~Path() = default;
-	    virtual void update(sf::RenderWindow*);
+	    virtual void update(sf::RenderTarget*);
 	    void countdownPushMoveModifier(unsigned int, const glm::mat4&);
 	    inline void moveOrigin(glm::vec2&& n) noexcept {
 		_bulletModel.moveOrigin(std::move(n));

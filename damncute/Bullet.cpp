@@ -18,7 +18,7 @@ DamnCute::Bullet& DamnCute::Bullet::operator=(Bullet&& b) {
     return *this;
 }
 
-void DamnCute::Bullet::update(const glm::mat4& transform, sf::RenderWindow* w_ptr) {
+void DamnCute::Bullet::update(const glm::mat4& transform, sf::RenderTarget* w_ptr) {
     _selfTransform *= transform;
 
     glm::mat3 rotMat(_selfTransform);

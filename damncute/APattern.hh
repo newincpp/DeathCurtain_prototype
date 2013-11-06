@@ -23,7 +23,7 @@ namespace DamnCute {
                 _paths.push_back(p);
                 return _paths.size() - 1;
             }
-            virtual void update(sf::RenderWindow* w_ptr) {
+            virtual void update(sf::RenderTarget* w_ptr) {
                 for (unsigned int i = 0; i != _paths.size(); ++i) {
                     _paths[i]->update(w_ptr);
                 }

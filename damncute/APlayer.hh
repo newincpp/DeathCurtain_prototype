@@ -21,7 +21,7 @@ namespace DamnCute
             virtual ~APlayer() = default;
             APlayer& operator=(const APlayer&) = delete;
 
-            void update(sf::RenderWindow*);
+            void update(sf::RenderTarget*);
             void addAction(AAction<APlayer>*);
 
             inline sf::Sprite& getPlayer() { return _entity; }
