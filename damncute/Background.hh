@@ -15,6 +15,7 @@ namespace DamnCute {
             void setScrollSpeed(float, float);
             float getXScrollSpeed() const ;
             float getYScrollSpeed() const ;
+	    void setPosition(int, int);
             virtual void update(sf::RenderWindow*);
         private:
             Background(const Background&);

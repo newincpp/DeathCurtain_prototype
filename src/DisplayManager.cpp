@@ -70,6 +70,7 @@ void gameMode(DamnCute::Core* engine) {
     engine->setFPSDisplay(true);
     Input *input = new Input();
     DamnCute::Background* bg = new DamnCute::Background("resources/decor009.jpg");
+    bg->setPosition(150, -150);
     TestPattern* test = new TestPattern();
     //pat1 *p1 = new pat1();
     //CrossingDeath *cd = new CrossingDeath();

@@ -21,12 +21,11 @@ float DamnCute::Background::getYScrollSpeed() const {
     return _YSpeed;
 }
 
+void DamnCute::Background::setPosition(int x, int y) {
+    _bg.setPosition(x, y);
+}
+
 void DamnCute::Background::update(sf::RenderWindow* w_ptr) {
-    //_pos.x += _XSpeed / 10000;
-    //_pos.y += _YSpeed / 10000;
-    //std::cout << "speed = " << _XSpeed << " " << _YSpeed << std::endl;
-    //std::cout << "_pos = " << _pos.x << " " << _pos.y << std::endl;
-    //_bg.move(_pos.x,  _pos.y);
     _bg.move(_XSpeed, _YSpeed);
     w_ptr->draw(_bg);
 }
