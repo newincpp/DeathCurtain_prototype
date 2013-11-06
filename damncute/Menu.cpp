@@ -17,15 +17,15 @@ void runGame();
 DamnCute::Menu::SubMenu::SubMenu(sf::Text &text, const std::string &optionName, std::vector<sf::Text *> optionChoice) : _text(text), _options(optionChoice) {
     _it = _options.begin();
     _alive = false;
-  if (optionName == optionName)
+    if (optionName == optionName)
         return;
 }
 
 void	DamnCute::Menu::SubMenu::update(sf::RenderWindow* w_ptr) {
-  if (_alive == true)
+    if (_alive == true)
     {
-      w_ptr->draw(_text); //Rajouter le txt au bouton
-      w_ptr->draw(*(*_it));
+        w_ptr->draw(_text); //Rajouter le txt au bouton
+        w_ptr->draw(*(*_it));
     }
 }
 
@@ -45,10 +45,10 @@ DamnCute::Menu::Button::Button(const std::string &Name, sf::Text &text, int x, i
 }
 
 void	DamnCute::Menu::Button::update(sf::RenderWindow* w_ptr) {
-  if (_alive == true)
+    if (_alive == true)
     {
-      w_ptr->draw(_s);
-      w_ptr->draw(_text); //Rajouter le txt au bouton
+        w_ptr->draw(_s);
+        w_ptr->draw(_text); //Rajouter le txt au bouton
     }
 }
 
@@ -60,17 +60,17 @@ DamnCute::Menu::Button::~Button() {
 /********************************************************/
 
 DamnCute::Menu::Menu(const std::string& texfile) : IRenderable(), _bg(texfile)  {
-  Core* e = Core::getInstance();
-  DamnCute::Background* bg = new DamnCute::Background("resources/title.png");
+    Core* e = Core::getInstance();
+    DamnCute::Background* bg = new DamnCute::Background("resources/title.png");
 
-  e->addOnBg(bg);
-  _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Up, sf::Keyboard::Key::Down, sf::Joystick::Y));
-  _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Right, sf::Keyboard::Key::Left, sf::Joystick::R));
-  _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Return, sf::Keyboard::Key::Escape, sf::Joystick::X));
-  _font.loadFromFile(FONT_PATH);
-  _clicked = false;
-  _clicked2 = false;
-  _alive = true;
+    e->addOnBg(bg);
+    _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Up, sf::Keyboard::Key::Down, sf::Joystick::Y));
+    _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Right, sf::Keyboard::Key::Left, sf::Joystick::R));
+    _actions.push_back(new ActMenu(this, sf::Keyboard::Key::Return, sf::Keyboard::Key::Escape, sf::Joystick::X));
+    _font.loadFromFile(FONT_PATH);
+    _clicked = false;
+    _clicked2 = false;
+    _alive = true;
 }
 
 DamnCute::Menu::~Menu() {
@@ -82,24 +82,24 @@ DamnCute::Menu::~Menu() {
 }
 
 void	DamnCute::Menu::update(sf::RenderWindow* win) {
-  for (size_t i = 0; i < _actions.size(); ++i)
+    for (size_t i = 0; i < _actions.size(); ++i)
     {
-      if (_actions[i]->hasInput(2) == true)
-	{
-	  if (_clicked != true)
-	    _actions[i]->execute();
-	  _clicked =true;
-	  _clicked2 = true;
-	}
+        if (_actions[i]->hasInput(2) == true)
+        {
+            if (_clicked != true)
+                _actions[i]->execute();
+            _clicked =true;
+            _clicked2 = true;
+        }
     }
-  if (_clicked2 == false)
-    _clicked = false;
-  _clicked2 = false;
-  if (_alive == true)
-      {
-	_cursor->setPosition((*_itButtons)->getX() + _cursPosX, (*_itButtons)->getY() + _cursPosY);
-	win->draw(*_cursor);
-      }
+    if (_clicked2 == false)
+        _clicked = false;
+    _clicked2 = false;
+    if (_alive == true)
+    {
+        _cursor->setPosition((*_itButtons)->getX() + _cursPosX, (*_itButtons)->getY() + _cursPosY);
+        win->draw(*_cursor);
+    }
 }
 
 void	DamnCute::Menu::setTextureButton(const std::string& filename) {
@@ -107,14 +107,14 @@ void	DamnCute::Menu::setTextureButton(const std::string& filename) {
 }
 
 void	DamnCute::Menu::setTextureCursor(const std::string& filename, int x, int y) {
-  sf::Texture tmp;
+    sf::Texture tmp;
 
-  _tex2.loadFromFile(filename);
-  _cursor = new sf::Sprite(_tex2);
-  _cursPosX = x;
-  _cursPosY = y;
-  /*_cursor->setTexture(*_tex2);*/
- }
+    _tex2.loadFromFile(filename);
+    _cursor = new sf::Sprite(_tex2);
+    _cursPosX = x;
+    _cursPosY = y;
+    /*_cursor->setTexture(*_tex2);*/
+}
 
 void	DamnCute::Menu::addButton(int x, int y, const std::string& text) {
     sf::Text test(text, _font, _characterSize);
@@ -133,150 +133,150 @@ void	DamnCute::Menu::addSubMenu(const std::string &Button, const std::string &Op
     sf::Text *tmp;
     test.setPosition(x, y);
     for (std::vector<std::string>::iterator it = listOption.begin() ; it != listOption.end(); ++it) {
-      tmp = new sf::Text(*it, _font, _characterSize);
-      tmp->setPosition(x+15, y + 25);
-      listoption2.push_back(tmp);
+        tmp = new sf::Text(*it, _font, _characterSize);
+        tmp->setPosition(x+15, y + 25);
+        listoption2.push_back(tmp);
     }
     SubMenu *b = new SubMenu(test, Option, listoption2);
     for (std::vector<DamnCute::Menu::Button*>::iterator it = _buttons.begin() ; it != _buttons.end(); ++it)
-      if ((*it)->getName() == Button)
-	(*it)->addSubMenu(b);
+        if ((*it)->getName() == Button)
+            (*it)->addSubMenu(b);
     Core::getInstance()->addObject(b);
 }
 
 void	DamnCute::Menu::MoveDown()
 {
-  std::cout << "MoveDown " << std::endl;
-  if (_alive)
+    std::cout << "MoveDown " << std::endl;
+    if (_alive)
     {
-      if (_itButtons + 1 != _buttons.end())
-	_itButtons++;
-      else
-	_itButtons = _buttons.begin();
+        if (_itButtons + 1 != _buttons.end())
+            _itButtons++;
+        else
+            _itButtons = _buttons.begin();
     }
-  else
-    (*_itButtons)->MoveUp();
+    else
+        (*_itButtons)->MoveUp();
 }
 
 void	DamnCute::Menu::MoveUp()
 {
-std::cout << "Moveup" << std::endl;
- if (_alive)
-   {
-     if (_itButtons != _buttons.begin())
-       _itButtons--;
-     else
-       {
-	 if (_buttons.size() > 1)
-	   {
-	     while(_itButtons !=  _buttons.end())
-	       {
-		 _itButtons++;
-	       }
-	     _itButtons--;
-	   }
-	 else
-	   _itButtons = _buttons.begin();
-       }
-   }
- else
-   (*_itButtons)->MoveUp();
+    std::cout << "Moveup" << std::endl;
+    if (_alive)
+    {
+        if (_itButtons != _buttons.begin())
+            _itButtons--;
+        else
+        {
+            if (_buttons.size() > 1)
+            {
+                while(_itButtons !=  _buttons.end())
+                {
+                    _itButtons++;
+                }
+                _itButtons--;
+            }
+            else
+                _itButtons = _buttons.begin();
+        }
+    }
+    else
+        (*_itButtons)->MoveUp();
 }
 
 void	DamnCute::Menu::MoveReturn()
 {
-  if (_alive)
+    if (_alive)
     {
-      if( (*_itButtons)->getName() == "start")
-	{
-	  runGame();
-	  delete(this);
-	}
-      _alive = false;
+        if( (*_itButtons)->getName() == "start")
+        {
+            runGame();
+            delete(this);
+        }
+        _alive = false;
     }
-  else
-    _alive = true;
-  (*_itButtons)->setAlive2();
-  for (std::vector<DamnCute::Menu::Button*>::iterator it = _buttons.begin() ; it != _buttons.end(); ++it)
-    (*it)->setAlive();
+    else
+        _alive = true;
+    (*_itButtons)->setAlive2();
+    for (std::vector<DamnCute::Menu::Button*>::iterator it = _buttons.begin() ; it != _buttons.end(); ++it)
+        (*it)->setAlive();
 }
 
 void	DamnCute::Menu::MoveRight()
 {
-  if (_alive == false)
+    if (_alive == false)
     {
-      (*_itButtons)->MoveRight();
+        (*_itButtons)->MoveRight();
     }
 }
 
 void	DamnCute::Menu::Button::MoveRight()
 {
-  (*_itSub)->MoveRight();
+    (*_itSub)->MoveRight();
 }
 
 void	DamnCute::Menu::MoveLeft()
 {
-  if (_alive == false)
+    if (_alive == false)
     {
-      (*_itButtons)->MoveLeft();
+        (*_itButtons)->MoveLeft();
     }
 }
 
 void	DamnCute::Menu::Button::MoveDown()
 {
-      if (_itSub + 1 != _Sub.end())
-	_itSub++;
-      else
-	_itSub = _Sub.begin();
+    if (_itSub + 1 != _Sub.end())
+        _itSub++;
+    else
+        _itSub = _Sub.begin();
 }
 
 void	DamnCute::Menu::Button::MoveUp()
 {
-     if (_itSub != _Sub.begin())
-       _itSub--;
-     else
-       {
-	 if (_Sub.size() > 1)
-	   {
-	     while(_itSub !=  _Sub.end())
-	       {
-		 _itSub++;
-	       }
-	     _itSub--;
-	   }
-	 else
-	   _itSub = _Sub.begin();
-       }
+    if (_itSub != _Sub.begin())
+        _itSub--;
+    else
+    {
+        if (_Sub.size() > 1)
+        {
+            while(_itSub !=  _Sub.end())
+            {
+                _itSub++;
+            }
+            _itSub--;
+        }
+        else
+            _itSub = _Sub.begin();
+    }
 }
 
 void	DamnCute::Menu::Button::MoveLeft()
 {
-  (*_itSub)->MoveLeft();
+    (*_itSub)->MoveLeft();
 }
 
 void	DamnCute::Menu::SubMenu::MoveRight()
 {
-  if (_it + 1 != _options.end())
-    _it++;
-  else
-    _it = _options.begin();
+    if (_it + 1 != _options.end())
+        _it++;
+    else
+        _it = _options.begin();
 }
 
 void	DamnCute::Menu::SubMenu::MoveLeft()
 {
-     if (_it != _options.begin())
-       _it--;
-     else
-       {
-	 if (_options.size() > 1)
-	   {
-	     while(_it !=  _options.end())
-	       {
-		 _it++;
-	       }
-	     _it--;
-	   }
-	 else
-	   _it = _options.begin();
-       }
+    if (_it != _options.begin())
+        _it--;
+    else
+    {
+        if (_options.size() > 1)
+        {
+            while(_it !=  _options.end())
+            {
+                _it++;
+            }
+            _it--;
+        }
+        else
+            _it = _options.begin();
+    }
 }
