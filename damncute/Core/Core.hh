@@ -39,7 +39,7 @@ namespace DamnCute {
                 _displayFPS = value;
             }
 	    inline void addBulletsCounter() {
-		++numberOfBullets;
+		++_numberOfBullets;
 	    }
 	    inline QuadTree<APhysics, 5>* getQuadTree() {
 		return &_physicTree;
@@ -61,7 +61,9 @@ namespace DamnCute {
 	    std::list<IRenderable*> _objects;
 	    bool _gameStatus;
 	    bool _displayFPS;
-	    unsigned int numberOfBullets;
+	    unsigned int _numberOfBullets;
+	    unsigned int _Pframmes;
+	    unsigned int _tmpFrammes;
 
             sf::Clock _gameClock;
             sf::Event event;

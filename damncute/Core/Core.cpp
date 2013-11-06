@@ -9,14 +9,14 @@ namespace DamnCute {
 
 DamnCute::Core* DamnCute::Core::getInstance() {
     if (!__coreInstance) {
-        __coreInstance = new DamnCute::Core;
+	__coreInstance = new DamnCute::Core;
     }
     return __coreInstance;
 }
 
 void DamnCute::Core::freeAll() {
     for (std::list<IRenderable*>::iterator it = _objects.begin() ; it != _objects.end(); ++it) {
-        delete (*it);
+	delete (*it);
     }
     _objects.clear();
 }
@@ -28,30 +28,30 @@ void DamnCute::Core::reset() {
 
 void DamnCute::Core::refresh() {
     for (std::list<IRenderable*>::iterator it = _objects.begin() ; it != _objects.end(); ++it) {
-        (*it)->update(_win);
+	(*it)->update(_win);
     }
 }
 
 void DamnCute::Core::flushEvent() {
     while (_win->pollEvent(event))
     {
-        if (event.type == sf::Event::KeyPressed)
-            if (event.key.code == sf::Keyboard::F12)
-                _win->close();
+	if (event.type == sf::Event::KeyPressed)
+	    if (event.key.code == sf::Keyboard::F12)
+		_win->close();
     }
 }
 
 void DamnCute::Core::flushScene() {
     float frate = _gameClock.getElapsedTime().asSeconds();
-    numberOfBullets = 0;
+    _numberOfBullets = 0;
 
     _win->clear();
     refresh();
 
     std::stringstream ss;
-    ss << ceil(1 / frate);
+    ss << _tmpFrammes;
     ss << " fps for ";
-    ss << numberOfBullets;
+    ss << _numberOfBullets;
     ss << " bullets";
     sf::Font font;
     font.loadFromFile("resources/font.ttf");
@@ -61,9 +61,14 @@ void DamnCute::Core::flushScene() {
     t.setPosition(900, 10);
 
     if (_displayFPS) {
-        _win->draw(t);
+	_win->draw(t);
     }
-    _gameClock.restart();
+    if (frate >= 1) {
+	_gameClock.restart();
+	_tmpFrammes = _Pframmes;
+	_Pframmes = 0;
+    }
+    ++_Pframmes;
     _win->display();
 }
 
@@ -78,9 +83,9 @@ void DamnCute::Core::createWin(unsigned int width, unsigned int height, bool ful
     unsigned int style = full << 3;
 
     if (width == 0 && height == 0) {
-        _win = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "Death Curtain", style);
+	_win = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "Death Curtain", style);
     } else {
-        _win = new sf::RenderWindow(sf::VideoMode(width, height), "Death Curtain", style);
+	_win = new sf::RenderWindow(sf::VideoMode(width, height), "Death Curtain", style);
     }
     _win->setVerticalSyncEnabled(true);
     _win->setFramerateLimit(60);
@@ -88,11 +93,11 @@ void DamnCute::Core::createWin(unsigned int width, unsigned int height, bool ful
 
 void DamnCute::Core::delObject(IRenderable* a) {
     for (std::list<IRenderable*>::iterator it = _objects.begin() ; it != _objects.end(); ++it) {
-        if ((*it) == a) {
-            _objects.erase(it);
-            delete a;
-            return;
-        }
+	if ((*it) == a) {
+	    _objects.erase(it);
+	    delete a;
+	    return;
+	}
     }
 }
 
