@@ -19,7 +19,7 @@ namespace DamnCute {
 	    QuadTree<APhysics, 5>* _quadTree;
 	    QuadTree<APhysics, 5>::Array_Type_ _path;
 
-	    QuadTree<APhysics, 5>::Array_Type_ generateQuadTreePos(unsigned int x, unsigned int y) {
+	    inline QuadTree<APhysics, 5>::Array_Type_ generateQuadTreePos(unsigned int x, unsigned int y) {
 		unsigned int nodeX = sCore->getWindowSizeX() / 2;
 		unsigned int nodeY = sCore->getWindowSizeY() / 2;
 
@@ -57,7 +57,7 @@ namespace DamnCute {
 	    }
 
 	    void collision() {
-		std::cout << "SLASH" << std::endl;
+		//std::cout << "SLASH" << std::endl;
 	    }
 
 	    void updateQuadTreePos(unsigned int x, unsigned int y) {
