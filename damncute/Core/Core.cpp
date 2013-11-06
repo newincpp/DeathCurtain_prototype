@@ -42,28 +42,26 @@ void DamnCute::Core::flushEvent() {
 }
 
 void DamnCute::Core::flushScene() {
-    float frate = _gameClock.getElapsedTime().asSeconds();
     _numberOfBullets = 0;
-
+    sf::Font font;
+    sf::Text t;
     _win->clear();
     refresh();
 
-    std::stringstream ss;
-    ss << _tmpFrammes;
-    ss << " fps for ";
-    ss << _numberOfBullets;
-    ss << " bullets";
-    sf::Font font;
-    font.loadFromFile("resources/font.ttf");
-    sf::Text t(ss.str(), font);
-    t.setCharacterSize(24);
-    t.setColor(sf::Color::Green);
-    t.setPosition(900, 10);
-
     if (_displayFPS) {
+	std::stringstream ss;
+	ss << _tmpFrammes;
+	ss << " fps for ";
+	ss << _numberOfBullets;
+	ss << " bullets";
+	font.loadFromFile("resources/font.ttf");
+	t = sf::Text(ss.str(), font);
+	t.setCharacterSize(24);
+	t.setColor(sf::Color::Green);
+	t.setPosition(900, 10);
 	_win->draw(t);
     }
-    if (frate >= 1) {
+    if (_gameClock.getElapsedTime().asSeconds() >= 1) {
 	_gameClock.restart();
 	_tmpFrammes = _Pframmes;
 	_Pframmes = 0;
