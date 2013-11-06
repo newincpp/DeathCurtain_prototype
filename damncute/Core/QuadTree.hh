@@ -17,7 +17,6 @@ namespace {
 	    private:
 #include "TreeNode.hh"
 		typedef std::array<TDir, LEVEL> __path_ar_;
-		const unsigned int _level;
 		TreeNode<T>* _head;
 
 		inline TreeNode<T>* _getNode(__path_ar_ path) const {
@@ -36,7 +35,7 @@ namespace {
 		}
 
 	    public:
-		explicit QuadTree() : _level(LEVEL), _head(new TreeNode<T>(LEVEL)) {}
+		explicit QuadTree() : _head(new TreeNode<T>(LEVEL)) {}
 
 		T* getDataTreeNode(__path_ar_& path) const {
 		    return _getNode(path)->data;
@@ -67,7 +66,7 @@ namespace {
 		}
 
 		inline unsigned int getLevel() const {
-		    return _level;
+		    return LEVEL;
 		}
 
 		typedef __path_ar_ Array_Type_;

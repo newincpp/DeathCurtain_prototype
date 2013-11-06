@@ -26,6 +26,7 @@ void DamnCute::Bullet::update(const glm::mat4& transform, sf::RenderWindow* w_pt
     glm::vec3 retVec = -d * rotMat;
 
     _s.setPosition(retVec.x, retVec.y);
+    updateQuadTreePos(retVec.x, retVec.y);
     w_ptr->draw(_s);
     DamnCute::Core::getInstance()->addBulletsCounter();
 }
