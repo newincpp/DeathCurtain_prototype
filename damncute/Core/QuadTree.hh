@@ -1,5 +1,5 @@
-#include <functional>
 #include <array>
+#include <utility>
 
 #ifndef QUADTREE_H_
 # define QUADTREE_H_
@@ -13,6 +13,9 @@ namespace {
 		    BZone,
 		    CZone,
 		    DZone
+		};
+		enum _CQTREEVALUES_ {
+		    _COMPLEXITY_ = LEVEL,
 		};
 	    private:
 #include "TreeNode.hh"
@@ -65,8 +68,8 @@ namespace {
 		    return false;
 		}
 
-		inline unsigned int getLevel() const {
-		    return LEVEL;
+		inline unsigned int&& getLevel() const {
+		    return std::move(LEVEL);
 		}
 
 		typedef __path_ar_ Array_Type_;
